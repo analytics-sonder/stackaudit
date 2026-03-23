@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StackAudit for Agencies — Audit Client MarTech Stacks, Generate Reports</title>
+<meta name="description" content="Marketing agencies managing multiple client stacks need multi-workspace management, white-label PDF reports, and cross-client benchmarking. StackAudit Scale gives you all of it from one account.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://stackaudit.io/agencies.html">
+<meta property="og:title" content="StackAudit for Marketing Agencies">
+<meta property="og:description" content="Manage multiple client stacks, generate white-label audit reports, and benchmark spend across clients — from one StackAudit account.">
+<meta property="og:url" content="https://stackaudit.io/agencies.html">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"How does StackAudit help marketing agencies?","acceptedAnswer":{"@type":"Answer","text":"StackAudit's Scale plan gives agencies multi-workspace management — each client gets a separate workspace with its own tool stack, scores, and recommendations. The agency sees an overview across all clients: total spend, savings identified, and average optimization scores. White-label PDF reports can go directly into client decks."}},{"@type":"Question","name":"Can I white-label StackAudit reports for clients?","acceptedAnswer":{"@type":"Answer","text":"Yes. The Scale plan includes white-label PDF export reports. These show the client's stack spend, tool-by-tool optimization scores, specific action recommendations, and estimated savings — formatted for client presentations without StackAudit branding."}},{"@type":"Question","name":"How many client workspaces can I manage on the Scale plan?","acceptedAnswer":{"@type":"Answer","text":"The Scale plan includes unlimited workspaces. Each workspace is isolated — a client in Workspace A cannot see Workspace B's data. You switch between workspaces from a single agency dashboard."}},{"@type":"Question","name":"How does a martech stack audit add value to agency services?","acceptedAnswer":{"@type":"Answer","text":"A martech audit is a high-value deliverable that positions the agency as strategic, not just executional. It creates a natural entry point for deeper retainer work: once a client sees they're wasting $800/month, they want someone to fix it. Agencies using StackAudit report it as a lead-generating service — the audit finding drives consulting work."}}]}</script>
+<style>@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap');
+:root{--navy:#001935;--navy2:#002a52;--lb:#0A66C2;--lb2:#0854a8;--purple:#6B46C1;--light-blue:#E7F3FF;--slate:#626E7E;--border:#dde3ec;--white:#ffffff;--body:#2d3748;--bg:#f8fafd;--success:#0f7a4a;--success-bg:#e6f4ed}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:'Inter',sans-serif;background:var(--white);color:var(--body);line-height:1.6;-webkit-font-smoothing:antialiased}
+a{color:var(--lb);text-decoration:none}
+.container{max-width:1100px;margin:0 auto;padding:0 40px}
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,25,53,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);height:64px;display:flex;align-items:center}
+.nav-inner{width:100%;max-width:1100px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
+.nav-brand{display:flex;align-items:center;gap:9px;text-decoration:none}
+.nav-logo{width:32px;height:32px;border-radius:7px;background:var(--lb);display:flex;align-items:center;justify-content:center}
+.nav-logo svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-name{font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:-.2px}
+.nav-links{display:flex;align-items:center;gap:28px;list-style:none}
+.nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.7);transition:color .2s}
+.nav-links a:hover{color:#fff}
+.nav-cta{background:var(--lb)!important;color:#fff!important;padding:8px 20px!important;border-radius:6px!important;font-weight:600!important}
+.nav-cta:hover{background:var(--lb2)!important}
+.page-hero{background:linear-gradient(150deg,var(--navy) 0%,var(--navy2) 100%);padding:128px 0 80px;position:relative;overflow:hidden}
+.page-hero::after{content:'';position:absolute;top:-150px;right:-100px;width:500px;height:500px;border-radius:50%;background:radial-gradient(circle,rgba(107,70,193,.12) 0%,transparent 70%);pointer-events:none}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:7px;background:rgba(10,102,194,.2);border:1px solid rgba(10,102,194,.3);border-radius:20px;padding:4px 14px;font-size:11px;font-weight:700;color:#93c5fd;text-transform:uppercase;letter-spacing:.07em;margin-bottom:16px}
+.hero-h1{font-family:'Poppins',sans-serif;font-size:clamp(32px,4vw,52px);font-weight:800;color:#fff;line-height:1.1;letter-spacing:-1px;margin-bottom:16px}
+.hero-h1 .accent{color:#a78bfa}
+.hero-sub{font-size:17px;color:rgba(255,255,255,.65);line-height:1.65;max-width:560px;margin-bottom:32px}
+.chip{padding:5px 14px;border-radius:20px;font-size:12px;font-weight:600}
+.chip-blue{background:rgba(10,102,194,.2);color:#93c5fd;border:1px solid rgba(10,102,194,.3)}
+.chip-green{background:rgba(15,122,74,.2);color:#6ee7b7;border:1px solid rgba(15,122,74,.25)}
+.chip-gray{background:rgba(255,255,255,.07);color:rgba(255,255,255,.6);border:1px solid rgba(255,255,255,.1)}
+.chips{display:flex;gap:10px;flex-wrap:wrap}
+.section{padding:80px 0}
+.section-alt{background:var(--bg)}
+.section-navy{background:var(--navy)}
+.eyebrow{font-size:11px;font-weight:700;color:var(--lb);text-transform:uppercase;letter-spacing:.1em;margin-bottom:12px}
+.eyebrow-white{color:rgba(255,255,255,.5)}
+h2.sh{font-family:'Poppins',sans-serif;font-size:clamp(28px,3.5vw,40px);font-weight:700;color:var(--navy);letter-spacing:-.6px;line-height:1.12;margin-bottom:14px}
+h2.sh-w{color:#fff}
+.sub{font-size:16px;color:var(--slate);line-height:1.65;max-width:520px}
+.sub-w{color:rgba(255,255,255,.65)}
+.cards3{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;margin-top:48px}
+.cards2{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;margin-top:40px}
+.card{background:#fff;border:1px solid var(--border);border-radius:14px;padding:28px;transition:box-shadow .2s}
+.card:hover{box-shadow:0 4px 20px rgba(0,25,53,.08)}
+.ci{width:40px;height:40px;border-radius:10px;background:var(--light-blue);border:1px solid rgba(10,102,194,.15);display:flex;align-items:center;justify-content:center;margin-bottom:16px}
+.ci svg{width:18px;height:18px;stroke:var(--lb);fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.ci-p{background:#f0ebff;border-color:rgba(107,70,193,.15)}.ci-p svg{stroke:var(--purple)}
+.ci-g{background:var(--success-bg);border-color:rgba(15,122,74,.15)}.ci-g svg{stroke:var(--success)}
+h3.ct{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(--navy);margin-bottom:8px}
+.cd{font-size:14px;color:var(--slate);line-height:1.6}
+.btn-p{display:inline-flex;align-items:center;gap:8px;background:var(--lb);color:#fff;padding:13px 26px;border-radius:8px;font-size:15px;font-weight:600;transition:all .2s;border:none;cursor:pointer;font-family:'Inter',sans-serif}
+.btn-p:hover{background:var(--lb2);transform:translateY(-1px)}
+.btn-o{display:inline-flex;align-items:center;gap:8px;background:transparent;color:rgba(255,255,255,.8);padding:12px 22px;border-radius:8px;font-size:15px;font-weight:500;border:1px solid rgba(255,255,255,.2);transition:all .2s}
+.btn-o:hover{border-color:rgba(255,255,255,.5);color:#fff}
+.btn-actions{display:flex;gap:14px;flex-wrap:wrap;margin-top:32px}
+.faq-list{max-width:720px;margin:48px auto 0}
+.faq-item{border-bottom:1px solid var(--border)}
+.faq-item:first-child{border-top:1px solid var(--border)}
+.faq-q{display:flex;align-items:center;justify-content:space-between;padding:20px 0;cursor:pointer;gap:16px}
+.faq-q-text{font-family:'Poppins',sans-serif;font-size:16px;font-weight:600;color:var(--navy);line-height:1.4}
+.faq-toggle{width:26px;height:26px;border-radius:50%;background:var(--light-blue);display:flex;align-items:center;justify-content:center;flex-shrink:0;transition:all .25s}
+.faq-toggle svg{width:13px;height:13px;stroke:var(--lb);stroke-width:2;stroke-linecap:round}
+.faq-item.open .faq-toggle{background:var(--lb);transform:rotate(45deg)}
+.faq-item.open .faq-toggle svg{stroke:#fff}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease}
+.faq-item.open .faq-a{max-height:300px}
+.faq-a-inner{padding-bottom:20px;font-size:15px;color:var(--slate);line-height:1.7}
+.cta-band{background:var(--navy);padding:96px 0;text-align:center}
+.cta-band h2{font-family:'Poppins',sans-serif;font-size:clamp(30px,4vw,46px);font-weight:800;color:#fff;letter-spacing:-.8px;line-height:1.1;margin-bottom:14px}
+.cta-band p{font-size:17px;color:rgba(255,255,255,.6);margin-bottom:32px}
+.footer{background:#000e20;padding:56px 0 32px}
+.footer-top{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:48px;margin-bottom:48px}
+.footer-pname{font-family:'Poppins',sans-serif;font-size:19px;font-weight:800;color:#fff;margin-bottom:8px}
+.footer-pdesc{font-size:13px;color:rgba(255,255,255,.45);line-height:1.65;max-width:240px;margin-bottom:20px}
+.footer-sc{display:inline-flex;align-items:center;gap:10px;padding:9px 13px;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-radius:10px;text-decoration:none;transition:background .2s}
+.footer-sc:hover{background:rgba(255,255,255,.08)}
+.footer-sc-logo{background:var(--navy);border:1px solid rgba(255,255,255,.12);border-radius:5px;padding:3px 8px}
+.footer-sc-logo span{font-family:'Poppins',sans-serif;font-size:10px;font-weight:800;color:#fff;letter-spacing:.06em;text-transform:uppercase}
+.footer-sc-by{font-size:10px;font-weight:600;color:rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.07em;display:block}
+.footer-sc-name{font-size:13px;font-weight:600;color:rgba(255,255,255,.7);display:block}
+.footer-ct{font-family:'Poppins',sans-serif;font-size:11px;font-weight:700;color:rgba(255,255,255,.4);text-transform:uppercase;letter-spacing:.09em;margin-bottom:16px}
+.footer-links{list-style:none;display:flex;flex-direction:column;gap:10px}
+.footer-links a{font-size:13px;color:rgba(255,255,255,.5);transition:color .2s}
+.footer-links a:hover{color:rgba(255,255,255,.85)}
+.footer-bot{border-top:1px solid rgba(255,255,255,.06);padding-top:24px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.footer-copy{font-size:12px;color:rgba(255,255,255,.3)}
+.footer-copy a{color:rgba(255,255,255,.4)}
+.footer-legal{display:flex;gap:20px}
+.footer-legal a{font-size:12px;color:rgba(255,255,255,.3);transition:color .2s}
+.footer-legal a:hover{color:rgba(255,255,255,.6)}
+@media(max-width:900px){.nav-links{display:none}.container{padding:0 20px}.cards3{grid-template-columns:1fr}.cards2{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:28px}.footer-bot{flex-direction:column;align-items:flex-start}}</style>
+</head><body>
+<!-- NAV -->
+<nav class="nav" role="navigation" aria-label="Main navigation">
+  <div class="nav-inner">
+    <a href="/index.html" class="nav-brand" aria-label="StackAudit home">
+      <div class="nav-logo"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <span class="nav-name">StackAudit</span>
+    </a>
+    <ul class="nav-links" role="list">
+      <li><a href="/index.html#features">Features</a></li>
+      <li><a href="/index.html#pricing">Pricing</a></li>
+      <li><a href="/index.html#faq">FAQ</a></li>
+      <li><a href="/index.html#pricing" class="nav-cta">Start free</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- FOOTER -->
+<footer class="footer" role="contentinfo">
+  <div class="container">
+    <div class="footer-top">
+      <div>
+        <div class="footer-pname">StackAudit</div>
+        <p class="footer-pdesc">MarTech spend optimizer. Audit your marketing stack, score every tool, and find exactly where budget is being wasted.</p>
+        <a href="https://sonderdigital.com" class="footer-sc" target="_blank" rel="noopener" aria-label="Built by Sonder Digital">
+          <div class="footer-sc-logo"><span>SONDER DIGITAL</span></div>
+          <div><span class="footer-sc-by">Built by</span><span class="footer-sc-name">Sonder Digital</span></div>
+        </a>
+      </div>
+      <nav aria-label="Product links">
+        <div class="footer-ct">Product</div>
+        <ul class="footer-links">
+          <li><a href="/index.html#features">Features</a></li>
+          <li><a href="/index.html#how-it-works">How it works</a></li>
+          <li><a href="/index.html#scoring">Scoring model</a></li>
+          <li><a href="/index.html#pricing">Pricing</a></li>
+          <li><a href="/index.html#faq">FAQ</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Use case links">
+        <div class="footer-ct">Use cases</div>
+        <ul class="footer-links">
+          <li><a href="/b2b-marketing-teams.html">B2B marketing teams</a></li>
+          <li><a href="/revops-operations.html">RevOps &amp; operations</a></li>
+          <li><a href="/agencies.html">Agencies</a></li>
+          <li><a href="/startup-founders.html">Startup founders</a></li>
+          <li><a href="/enterprise.html">Enterprise</a></li>
+        </ul>
+      </nav>
+      <nav aria-label="Company links">
+        <div class="footer-ct">Company</div>
+        <ul class="footer-links">
+          <li><a href="https://sonderdigital.com" target="_blank" rel="noopener">Sonder Digital</a></li>
+          <li><a href="/contact.html">Contact</a></li>
+          <li><a href="/privacy.html">Privacy policy</a></li>
+          <li><a href="/terms.html">Terms of service</a></li>
+        </ul>
+      </nav>
+    </div>
+    <div class="footer-bot">
+      <p class="footer-copy">© 2025 StackAudit. A product by <a href="https://sonderdigital.com" target="_blank" rel="noopener">Sonder Digital</a>.</p>
+      <nav class="footer-legal" aria-label="Legal links">
+        <a href="/privacy.html">Privacy policy</a>
+        <a href="/terms.html">Terms of service</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </div>
+  </div>
+</footer>
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.closest('.faq-item');const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');});});
+</script>
+<div class="page-hero">
+  <div class="container" style="position:relative;z-index:1">
+    <div class="hero-eyebrow">Agencies</div>
+    <h1 class="hero-h1">Audit every client stack.<br><span class="accent">One account. White-label reports.</span></h1>
+    <p class="hero-sub">Marketing agencies managing multiple clients need multi-workspace management, cross-client benchmarking, and professional reports. StackAudit Scale gives you all of it from a single dashboard.</p>
+    <div class="chips"><span class="chip chip-green">Unlimited workspaces</span><span class="chip chip-blue">White-label PDF reports</span><span class="chip chip-gray">Cross-client overview</span></div>
+    <div class="btn-actions"><a href="/index.html#pricing" class="btn-p">Start with Scale — $49/mo <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a><a href="/index.html#pricing" class="btn-o">Try Basic free first</a></div>
+  </div>
+</div>
+
+<section class="section">
+  <div class="container">
+    <div class="eyebrow">Scale plan — built for agencies</div>
+    <h2 class="sh">Everything an agency needs to deliver stack audits as a service</h2>
+    <div class="cards3">
+      <div class="card"><div class="ci ci-p"><svg viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg></div><h3 class="ct">Unlimited workspaces</h3><p class="cd">Each client gets a separate workspace — isolated data, independent scoring, individual renewal calendars. Switch between clients from the same account without any data crossover.</p></div>
+      <div class="card"><div class="ci ci-g"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 00-2 2v16a2 2 0 002 2h12a2 2 0 002-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div><h3 class="ct">White-label PDF reports</h3><p class="cd">Export professional audit reports under your agency brand. Each report shows the client's stack spend, tool-by-tool optimization scores, specific actions, and total identified savings — ready to present.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><path d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z"/></svg></div><h3 class="ct">Cross-client benchmarking</h3><p class="cd">See total spend and savings identified across all client workspaces from one overview. Compare optimization scores across clients and identify which accounts need the most attention.</p></div>
+      <div class="card"><div class="ci ci-p"><svg viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg></div><h3 class="ct">AI insights — Claude-powered</h3><p class="cd">Claude reads your client's structured audit output and generates a narrative analysis — cross-tool patterns, consolidation opportunities, and ROI estimates. Goes straight into your client presentation.</p></div>
+      <div class="card"><div class="ci ci-g"><svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87M16 3.13a4 4 0 010 7.75"/></svg></div><h3 class="ct">Team collaboration — 5 seats</h3><p class="cd">Add up to 5 team members to your agency account. Each person can access all workspaces, add tools, and generate reports — no additional per-user charge.</p></div>
+      <div class="card"><div class="ci"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg></div><h3 class="ct">Renewal tracking across clients</h3><p class="cd">All client tool renewals in one calendar. Get alerts before each client's contracts auto-renew so you can recommend optimizations before they're locked in for another year.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-alt">
+  <div class="container">
+    <div class="eyebrow">The agency opportunity</div>
+    <h2 class="sh">How a stack audit fits into agency services</h2>
+    <p class="sub" style="margin-bottom:40px">Agencies that offer martech audits report it as one of their highest-value, lowest-effort deliverables. Here's why.</p>
+    <div class="cards2">
+      <div class="card"><h3 class="ct">Positions you as strategic</h3><p class="cd" style="margin-bottom:12px">A detailed, scored audit with specific savings figures changes the client conversation from "execute our campaigns" to "advise on our entire marketing operation." That's a premium retainer, not a project fee.</p></div>
+      <div class="card"><h3 class="ct">Creates natural consulting leads</h3><p class="cd" style="margin-bottom:12px">Once a client sees they're wasting $800/month across their stack, they want someone to fix it. The audit finding directly drives implementation work — CRM optimisation, automation setup, tool consolidation.</p></div>
+      <div class="card"><h3 class="ct">Repeatable — monthly or quarterly</h3><p class="cd" style="margin-bottom:12px">A stack audit isn't a one-time deliverable. Tools change. Teams grow. Plans change. Running a quarterly review for retained clients adds ongoing value with very little incremental effort.</p></div>
+      <div class="card"><h3 class="ct">Differentiates from generic agencies</h3><p class="cd" style="margin-bottom:12px">Most agencies don't look at the client's tool spend at all. Walking into a pitch with a structured audit framework — even before you're hired — immediately separates you from competitors.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="section section-navy">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow eyebrow-white">Agency result</div>
+    <h2 class="sh sh-w" style="max-width:600px;margin:0 auto 12px">"Managing 4 client stacks on Scale. The white-label reports go straight into client decks."</h2>
+    <p class="sub sub-w" style="margin:0 auto 24px">Best $49/month I spend — it pays back in the first recommendation every single time. Each audit finding turns into a conversation about deeper implementation work.</p>
+    <p style="font-size:14px;font-weight:600;color:rgba(255,255,255,.5)">Shreya K. · Founder, Digital marketing agency</p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container" style="text-align:center">
+    <div class="eyebrow">FAQ</div>
+    <h2 class="sh" style="text-align:center">Questions from agency founders</h2>
+    <div class="faq-list" style="text-align:left">
+      <div class="faq-item"><div class="faq-q" role="button" tabindex="0"><span class="faq-q-text">How does StackAudit help marketing agencies?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="faq-a"><div class="faq-a-inner">The Scale plan gives agencies multi-workspace management — each client gets a separate workspace. An agency overview shows total spend and savings across all clients. White-label PDF reports go directly into client decks without StackAudit branding.</div></div></div>
+      <div class="faq-item"><div class="faq-q" role="button" tabindex="0"><span class="faq-q-text">Can I white-label reports for clients?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="faq-a"><div class="faq-a-inner">Yes. The Scale plan includes white-label PDF export reports showing the client's stack spend, tool-by-tool optimization scores, specific action recommendations, and estimated savings — formatted for client presentations without StackAudit branding.</div></div></div>
+      <div class="faq-item"><div class="faq-q" role="button" tabindex="0"><span class="faq-q-text">How many client workspaces can I manage?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="faq-a"><div class="faq-a-inner">The Scale plan includes unlimited workspaces. Each is completely isolated — Client A cannot see Client B's data. You switch between them from a single agency dashboard.</div></div></div>
+      <div class="faq-item"><div class="faq-q" role="button" tabindex="0"><span class="faq-q-text">How does a martech audit add value to agency services?</span><div class="faq-toggle"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="faq-a"><div class="faq-a-inner">A martech audit positions the agency as strategic, not just executional. Once a client sees they're wasting $800/month, they want someone to fix it. The audit finding drives consulting work — CRM optimisation, automation setup, tool consolidation. Agencies report it as their highest-conversion lead generation service.</div></div></div>
+    </div>
+  </div>
+</section>
+<div class="cta-band"><div class="container"><h2>Turn client stacks into a service line.</h2><p>Scale plan · $49/month · Unlimited workspaces · White-label reports</p><a href="/index.html#pricing" class="btn-p">Start Scale plan <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg></a></div></div>
+</body></html>

@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>StackAudit — MarTech Spend Optimizer</title>
+<meta name="description" content="Audit your marketing tool stack, score every tool across 9 dimensions, and find exactly where budget is being wasted.">
+<link rel="canonical" href="https://stackaudit.io/app">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#001935;--navy2:#002a52;--lb:#0A66C2;--lb2:#0854a8;--purple:#6B46C1;--light-blue:#E7F3FF;--slate:#626E7E;--border:#dde3ec;--white:#ffffff;--body:#2d3748;--bg:#f8fafd;--success:#0f7a4a;--success-bg:#e6f4ed;--warn:#854F0B;--warn-bg:#fef3e2;--danger:#b91c1c;--danger-bg:#fef2f2}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%;font-family:'Inter',sans-serif;font-size:14px;color:var(--body);background:var(--bg);-webkit-font-smoothing:antialiased}
+a{color:var(--lb);text-decoration:none}
+.app{display:grid;grid-template-columns:224px 1fr;height:100vh;overflow:hidden}
+.sb{background:var(--navy);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
+.sb-brand{padding:1.125rem 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.08)}
+.sb-logo-wrap{display:flex;align-items:center;gap:9px;text-decoration:none;margin-bottom:2px}
+.sb-logo-mark{width:30px;height:30px;border-radius:7px;background:var(--lb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo-mark svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.sb-name{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:-.2px}
+.sb-plan{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
+.plan-basic{background:rgba(255,255,255,.07);color:rgba(255,255,255,.55);border-color:rgba(255,255,255,.12)}
+.plan-growth{background:rgba(10,102,194,.25);color:#93c5fd;border-color:rgba(10,102,194,.4)}
+.plan-scale{background:rgba(107,70,193,.25);color:#c4b5fd;border-color:rgba(107,70,193,.4)}
+.sb-limit{height:3px;border-radius:2px;background:rgba(255,255,255,.1);margin-top:7px;overflow:hidden}
+.sb-limit-fill{height:100%;border-radius:2px;transition:width .3s}
+.sb-group{padding:10px 10px 4px}
+.sb-group-label{font-size:10px;font-weight:600;color:rgba(255,255,255,.3);text-transform:uppercase;letter-spacing:.08em;padding:0 6px;margin-bottom:3px;font-family:'Inter',sans-serif}
+.nav-item{display:flex;align-items:center;gap:8px;padding:7px 10px;border-radius:8px;cursor:pointer;font-size:13px;color:rgba(255,255,255,.55);font-family:'Inter',sans-serif;font-weight:400;transition:all .12s;margin-bottom:1px;position:relative}
+.nav-item:hover{background:rgba(255,255,255,.07);color:rgba(255,255,255,.85)}
+.nav-item.active{background:rgba(10,102,194,.25);color:#fff;font-weight:600}
+.nav-icon{width:15px;height:15px;flex-shrink:0;opacity:.5;stroke:currentColor;fill:none;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.nav-item.active .nav-icon{opacity:1}
+.nav-badge{margin-left:auto;font-size:10px;font-weight:600;padding:1px 6px;border-radius:10px}
+.nb-growth{background:rgba(10,102,194,.3);color:#93c5fd}
+.nb-scale{background:rgba(107,70,193,.3);color:#c4b5fd}
+.nb-alert{background:#dc2626;color:#fff;width:16px;height:16px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:9px}
+.sb-footer{margin-top:auto;padding:12px}
+.upgrade-box{background:rgba(10,102,194,.12);border:1px solid rgba(10,102,194,.25);border-radius:10px;padding:12px}
+.upgrade-title{font-size:12px;font-weight:600;color:#fff;margin-bottom:3px;font-family:'Inter',sans-serif}
+.upgrade-sub{font-size:11px;color:rgba(255,255,255,.5);line-height:1.5;margin-bottom:8px;font-family:'Inter',sans-serif}
+.upgrade-btn{width:100%;padding:7px;background:var(--lb);color:#fff;border:none;border-radius:7px;font-size:12px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s}
+.upgrade-btn:hover{background:var(--lb2)}
+.main{display:flex;flex-direction:column;height:100vh;overflow:hidden;background:var(--white)}
+.topbar{padding:.875rem 1.5rem;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;background:var(--white);flex-shrink:0}
+.topbar-title{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--navy);letter-spacing:-.2px}
+.topbar-desc{font-size:12px;color:var(--slate);margin-top:1px;font-family:'Inter',sans-serif}
+.topbar-right{display:flex;gap:8px;flex-shrink:0}
+.btn{padding:7px 16px;border-radius:8px;font-size:13px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:all .15s;display:inline-flex;align-items:center;gap:6px;white-space:nowrap}
+.btn-primary{background:var(--lb);color:#fff}.btn-primary:hover{background:var(--lb2)}
+.btn-ghost{background:transparent;color:var(--slate);border:1px solid var(--border)}.btn-ghost:hover{background:var(--light-blue);color:var(--navy);border-color:#b5d4f4}
+.btn-purple{background:var(--purple);color:#fff}.btn-purple:hover{background:#5a38a8}
+.btn-sm{padding:5px 12px;font-size:12px}
+.content{flex:1;overflow-y:auto;padding:1.375rem 1.5rem}
+.page{display:none}.page.active{display:block}
+.metrics{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;margin-bottom:1.375rem}
+.mc{background:var(--light-blue);border-radius:10px;padding:.875rem 1rem;border:1px solid #c5dff6}
+.mc-label{font-size:11px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.05em;margin-bottom:5px;font-family:'Inter',sans-serif}
+.mc-value{font-family:'Poppins',sans-serif;font-size:22px;font-weight:700;color:var(--navy);line-height:1.1}
+.mc-sub{font-size:11px;color:var(--slate);margin-top:3px;font-family:'Inter',sans-serif}
+.mc-value.green{color:#0f7a4a}.mc-value.red{color:#b91c1c}.mc-value.blue{color:var(--lb)}
+.sh{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px}
+.st{font-size:11px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.07em;font-family:'Inter',sans-serif}
+.badge{display:inline-block;padding:2px 8px;border-radius:20px;font-size:11px;font-weight:600;white-space:nowrap;font-family:'Inter',sans-serif}
+.bg-blue{background:var(--light-blue);color:#0854a8}.bg-green{background:var(--success-bg);color:var(--success)}.bg-amber{background:var(--warn-bg);color:var(--warn)}.bg-red{background:var(--danger-bg);color:var(--danger)}.bg-gray{background:#f1f4f8;color:var(--slate)}.bg-purple{background:#f0ebff;color:#5a38a8}
+.score-wrap{display:flex;align-items:center;gap:6px}
+.score-bg{flex:1;height:5px;background:#e8edf5;border-radius:3px;overflow:hidden}
+.score-fill{height:100%;border-radius:3px}
+.score-num{font-size:11px;font-weight:700;width:22px;text-align:right;font-family:'Poppins',sans-serif}
+.tt{width:100%;border-collapse:collapse;font-size:13px;font-family:'Inter',sans-serif}
+.tt th{text-align:left;padding:7px 8px;border-bottom:2px solid var(--border);color:var(--slate);font-weight:600;font-size:10px;text-transform:uppercase;letter-spacing:.05em}
+.tt td{padding:9px 8px;border-bottom:1px solid #f0f4f8;vertical-align:middle}
+.tt tr:last-child td{border-bottom:none}
+.tt tr:hover td{background:var(--light-blue)}
+.tt td:first-child{font-weight:600;color:var(--navy)}
+.card{border:1px solid var(--border);border-radius:12px;padding:1rem 1.25rem;background:var(--white);margin-bottom:10px}
+.card.high{border-left:3px solid #dc2626;border-radius:0;border-top-right-radius:12px;border-bottom-right-radius:12px}
+.card.med{border-left:3px solid #d97706;border-radius:0;border-top-right-radius:12px;border-bottom-right-radius:12px}
+.card.low{border-left:3px solid #0f7a4a;border-radius:0;border-top-right-radius:12px;border-bottom-right-radius:12px}
+.fsec{margin-bottom:1.125rem;padding-bottom:1.125rem;border-bottom:1px solid var(--border)}
+.fsec-title{font-size:11px;font-weight:600;color:var(--slate);text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px;font-family:'Inter',sans-serif}
+.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:.5rem}
+.fg{display:flex;flex-direction:column;gap:5px}
+.fg.full{grid-column:1/-1}
+.fl{font-size:12px;font-weight:600;color:var(--navy);font-family:'Inter',sans-serif}
+.fi{padding:8px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;color:var(--body);background:var(--white);width:100%;transition:border-color .15s}
+.fi:focus{outline:none;border-color:var(--lb);box-shadow:0 0 0 3px rgba(10,102,194,.1)}
+select.fi{cursor:pointer}
+.form-actions{display:flex;gap:8px;justify-content:flex-end;padding-top:1rem;border-top:1px solid var(--border)}
+.qdbtn{padding:4px 10px;border:1.5px solid var(--border);border-radius:8px;font-size:11px;font-weight:600;cursor:pointer;background:var(--white);color:var(--slate);font-family:'Inter',sans-serif;transition:all .12s}
+.qdbtn:hover,.qdbtn.sel{border-color:var(--lb);color:var(--lb);background:var(--light-blue)}
+.infer-note{font-size:12px;color:var(--lb);padding:7px 10px;background:var(--light-blue);border-radius:8px;margin-top:8px;border:1px solid #b5d4f4}
+.ren-card{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;background:var(--white)}
+.ren-card.urg{border-color:#fca5a5;background:#fff5f5}
+.ren-card.war{border-color:#fcd34d;background:#fffdf0}
+.ren-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.snooze-btn{padding:3px 8px;border:1px solid var(--border);border-radius:8px;font-size:11px;font-weight:500;cursor:pointer;background:transparent;color:var(--slate);font-family:'Inter',sans-serif;transition:all .12s}
+.snooze-btn:hover{border-color:var(--lb);color:var(--lb)}
+.locked{background:var(--light-blue);border-radius:12px;padding:2.5rem;text-align:center;border:1px dashed #b5d4f4}
+.locked-title{font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px}
+.locked-sub{font-size:13px;color:var(--slate);line-height:1.6;margin-bottom:1.125rem;font-family:'Inter',sans-serif}
+.tab-row{display:flex;gap:2px;padding:3px;background:#f1f4f8;border-radius:10px;width:fit-content;margin-bottom:1rem}
+.tab{padding:5px 14px;border-radius:7px;font-size:13px;font-weight:500;cursor:pointer;color:var(--slate);transition:all .12s;font-family:'Inter',sans-serif}
+.tab.active{background:var(--white);color:var(--navy);font-weight:600;box-shadow:0 1px 4px rgba(0,25,53,.08)}
+.prog-row{display:flex;align-items:center;gap:10px;margin-bottom:8px}
+.prog-label{font-size:12px;color:var(--slate);min-width:110px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;font-family:'Inter',sans-serif}
+.prog-bg{flex:1;height:6px;background:#e8edf5;border-radius:3px;overflow:hidden}
+.prog-fill{height:100%;border-radius:3px}
+.ai-bubble{background:#f0ebff;border-radius:12px;padding:1rem 1.25rem;margin-bottom:10px;border-left:3px solid var(--purple);border-top-left-radius:0;border-bottom-left-radius:0}
+.ai-label{font-size:10px;font-weight:700;color:var(--purple);text-transform:uppercase;letter-spacing:.08em;margin-bottom:6px;font-family:'Inter',sans-serif}
+.ai-text{font-size:13px;color:#2d1f52;line-height:1.6;font-family:'Inter',sans-serif}
+.plan-cards{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-bottom:1.5rem}
+.plan-card{border:1px solid var(--border);border-radius:12px;padding:1.25rem;background:var(--white);transition:box-shadow .15s}
+.plan-card:hover{box-shadow:0 4px 16px rgba(0,25,53,.1)}
+.plan-card.featured{border:2px solid var(--lb)}
+.plan-name{font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--slate);margin-bottom:4px;text-transform:uppercase;letter-spacing:.05em}
+.plan-price{font-family:'Poppins',sans-serif;font-size:28px;font-weight:800;color:var(--navy);line-height:1;margin-bottom:2px}
+.plan-period{font-size:12px;color:var(--slate);font-family:'Inter',sans-serif}
+.plan-divider{border:none;border-top:1px solid var(--border);margin:12px 0}
+.plan-feature{font-size:12px;color:var(--slate);padding:3px 0;display:flex;align-items:flex-start;gap:6px;line-height:1.4;font-family:'Inter',sans-serif}
+.chk{color:var(--lb);font-weight:700;flex-shrink:0}.xmark{color:#cbd5e1;flex-shrink:0}
+.plan-popular{margin-bottom:8px}
+.pop-pill{font-size:11px;font-weight:700;padding:3px 10px;border-radius:20px;background:var(--light-blue);color:#0854a8;font-family:'Inter',sans-serif}
+.plan-cta{width:100%;margin-top:14px;padding:9px;border-radius:8px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;border:none;transition:all .15s}
+.pcta-blue{background:var(--lb);color:#fff}.pcta-blue:hover{background:var(--lb2)}
+.pcta-outline{background:transparent;color:var(--navy);border:1.5px solid var(--border)}.pcta-outline:hover{border-color:var(--lb);color:var(--lb)}
+.pcta-current{background:var(--light-blue);color:#0854a8;border:1.5px solid #b5d4f4}
+.ws-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--white)}
+.billing-tog{display:flex;gap:2px;padding:3px;background:#f1f4f8;border-radius:10px;width:fit-content;margin-bottom:1.5rem}
+</style>
+</head>
+<body>
+<div class="app">
+<div class="sb">
+  <div class="sb-brand">
+    <a href="/" class="sb-logo-wrap" aria-label="StackAudit home">
+      <div class="sb-logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
+      <span class="sb-name">StackAudit</span>
+    </a>
+    <div id="plan-chip" class="sb-plan plan-basic"><span id="plan-chip-text">Basic · 0/3 tools</span></div>
+    <div class="sb-limit"><div id="limit-fill" class="sb-limit-fill" style="width:0%;background:#0A66C2"></div></div>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Overview</div>
+    <div class="nav-item active" onclick="nav('dashboard',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7"/><rect x="14" y="3" width="7" height="7"/><rect x="3" y="14" width="7" height="7"/><rect x="14" y="14" width="7" height="7"/></svg>Dashboard</div>
+    <div class="nav-item" onclick="nav('tools',this)"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M8 6h13M8 12h13M8 18h13M3 6h.01M3 12h.01M3 18h.01"/></svg>My tools</div>
+    <div class="nav-item" onclick="nav('add',this)"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v8M8 12h8"/></svg>Add tool</div>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Optimization</div>
+    <div class="nav-item" onclick="nav('recs',this)"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>Recommendations<span id="nb-recs" class="nav-badge nb-growth" style="display:none">Growth</span></div>
+    <div class="nav-item" onclick="nav('renewals',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Renewal alerts<span id="nb-alert" class="nav-badge nb-alert" style="display:none">!</span><span id="nb-renewals" class="nav-badge nb-growth" style="display:none">Growth</span></div>
+    <div class="nav-item" onclick="nav('addons',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Add-on audit<span id="nb-addons" class="nav-badge nb-growth" style="display:none">Growth</span></div>
+  </div>
+  <div class="sb-group">
+    <div class="sb-group-label">Advanced</div>
+    <div class="nav-item" onclick="nav('ai',this)"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>AI insights<span id="nb-ai" class="nav-badge nb-scale" style="display:none">Scale</span></div>
+    <div class="nav-item" onclick="nav('workspaces',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>Workspaces<span id="nb-ws" class="nav-badge nb-scale" style="display:none">Scale</span></div>
+  </div>
+  <div class="sb-group" style="margin-top:4px">
+    <div class="sb-group-label">Account</div>
+    <div class="nav-item" onclick="nav('plans',document.querySelector('[onclick*=plans]'))"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>Plans &amp; billing</div>
+  </div>
+  <div class="sb-footer">
+    <div id="upgrade-box" class="upgrade-box">
+      <div class="upgrade-title">Unlock full audit</div>
+      <div class="upgrade-sub" id="upgrade-sub">Upgrade to Growth for recommendations, renewal alerts &amp; unlimited tools.</div>
+      <button class="upgrade-btn" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">See plans →</button>
+    </div>
+  </div>
+</div>
+<div class="main">
+  <div class="topbar">
+    <div><div class="topbar-title" id="pg-title">Dashboard</div><div class="topbar-desc" id="pg-desc">Your marketing stack at a glance</div></div>
+    <div class="topbar-right">
+      <button class="btn btn-ghost btn-sm" onclick="nav('add',document.querySelector('[onclick*=add]'))">+ Add tool</button>
+      <button class="btn btn-primary btn-sm" onclick="nav('recs',document.querySelector('[onclick*=recs]'))">View recommendations</button>
+    </div>
+  </div>
+  <div class="content">
+
+    <!-- DASHBOARD -->
+    <div class="page active" id="page-dashboard">
+      <div class="metrics">
+        <div class="mc"><div class="mc-label">Monthly spend</div><div class="mc-value blue" id="m-spend">$0</div><div class="mc-sub" id="m-annual">$0/yr</div></div>
+        <div class="mc"><div class="mc-label">Potential savings</div><div class="mc-value green" id="m-save">$0</div><div class="mc-sub">per month</div></div>
+        <div class="mc"><div class="mc-label">Tools tracked</div><div class="mc-value" id="m-count">0</div><div class="mc-sub" id="m-limit-sub"></div></div>
+        <div class="mc"><div class="mc-label">Avg opt. score</div><div class="mc-value" id="m-score">—</div><div class="mc-sub">out of 100</div></div>
+      </div>
+      <div style="display:grid;grid-template-columns:1fr 1fr;gap:1.25rem;margin-bottom:1.375rem">
+        <div><div class="sh"><div class="st">Spend by category</div></div><div id="d-cats"><div style="font-size:13px;color:var(--slate);font-family:'Inter',sans-serif">Add tools to see breakdown</div></div></div>
+        <div><div class="sh"><div class="st">Optimization breakdown</div></div><div id="d-dist"><div style="font-size:13px;color:var(--slate);font-family:'Inter',sans-serif">Add tools to see breakdown</div></div></div>
+      </div>
+      <div class="sh"><div class="st">Stack overview</div></div>
+      <table class="tt"><colgroup><col style="width:20%"><col style="width:18%"><col style="width:11%"><col style="width:13%"><col style="width:11%"><col style="width:14%"><col style="width:13%"></colgroup>
+        <thead><tr><th>Tool</th><th>Category</th><th>Cost/mo</th><th>Plan tier</th><th>Billing</th><th>Renewal</th><th>Score</th></tr></thead>
+        <tbody id="d-rows"><tr><td colspan="7" style="padding:2rem;text-align:center;color:var(--slate)">No tools added yet — click Add tool to begin your audit</td></tr></tbody>
+      </table>
+    </div>
+
+    <!-- MY TOOLS -->
+    <div class="page" id="page-tools">
+      <div class="tab-row">
+        <div class="tab active" onclick="toolTab('all',this)">All</div>
+        <div class="tab" onclick="toolTab('high',this)">High waste</div>
+        <div class="tab" onclick="toolTab('review',this)">Review</div>
+        <div class="tab" onclick="toolTab('keep',this)">Retain</div>
+      </div>
+      <table class="tt" style="table-layout:auto"><thead><tr><th>Tool</th><th>Category</th><th>Cost</th><th>Plan</th><th>Seats</th><th>Active</th><th>Billing</th><th>Score</th><th></th></tr></thead><tbody id="tools-rows"></tbody></table>
+      <div id="tools-empty" style="text-align:center;padding:2.5rem;color:var(--slate)"><div style="font-family:'Poppins',sans-serif;font-size:15px;font-weight:700;color:var(--navy);margin-bottom:6px">No tools yet</div>Add your first tool to begin the audit</div>
+    </div>
+
+    <!-- ADD TOOL -->
+    <div class="page" id="page-add">
+      <div id="add-limit-warn" style="display:none;padding:10px 14px;background:var(--warn-bg);border-radius:8px;margin-bottom:1rem;font-size:13px;color:var(--warn);font-family:'Inter',sans-serif;border:1px solid #fcd34d"></div>
+      <div class="fsec"><div class="fsec-title">Tool basics</div>
+        <div class="form-grid">
+          <div class="fg"><div class="fl">Tool name</div><input class="fi" id="f-name" placeholder="e.g. HubSpot"></div>
+          <div class="fg"><div class="fl">Category</div><select class="fi" id="f-cat"><option>CRM</option><option>Email outreach</option><option>Marketing automation</option><option>Social scheduling</option><option>Design</option><option>Analytics</option><option>SEO</option><option>Paid media reporting</option><option>Lead enrichment</option><option>Webinar</option><option>Landing page / forms</option><option>Project management</option><option>AI writing / research</option><option>Sales engagement</option><option>Call tracking</option></select></div>
+          <div class="fg"><div class="fl">Monthly cost ($)</div><input class="fi" id="f-cost" type="number" placeholder="0" min="0"></div>
+          <div class="fg"><div class="fl">Billing cycle</div><select class="fi" id="f-billing"><option value="monthly">Monthly</option><option value="annual">Annual</option></select></div>
+        </div>
+      </div>
+      <div class="fsec"><div class="fsec-title">Plan &amp; seats</div>
+        <div class="form-grid">
+          <div class="fg"><div class="fl">Plan tier</div><select class="fi" id="f-plantier"><option value="free">Free</option><option value="starter">Starter</option><option value="pro">Pro / Growth</option><option value="enterprise">Enterprise</option></select></div>
+          <div class="fg"><div class="fl">Feature usage</div><select class="fi" id="f-planjust"><option value="1">All features used</option><option value="2">Most used</option><option value="3">Some used</option><option value="4">Few / barely used</option></select></div>
+          <div class="fg"><div class="fl">Seats purchased</div><input class="fi" id="f-seats" type="number" placeholder="1" min="1"></div>
+          <div class="fg"><div class="fl">Active users</div><input class="fi" id="f-users" type="number" placeholder="1" min="0"></div>
+        </div>
+      </div>
+      <div class="fsec"><div class="fsec-title">Renewal — when did you subscribe?</div>
+        <div style="display:flex;gap:8px;flex-wrap:wrap;margin-bottom:10px" id="qd-btns">
+          <button class="qdbtn" onclick="setWhen('this-month',this)">This month</button>
+          <button class="qdbtn" onclick="setWhen('1-month',this)">~1 month ago</button>
+          <button class="qdbtn" onclick="setWhen('3-months',this)">~3 months ago</button>
+          <button class="qdbtn" onclick="setWhen('6-months',this)">~6 months ago</button>
+          <button class="qdbtn" onclick="setWhen('1-year',this)">~1 year ago</button>
+          <button class="qdbtn" onclick="setWhen('unknown',this)">Don't know</button>
+        </div>
+        <div style="display:flex;align-items:center;gap:8px"><span style="font-size:12px;color:var(--slate);font-family:'Inter',sans-serif">Or exact date:</span><input class="fi" id="f-subdate" type="date" style="width:160px"></div>
+        <div id="infer-note" style="display:none" class="infer-note"></div>
+      </div>
+      <div class="fsec"><div class="fsec-title">Data &amp; add-ons <span style="font-size:11px;font-weight:400;color:var(--slate)">(optional)</span></div>
+        <div class="form-grid">
+          <div class="fg"><div class="fl">Data limit</div><input class="fi" id="f-datalimit" placeholder="e.g. 50000"></div>
+          <div class="fg"><div class="fl">Current usage</div><input class="fi" id="f-dataused" placeholder="e.g. 12000"></div>
+          <div class="fg full"><div class="fl">Paid add-ons</div><input class="fi" id="f-addons" placeholder="e.g. Advanced reporting, SSO"></div>
+          <div class="fg full"><div class="fl">Add-ons actually used</div><input class="fi" id="f-addonsused" placeholder="e.g. Advanced reporting"></div>
+        </div>
+      </div>
+      <div class="fsec" style="border-bottom:none;padding-bottom:0"><div class="fsec-title">Usage &amp; fit</div>
+        <div class="form-grid">
+          <div class="fg"><div class="fl">Usage frequency</div><select class="fi" id="f-usage"><option value="4">Daily</option><option value="3">Weekly</option><option value="2">Monthly</option><option value="1">Rarely</option></select></div>
+          <div class="fg"><div class="fl">Feature utilization</div><select class="fi" id="f-features"><option value="1">Fully used</option><option value="2">Partially used</option><option value="3">Barely used</option></select></div>
+          <div class="fg"><div class="fl">Business criticality</div><select class="fi" id="f-crit"><option value="1">Critical</option><option value="2">Important</option><option value="3">Optional</option></select></div>
+          <div class="fg"><div class="fl">Category overlap</div><select class="fi" id="f-overlap"><option value="1">Unique</option><option value="2">Some overlap</option><option value="3">Heavy overlap</option></select></div>
+          <div class="fg full"><div class="fl">Main use case</div><input class="fi" id="f-usecase" placeholder="e.g. CRM, pipeline tracking, email automation"></div>
+        </div>
+      </div>
+      <div class="form-actions"><button class="btn btn-ghost btn-sm" onclick="clearForm()">Clear</button><button class="btn btn-primary" onclick="addTool()">Add &amp; score tool</button></div>
+      <div id="form-err" style="color:#b91c1c;font-size:12px;margin-top:8px;display:none;font-family:'Inter',sans-serif"></div>
+    </div>
+
+    <!-- RECOMMENDATIONS -->
+    <div class="page" id="page-recs">
+      <div id="recs-locked" class="locked" style="display:none"><div class="locked-title">Recommendations — Growth &amp; Scale</div><div class="locked-sub">Upgrade to unlock specific action plans with exact savings calculations.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="recs-content">
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <div class="mc"><div class="mc-label">Monthly savings</div><div class="mc-value green" id="r-monthly">$0</div></div>
+          <div class="mc"><div class="mc-label">Annual savings</div><div class="mc-value blue" id="r-annual">$0</div></div>
+          <div class="mc"><div class="mc-label">Actions needed</div><div class="mc-value red" id="r-actions">0</div></div>
+        </div>
+        <div id="rec-list"></div>
+      </div>
+    </div>
+
+    <!-- RENEWALS -->
+    <div class="page" id="page-renewals">
+      <div id="renewals-locked" class="locked" style="display:none"><div class="locked-title">Renewal alerts — Growth &amp; Scale</div><div class="locked-sub">Smart renewal tracking with 25–60 day advance alerts.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="renewals-content">
+        <div class="metrics" style="grid-template-columns:repeat(4,1fr)">
+          <div class="mc"><div class="mc-label">Urgent (≤14d)</div><div class="mc-value red" id="rn-urgent">0</div></div>
+          <div class="mc"><div class="mc-label">Due soon (≤30d)</div><div class="mc-value" style="color:#d97706" id="rn-30">0</div></div>
+          <div class="mc"><div class="mc-label">Upcoming (≤90d)</div><div class="mc-value blue" id="rn-90">0</div></div>
+          <div class="mc"><div class="mc-label">Annual switch saves</div><div class="mc-value green" id="rn-save">$0</div></div>
+        </div>
+        <div class="sh"><div class="st">Active renewal alerts</div></div>
+        <div id="ren-cards"><div style="font-size:13px;color:var(--slate)">No tools added yet.</div></div>
+        <div style="margin-top:1.25rem"><div class="sh"><div class="st">Billing cycle optimizer</div></div><div id="billing-opts"></div></div>
+      </div>
+    </div>
+
+    <!-- ADD-ON AUDIT -->
+    <div class="page" id="page-addons">
+      <div id="addons-locked" class="locked" style="display:none"><div class="locked-title">Add-on audit — Growth &amp; Scale</div><div class="locked-sub">Flags unused add-ons and overbuilt plans with specific downgrade recommendations.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="addons-content">
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
+          <div class="mc"><div class="mc-label">Total add-ons</div><div class="mc-value blue" id="ao-total">0</div></div>
+          <div class="mc"><div class="mc-label">Unused add-ons</div><div class="mc-value red" id="ao-unused">0</div></div>
+          <div class="mc"><div class="mc-label">Plan downgrade candidates</div><div class="mc-value" style="color:#d97706" id="ao-down">0</div></div>
+        </div>
+        <div id="addon-cards"></div>
+      </div>
+    </div>
+
+    <!-- AI INSIGHTS -->
+    <div class="page" id="page-ai">
+      <div id="ai-locked" class="locked" style="display:none"><div class="locked-title">AI insights — Scale only</div><div class="locked-sub">Claude-powered stack analysis with cross-tool patterns and consolidation scenarios.</div><button class="btn btn-purple" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Scale — $49/mo</button></div>
+      <div id="ai-content">
+        <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#f0ebff;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(107,70,193,.2)">
+          <div><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--purple)">AI stack analysis</div><div style="font-size:12px;color:#5a38a8;margin-top:2px;font-family:'Inter',sans-serif">Claude-powered · refreshes when tools change</div></div>
+          <button class="btn btn-purple btn-sm" onclick="runAI()">Run analysis</button>
+        </div>
+        <div id="ai-out"><div style="font-size:13px;color:var(--slate);font-family:'Inter',sans-serif">Click "Run analysis" to generate your personalised stack audit.</div></div>
+        <div style="margin-top:1rem;display:flex;gap:8px"><input class="fi" id="ai-q" placeholder="Ask a follow-up question..." style="flex:1"><button class="btn btn-purple btn-sm" onclick="askAI()">Ask</button></div>
+      </div>
+    </div>
+
+    <!-- WORKSPACES -->
+    <div class="page" id="page-workspaces">
+      <div id="workspaces-locked" class="locked" style="display:none"><div class="locked-title">Workspaces — Scale only</div><div class="locked-sub">Manage multiple clients from one account with white-label PDF reports.</div><button class="btn btn-purple" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Scale — $49/mo</button></div>
+      <div id="workspaces-content">
+        <div class="metrics" style="grid-template-columns:repeat(3,1fr)"><div class="mc"><div class="mc-label">Workspaces</div><div class="mc-value blue">3</div></div><div class="mc"><div class="mc-label">Total spend</div><div class="mc-value" style="color:var(--navy)">$4,820</div><div class="mc-sub">across all clients</div></div><div class="mc"><div class="mc-label">Savings identified</div><div class="mc-value green">$1,140</div></div></div>
+        <div class="sh"><div class="st">Client workspaces</div><button class="btn btn-ghost btn-sm">+ New workspace</button></div>
+        <div id="ws-cards"></div>
+      </div>
+    </div>
+
+    <!-- PLANS -->
+    <div class="page" id="page-plans">
+      <div class="billing-tog" id="btog"><div class="tab active" onclick="billingTab('monthly',this)">Monthly</div><div class="tab" onclick="billingTab('annual',this)">Annual <span style="color:#0f7a4a;font-size:11px">save 20%</span></div></div>
+      <div class="plan-cards">
+        <div class="plan-card"><div class="plan-name">Basic</div><div class="plan-price">$0</div><div class="plan-period">Free forever</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Up to 3 tools</div><div class="plan-feature"><span class="chk">✓</span>9-dimension scoring</div><div class="plan-feature"><span class="chk">✓</span>Spend breakdown</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Recommendations</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Renewal alerts</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights</div><button class="plan-cta pcta-current" id="cta-basic" onclick="setPlan('basic')">Current plan</button></div>
+        <div class="plan-card featured"><div class="plan-popular"><span class="pop-pill">Most popular</span></div><div class="plan-name">Growth</div><div class="plan-price" id="pp-growth">$19</div><div class="plan-period" id="pd-growth">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Unlimited tools</div><div class="plan-feature"><span class="chk">✓</span>Recommendations engine</div><div class="plan-feature"><span class="chk">✓</span>Smart renewal alerts</div><div class="plan-feature"><span class="chk">✓</span>Add-on &amp; feature audit</div><div class="plan-feature"><span class="chk">✓</span>PDF export reports</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights (Claude)</div><button class="plan-cta pcta-blue" id="cta-growth" onclick="setPlan('growth')">Upgrade to Growth</button></div>
+        <div class="plan-card"><div class="plan-name" style="color:var(--purple)">Scale</div><div class="plan-price" id="pp-scale">$49</div><div class="plan-period" id="pd-scale">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Everything in Growth</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>AI insights — Claude</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Multi-workspace</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>White-label PDF reports</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Team seats (up to 5)</div><button class="plan-cta" style="background:var(--purple);color:#fff" id="cta-scale" onclick="setPlan('scale')">Upgrade to Scale</button></div>
+      </div>
+    </div>
+
+  </div>
+</div>
+</div>
+<script>
+const LIMITS={basic:3,growth:Infinity,scale:Infinity};
+const GATES={recs:'growth',renewals:'growth',addons:'growth',ai:'scale',workspaces:'scale'};
+const ORDER={basic:0,growth:1,scale:2};
+let currentPlan='basic',billingCycle='monthly',snoozed={},toolFilter='all';
+let tools=[];let nid=1;
+
+function inferRenewal(t){if(!t.subdate)return null;const s=new Date(t.subdate),n=new Date();if(t.billing==='monthly'){const r=new Date(s);while(r<=n)r.setMonth(r.getMonth()+1);return r;}else{const r=new Date(s);while(r<=n)r.setFullYear(r.getFullYear()+1);return r;}}
+function daysUntil(d){return d?Math.round((new Date(d)-new Date())/(864e5)):null}
+function score(t){const cS=Math.min(100,t.cost/10),uS=(5-parseInt(t.usage||1))*20;const se=parseInt(t.seats)||1,us=parseInt(t.users)||0;const seS=((se-us)/se)*100,fS=(parseInt(t.features||1)-1)*40;const oS=(parseInt(t.overlap||1)-1)*45,crS=(parseInt(t.crit||1)-1)*40;const pS=(parseInt(t.planjust||1)-1)*25;const du=t.datalimit&&t.dataused?parseInt(t.dataused)/parseInt(t.datalimit):.5;const dS=du<.3?35:du<.6?15:0;const adds=(t.addons||'').split(',').map(a=>a.trim()).filter(Boolean);const used=(t.addonsused||'').split(',').map(a=>a.trim()).filter(Boolean);const unCt=adds.filter(a=>a&&!used.some(u=>u&&u.toLowerCase()===a.toLowerCase())).length;return Math.min(100,Math.round((cS*.20)+(uS*.18)+(seS*.13)+(fS*.13)+(oS*.12)+(crS*.09)+(pS*.08)+(dS*.04)+(Math.min(25,unCt*10)*.03)));}
+function sc(s){return s>=61?'#dc2626':s>=31?'#d97706':'#0f7a4a'}
+function sb(s){return s>=61?'bg-red':s>=31?'bg-amber':'bg-green'}
+function sl(s){return s>=81?'High waste':s>=61?'Consolidate':s>=31?'Review':'Retain'}
+function pl(p){return{free:'Free',starter:'Starter',pro:'Pro',enterprise:'Enterprise'}[p]||p}
+function covers(r){return ORDER[currentPlan]>=ORDER[r]}
+
+function getRec(t){const s=score(t),se=parseInt(t.seats)||1,us=parseInt(t.users)||0;const sU=us/se;const adds=(t.addons||'').split(',').map(a=>a.trim()).filter(Boolean);const used=(t.addonsused||'').split(',').map(a=>a.trim()).filter(Boolean);const unused=adds.filter(a=>a&&!used.some(u=>u&&u.toLowerCase()===a.toLowerCase()));let actions=[],savings=0,priority=s>=61?'high':s>=31?'medium':'low';if(s<31)return{actions:['Retain — justified spend. No action needed.'],savings:0,priority:'low',score:s};if(t.plantier==='enterprise'&&parseInt(t.planjust)>=3){actions.push('Downgrade plan tier — Enterprise features underused.');savings+=Math.round(t.cost*.3);}else if(t.plantier==='pro'&&parseInt(t.planjust)>=3){actions.push('Downgrade plan — Pro features barely used.');savings+=Math.round(t.cost*.2);}if(sU<.65&&se>1){const sv=Math.ceil(us*1.2),ss=Math.round((se-sv)*(t.cost/se));actions.push(`Reduce to ${sv} seats at renewal — saves ~$${ss}/mo.`);savings+=ss;}if(t.billing==='monthly'&&t.cost>=40){const sv=Math.round(t.cost*.2);actions.push(`Switch to annual billing — saves ~$${sv}/mo.`);savings+=sv;}if(unused.length>0)actions.push(`Remove unused add-ons: ${unused.join(', ')}.`);if(parseInt(t.overlap)===3)actions.push(`Heavy overlap — evaluate consolidating ${t.cat} tools.`);if(!actions.length)actions.push('Monitor usage over 90 days before making changes.');return{actions,savings:Math.min(savings,t.cost),priority,score:s};}
+
+const pageInfo={dashboard:{t:'Dashboard',d:'Your marketing stack at a glance'},tools:{t:'My tools',d:'Manage and filter all tracked tools'},add:{t:'Add a tool',d:'Smart renewal date inference'},recs:{t:'Recommendations',d:'Specific optimization actions per tool'},renewals:{t:'Renewal alerts',d:'Inferred renewal tracking'},addons:{t:'Add-on audit',d:'Plan tier, feature & data usage analysis'},ai:{t:'AI insights',d:'Claude-powered stack analysis'},workspaces:{t:'Workspaces',d:'Multi-client stack management'},plans:{t:'Plans & billing',d:'Choose the right plan'}};
+
+function nav(page,el){document.querySelectorAll('.nav-item').forEach(e=>e.classList.remove('active'));if(el)el.classList.add('active');document.querySelectorAll('.page').forEach(e=>e.classList.remove('active'));document.getElementById('page-'+page).classList.add('active');const info=pageInfo[page];document.getElementById('pg-title').textContent=info.t;document.getElementById('pg-desc').textContent=info.d;const gate=GATES[page],locked=gate&&!covers(gate);['locked','content'].forEach(k=>{const el=document.getElementById(page+'-'+k);if(el)el.style.display=locked?(k==='locked'?'block':'none'):(k==='locked'?'none':'block');});if(!locked){if(page==='dashboard')renderDash();if(page==='tools')renderTools();if(page==='recs')renderRecs();if(page==='renewals')renderRenewals();if(page==='addons')renderAddons();if(page==='workspaces')renderWS();if(page==='add')showAddWarn();}updateUI();}
+
+function updateUI(){const lim=LIMITS[currentPlan];const pct=lim===Infinity?Math.min(100,Math.round((tools.length/20)*100)):Math.min(100,Math.round((tools.length/lim)*100));const fill=document.getElementById('limit-fill');fill.style.width=pct+'%';fill.style.background=pct>=100?'#dc2626':pct>=70?'#d97706':currentPlan==='scale'?'#6B46C1':'#0A66C2';const chip=document.getElementById('plan-chip');chip.className='sb-plan plan-'+currentPlan;document.getElementById('plan-chip-text').textContent=currentPlan.charAt(0).toUpperCase()+currentPlan.slice(1)+(lim===Infinity?` · ${tools.length} tools`:` · ${tools.length}/${lim} tools`);const ub=document.getElementById('upgrade-box');if(currentPlan==='scale'){ub.style.display='none';return;}ub.style.display='block';document.getElementById('upgrade-sub').textContent=currentPlan==='basic'?'Upgrade to Growth for recommendations, renewal alerts & unlimited tools.':'Upgrade to Scale for AI insights & multi-workspace management.';['recs','renewals','addons'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('growth')?'none':'inline-flex';});['ai','ws'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('scale')?'none':'inline-flex';});const alerts=tools.filter(t=>{const r=inferRenewal(t);return r&&daysUntil(r)<=30&&!snoozed[t.id];}).length;const alertEl=document.getElementById('nb-alert');if(alertEl)alertEl.style.display=alerts>0&&covers('growth')?'flex':'none';['basic','growth','scale'].forEach(p=>{const el=document.getElementById('cta-'+p);if(!el)return;el.textContent=p===currentPlan?'Current plan':p==='basic'?'Downgrade to Basic':p==='growth'?'Upgrade to Growth':'Upgrade to Scale';el.className='plan-cta '+(p===currentPlan?'pcta-current':p==='scale'?'':'pcta-blue');if(p==='scale'&&p!==currentPlan){el.style.background='var(--purple)';el.style.color='#fff';}else if(p!==currentPlan&&p!=='scale'){el.className='plan-cta pcta-blue';}});}
+
+function renderDash(){const total=tools.reduce((s,t)=>s+t.cost,0);const savings=tools.reduce((s,t)=>s+getRec(t).savings,0);const avgS=tools.length?Math.round(tools.reduce((s,t)=>s+score(t),0)/tools.length):null;document.getElementById('m-spend').textContent='$'+total.toLocaleString();document.getElementById('m-annual').textContent='$'+(total*12).toLocaleString()+'/yr';document.getElementById('m-save').textContent='$'+savings.toLocaleString();document.getElementById('m-count').textContent=tools.length;const lim=LIMITS[currentPlan];document.getElementById('m-limit-sub').textContent=lim===Infinity?'unlimited':tools.length+'/'+lim+' on '+currentPlan.charAt(0).toUpperCase()+currentPlan.slice(1);const sc2=document.getElementById('m-score');sc2.textContent=avgS!==null?avgS:'—';sc2.className='mc-value '+(avgS>=61?'red':avgS>=31?'':'green');const cats={};tools.forEach(t=>{cats[t.cat]=(cats[t.cat]||0)+t.cost;});const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);const maxV=sorted[0]?.[1]||1;const clrs=['#0A66C2','#0f7a4a','#d97706','#dc2626','#6B46C1','#0854a8'];document.getElementById('d-cats').innerHTML=sorted.length?sorted.map(([c,v],i)=>`<div class="prog-row"><div class="prog-label">${c}</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(v/maxV*100)}%;background:${clrs[i%clrs.length]}"></div></div><div style="font-size:12px;font-weight:600;color:var(--navy);min-width:36px;text-align:right;font-family:'Inter',sans-serif">$${v}</div></div>`).join(''):'<div style="color:var(--slate);font-size:13px">Add tools to see breakdown</div>';const dist={r:0,rev:0,con:0,w:0};tools.forEach(t=>{const s=score(t);if(s<31)dist.r++;else if(s<61)dist.rev++;else if(s<81)dist.con++;else dist.w++;});document.getElementById('d-dist').innerHTML=tools.length?`<div class="prog-row"><div class="prog-label" style="color:#0f7a4a">Retain</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.r/tools.length*100)}%;background:#0f7a4a"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.r}</div></div><div class="prog-row"><div class="prog-label" style="color:#d97706">Review</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.rev/tools.length*100)}%;background:#d97706"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.rev}</div></div><div class="prog-row"><div class="prog-label" style="color:#f59e0b">Consolidate</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.con/tools.length*100)}%;background:#f59e0b"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.con}</div></div><div class="prog-row"><div class="prog-label" style="color:#dc2626">High waste</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.w/tools.length*100)}%;background:#dc2626"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.w}</div></div>`:'<div style="color:var(--slate);font-size:13px">Add tools to see breakdown</div>';document.getElementById('d-rows').innerHTML=tools.map(t=>{const s=score(t),ren=inferRenewal(t),days=ren?daysUntil(ren):null;const daysText=days===null?'—':days<=0?`<span style="color:#dc2626">Overdue</span>`:days<=14?`<span style="color:#dc2626">${days}d</span>`:days<=30?`<span style="color:#d97706">${days}d</span>`:`${days}d`;return`<tr><td>${t.name}</td><td><span class="badge bg-blue">${t.cat}</span></td><td>$${t.cost}</td><td><span class="badge bg-gray">${pl(t.plantier)}</span></td><td><span class="badge ${t.billing==='monthly'?'bg-amber':'bg-green'}">${t.billing}</span></td><td style="font-size:12px">${daysText}</td><td><div class="score-wrap"><div class="score-bg"><div class="score-fill" style="width:${s}%;background:${sc(s)}"></div></div><div class="score-num" style="color:${sc(s)}">${s}</div></div></td></tr>`;}).join('')||'<tr><td colspan="7" style="padding:2rem;text-align:center;color:var(--slate)">No tools added yet</td></tr>';}
+
+function toolTab(f,el){toolFilter=f;document.querySelectorAll('#page-tools .tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');renderTools();}
+function renderTools(){let f=tools;if(toolFilter==='high')f=tools.filter(t=>score(t)>=61);else if(toolFilter==='review')f=tools.filter(t=>{const s=score(t);return s>=31&&s<61});else if(toolFilter==='keep')f=tools.filter(t=>score(t)<31);document.getElementById('tools-empty').style.display=f.length?'none':'block';document.getElementById('tools-rows').innerHTML=f.map(t=>{const s=score(t),se=parseInt(t.seats)||1,us=parseInt(t.users)||0,sp=Math.round(us/se*100);return`<tr><td>${t.name}</td><td><span class="badge bg-blue" style="font-size:10px">${t.cat}</span></td><td>$${t.cost}</td><td><span class="badge bg-gray" style="font-size:10px">${pl(t.plantier)}</span></td><td>${se}</td><td style="color:${sp<60?'#dc2626':'var(--body)'}">${us} <span style="font-size:10px;color:var(--slate)">(${sp}%)</span></td><td><span class="badge ${t.billing==='monthly'?'bg-amber':'bg-green'}" style="font-size:10px">${t.billing}</span></td><td><div class="score-wrap"><div class="score-bg"><div class="score-fill" style="width:${s}%;background:${sc(s)}"></div></div><div class="score-num" style="color:${sc(s)}">${s}</div></div></td><td><button class="btn btn-ghost btn-sm" style="color:#dc2626;border-color:#fca5a5;font-size:11px" onclick="removeTool(${t.id})">Remove</button></td></tr>`;}).join('');}
+
+function renderRecs(){const recs=tools.map(t=>({...getRec(t),name:t.name,cat:t.cat})).sort((a,b)=>b.score-a.score);const tot=recs.reduce((s,r)=>s+r.savings,0);document.getElementById('r-monthly').textContent='$'+tot.toLocaleString();document.getElementById('r-annual').textContent='$'+(tot*12).toLocaleString();document.getElementById('r-actions').textContent=recs.filter(r=>r.priority!=='low').length;document.getElementById('rec-list').innerHTML=recs.map(r=>`<div class="card ${r.priority==='high'?'high':r.priority==='medium'?'med':'low'}"><div style="display:flex;align-items:flex-start;justify-content:space-between;gap:12px;margin-bottom:8px"><div><div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:var(--navy)">${r.name}</div><div style="font-size:12px;color:var(--slate)">${r.cat}</div></div><div style="display:flex;align-items:center;gap:6px">${r.savings>0?`<span style="font-size:11px;font-weight:700;padding:2px 8px;border-radius:20px;background:var(--success-bg);color:var(--success)">Save $${r.savings}/mo</span>`:''}<span class="badge ${sb(r.score)}">${sl(r.score)}</span></div></div>${r.actions.map(a=>`<div style="font-size:12px;color:var(--slate);line-height:1.6;padding:8px 10px;background:#f8fafd;border-radius:8px;margin-bottom:6px;border:1px solid var(--border)">${a}</div>`).join('')}</div>`).join('')||'<div style="text-align:center;padding:2rem;color:var(--slate)">Add tools to generate recommendations</div>';}
+
+function renderRenewals(){let urg=0,d30=0,d90=0,annSave=0;const cards=tools.map(t=>{const ren=inferRenewal(t),days=ren?daysUntil(ren):null,snz=snoozed[t.id];const se=parseInt(t.seats)||1,us=parseInt(t.users)||0;if(days!==null&&!snz){if(days<=14)urg++;if(days<=30)d30++;if(days<=90)d90++;}if(t.billing==='monthly'&&t.cost>=40)annSave+=Math.round(t.cost*.2);const urgCls=days!==null&&days<=14?'urg':days!==null&&days<=30?'war':'';const dotCol=days!==null&&days<=14?'#dc2626':days!==null&&days<=30?'#d97706':'#0f7a4a';return{t,days,ren,snz,urgCls,dotCol};}).sort((a,b)=>(a.days??999)-(b.days??999));['rn-urgent','rn-30','rn-90'].forEach((id,i)=>document.getElementById(id).textContent=[urg,d30,d90][i]);document.getElementById('rn-save').textContent='$'+annSave;document.getElementById('ren-cards').innerHTML=cards.length?cards.map(({t,days,ren,snz,urgCls,dotCol})=>`<div class="ren-card ${urgCls}" style="display:${snz?'none':'flex'}"><div class="ren-dot" style="background:${dotCol}"></div><div style="flex:1;min-width:0"><div style="display:flex;align-items:center;gap:6px;margin-bottom:2px"><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--navy)">${t.name}</div><span class="badge bg-blue" style="font-size:10px">${t.cat}</span><span class="badge ${t.billing==='monthly'?'bg-amber':'bg-green'}" style="font-size:10px">${t.billing}</span></div><div style="font-size:12px;color:var(--slate)">$${t.cost}/mo · ${parseInt(t.seats)||1} seats</div>${ren?`<div style="font-size:11px;color:var(--slate);margin-top:2px">Est. renewal: ${ren.toLocaleDateString('en-GB',{day:'numeric',month:'short',year:'numeric'})}</div>`:''}</div><div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px"><div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:${dotCol}">${days===null?'Unknown':days<=0?'Overdue':days+'d'}</div><button class="snooze-btn" onclick="snooze(${t.id})">Snooze 7d</button></div></div>`).join(''):'<div style="font-size:13px;color:var(--slate)">No tools added yet.</div>';const monthly=tools.filter(t=>t.billing==='monthly'&&t.cost>=40);document.getElementById('billing-opts').innerHTML=monthly.length?monthly.map(t=>`<div style="display:flex;align-items:center;justify-content:space-between;padding:10px 12px;border:1px solid var(--border);border-radius:10px;margin-bottom:8px;background:var(--white)"><div><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--navy)">${t.name}</div><div style="font-size:12px;color:var(--slate)">$${t.cost}/mo on monthly</div></div><div style="text-align:right"><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:#0f7a4a">Save $${Math.round(t.cost*.2)}/mo</div><div style="font-size:11px;color:var(--slate)">switch to annual</div></div></div>`).join(''):'<div style="font-size:13px;color:var(--slate)">All tools on annual billing.</div>';}
+
+function snooze(id){const u=new Date();u.setDate(u.getDate()+7);snoozed[id]=u;renderRenewals();}
+
+function renderAddons(){let aoT=0,aoU=0,aoDn=0;const html=tools.map(t=>{const adds=(t.addons||'').split(',').map(a=>a.trim()).filter(Boolean);const used=(t.addonsused||'').split(',').map(a=>a.trim()).filter(Boolean);const unused=adds.filter(a=>a&&!used.some(u=>u&&u.toLowerCase()===a.toLowerCase()));aoT+=adds.length;aoU+=unused.length;const dn=parseInt(t.planjust)>=3;if(dn)aoDn++;const du=t.datalimit&&t.dataused?Math.round(parseInt(t.dataused)/parseInt(t.datalimit)*100):null;return`<div class="card ${unused.length>0||dn?'med':'low'}"><div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:8px"><div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:var(--navy)">${t.name} <span class="badge bg-gray" style="font-size:10px">${pl(t.plantier)}</span></div><span class="badge ${parseInt(t.planjust)>=3?'bg-red':parseInt(t.planjust)>=2?'bg-amber':'bg-green'}">${['','All used','Most used','Some used','Few used'][t.planjust]}</span></div>${dn?`<div style="font-size:12px;color:var(--slate);padding:8px 10px;background:#f8fafd;border-radius:8px;margin-bottom:8px;border:1px solid var(--border)">Plan downgrade recommended.</div>`:''}${adds.length?`<div style="display:flex;flex-wrap:wrap;gap:6px;margin-bottom:8px">${adds.map(a=>{const isU=used.some(u=>u&&u.toLowerCase()===a.toLowerCase());return`<span class="badge ${isU?'bg-green':'bg-red'}">${a}${isU?' ✓':' — unused'}</span>`;}).join('')}</div>`:''}</div>`;}).join('')||'<div style="color:var(--slate)">No tools yet.</div>';document.getElementById('ao-total').textContent=aoT;document.getElementById('ao-unused').textContent=aoU;document.getElementById('ao-down').textContent=aoDn;document.getElementById('addon-cards').innerHTML=html;}
+
+function renderWS(){const ws=[{name:'Acme Corp',tools:6,spend:1683,savings:420,s:58},{name:'BrightScale Agency',tools:11,spend:2240,savings:510,s:62},{name:'Nova Startups',tools:4,spend:897,savings:210,s:44}];document.getElementById('ws-cards').innerHTML=ws.map(w=>`<div class="ws-card"><div><div style="font-family:'Poppins',sans-serif;font-size:14px;font-weight:700;color:var(--navy);margin-bottom:4px">${w.name}</div><div style="font-size:12px;color:var(--slate)">${w.tools} tools · $${w.spend.toLocaleString()}/mo · <span style="color:#0f7a4a;font-weight:600">$${w.savings}/mo savings</span></div><div style="margin-top:7px;max-width:180px"><div class="score-wrap"><div class="score-bg"><div class="score-fill" style="width:${w.s}%;background:${sc(w.s)}"></div></div><span style="font-size:11px;color:${sc(w.s)};font-weight:700;margin-left:4px">${w.s}/100</span></div></div></div><div style="display:flex;flex-direction:column;gap:6px"><button class="btn btn-ghost btn-sm">Open</button><button class="btn btn-ghost btn-sm">Export PDF</button></div></div>`).join('');}
+
+function runAI(){const out=document.getElementById('ai-out');out.innerHTML='<div style="font-size:13px;color:var(--slate)">Analysing your stack...</div>';const total=tools.reduce((s,t)=>s+t.cost,0);const savings=tools.reduce((s,t)=>s+getRec(t).savings,0);const hw=tools.filter(t=>score(t)>=61).map(t=>t.name).join(', ')||'none';setTimeout(()=>{out.innerHTML=[{l:'Stack overview',t:`${tools.length} tools · $${total.toLocaleString()}/mo · avg score ${tools.length?Math.round(tools.reduce((s,t)=>s+score(t),0)/tools.length):0}/100.`},{l:'Top opportunity',t:`$${savings.toLocaleString()}/month in savings identified. High-waste tools: ${hw}.`},{l:'Recommended next steps',t:'Review high-waste tools before their next renewal. Prioritise seat reductions and plan downgrades — these are the highest-impact, lowest-effort changes.'}].map(i=>`<div class="ai-bubble"><div class="ai-label">${i.l}</div><div class="ai-text">${i.t}</div></div>`).join('');},700);}
+function askAI(){const q=document.getElementById('ai-q').value.trim();if(!q)return;alert('AI insights require the Scale plan and an Anthropic API key. See the setup guide to wire this up.');}
+
+function whenToDate(w){const d=new Date();if(w==='this-month'){d.setDate(1);return d.toISOString().split('T')[0];}if(w==='1-month'){d.setMonth(d.getMonth()-1);return d.toISOString().split('T')[0];}if(w==='3-months'){d.setMonth(d.getMonth()-3);return d.toISOString().split('T')[0];}if(w==='6-months'){d.setMonth(d.getMonth()-6);return d.toISOString().split('T')[0];}if(w==='1-year'){d.setFullYear(d.getFullYear()-1);return d.toISOString().split('T')[0];}return null;}
+
+function setWhen(w,el){document.querySelectorAll('#qd-btns .qdbtn').forEach(b=>b.classList.remove('sel'));if(w==='unknown'){document.getElementById('f-subdate').value='';document.getElementById('infer-note').style.display='none';return;}el.classList.add('sel');const d=whenToDate(w);if(d){document.getElementById('f-subdate').value=d;const billing=document.getElementById('f-billing').value;const sub=new Date(d);const r=new Date(sub);if(billing==='monthly'){while(r<=new Date())r.setMonth(r.getMonth()+1);}else{while(r<=new Date())r.setFullYear(r.getFullYear()+1);}const note=document.getElementById('infer-note');note.style.display='block';note.textContent=`Estimated next renewal: ${r.toLocaleDateString('en-GB',{day:'numeric',month:'long',year:'numeric'})} · Alert fires ${billing==='monthly'?'25 days':'60 days'} before.`;}}
+
+document.getElementById('f-billing').addEventListener('change',()=>{const sel=document.querySelector('.qdbtn.sel');if(sel)setWhen(sel.textContent.includes('month')?sel.textContent.includes('This')?'this-month':sel.textContent.includes('~1')?'1-month':sel.textContent.includes('~3')?'3-months':sel.textContent.includes('~6')?'6-months':'1-year':'unknown',sel);});
+
+function showAddWarn(){const lim=LIMITS[currentPlan],w=document.getElementById('add-limit-warn');if(tools.length>=lim&&lim!==Infinity){w.style.display='block';w.textContent=`You've used all ${lim} tool slots on the ${currentPlan.charAt(0).toUpperCase()+currentPlan.slice(1)} plan. Upgrade to Growth to add unlimited tools.`;}else w.style.display='none';}
+
+function addTool(){const name=document.getElementById('f-name').value.trim();const cost=parseFloat(document.getElementById('f-cost').value)||0;const seats=parseInt(document.getElementById('f-seats').value)||1;const users=parseInt(document.getElementById('f-users').value)||0;const err=document.getElementById('form-err');const lim=LIMITS[currentPlan];if(!name){err.textContent='Please enter a tool name';err.style.display='block';return;}if(users>seats){err.textContent='Active users cannot exceed seats purchased';err.style.display='block';return;}if(tools.length>=lim){err.textContent=`${currentPlan.charAt(0).toUpperCase()+currentPlan.slice(1)} plan limit reached. Upgrade to Growth to add more.`;err.style.display='block';return;}err.style.display='none';tools.push({id:nid++,name,cat:document.getElementById('f-cat').value,cost,billing:document.getElementById('f-billing').value,plantier:document.getElementById('f-plantier').value,planjust:parseInt(document.getElementById('f-planjust').value),seats,users,subdate:document.getElementById('f-subdate').value||null,datalimit:document.getElementById('f-datalimit').value,dataused:document.getElementById('f-dataused').value,addons:document.getElementById('f-addons').value,addonsused:document.getElementById('f-addonsused').value,usage:parseInt(document.getElementById('f-usage').value),features:parseInt(document.getElementById('f-features').value),crit:parseInt(document.getElementById('f-crit').value),overlap:parseInt(document.getElementById('f-overlap').value),usecase:document.getElementById('f-usecase').value});clearForm();updateUI();nav('dashboard',document.querySelector('[onclick*=dashboard]'));}
+
+function clearForm(){['f-name','f-cost','f-seats','f-users','f-subdate','f-datalimit','f-dataused','f-addons','f-addonsused','f-usecase'].forEach(id=>{const el=document.getElementById(id);if(el)el.value='';});document.querySelectorAll('#qd-btns .qdbtn').forEach(b=>b.classList.remove('sel'));document.getElementById('infer-note').style.display='none';document.getElementById('form-err').style.display='none';}
+function removeTool(id){tools=tools.filter(t=>t.id!==id);delete snoozed[id];updateUI();renderTools();}
+function setPlan(p){currentPlan=p;updateUI();}
+function billingTab(c,el){billingCycle=c;document.querySelectorAll('#btog .tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');const pr={growth:{monthly:19,annual:15},scale:{monthly:49,annual:39}};['growth','scale'].forEach(k=>{const pp=document.getElementById('pp-'+k),pd=document.getElementById('pd-'+k);if(pp)pp.textContent='$'+pr[k][c];if(pd)pd.textContent=c==='annual'?'per month, billed annually':'per month';});}
+
+renderDash();updateUI();
+</script>
+</body>
+</html>
