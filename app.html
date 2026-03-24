@@ -459,14 +459,106 @@ let tools=[];let nid=1;
 
 function inferRenewal(t){if(!t.subdate)return null;const s=new Date(t.subdate),n=new Date();if(t.billing==='monthly'){const r=new Date(s);while(r<=n)r.setMonth(r.getMonth()+1);return r;}else{const r=new Date(s);while(r<=n)r.setFullYear(r.getFullYear()+1);return r;}}
 function daysUntil(d){return d?Math.round((new Date(d)-new Date())/(864e5)):null}
-function score(t){const cS=Math.min(100,t.cost/10),uS=(5-parseInt(t.usage||1))*20;const se=parseInt(t.seats)||1,us=parseInt(t.users)||0;const seS=((se-us)/se)*100,fS=(parseInt(t.features||1)-1)*40;const oS=(parseInt(t.overlap||1)-1)*45,crS=(parseInt(t.crit||1)-1)*40;const pS=(parseInt(t.planjust||1)-1)*25;const du=t.datalimit&&t.dataused?parseInt(t.dataused)/parseInt(t.datalimit):.5;const dS=du<.3?35:du<.6?15:0;const adds=(t.addons||'').split(',').map(a=>a.trim()).filter(Boolean);const used=(t.addonsused||'').split(',').map(a=>a.trim()).filter(Boolean);const unCt=adds.filter(a=>a&&!used.some(u=>u&&u.toLowerCase()===a.toLowerCase())).length;return Math.min(100,Math.round((cS*.20)+(uS*.18)+(seS*.13)+(fS*.13)+(oS*.12)+(crS*.09)+(pS*.08)+(dS*.04)+(Math.min(25,unCt*10)*.03)));}
+function getAutoOverlap(t) {
+  const siblings = tools.filter(x => x.id !== t.id && x.cat === t.cat);
+  if (siblings.length >= 2) return 3; // 3+ tools same category = heavy overlap
+  if (siblings.length === 1) return 2; // 2 tools same category = overlap detected
+  return 1; // unique in category
+}
+
+function score(t) {
+  // Tiered cost scoring - higher spend = higher waste potential
+  const cS = t.cost <= 0 ? 0 : t.cost < 20 ? 5 : t.cost < 50 ? 15 :
+             t.cost < 100 ? 30 : t.cost < 200 ? 50 : t.cost < 500 ? 70 :
+             t.cost < 1000 ? 85 : 95;
+  const uS = (5 - parseInt(t.usage || 1)) * 20;
+  const se = parseInt(t.seats) || 1, us = parseInt(t.users) || 0;
+  const seS = ((se - us) / se) * 100;
+  const fS = (parseInt(t.features || 1) - 1) * 40;
+  // Auto-detect overlap from other tools in same category
+  const autoOverlap = getAutoOverlap(t);
+  const oS = (autoOverlap - 1) * 45;
+  const crS = (parseInt(t.crit || 1) - 1) * 40;
+  const pS = (parseInt(t.planjust || 1) - 1) * 25;
+  const du = t.datalimit && t.dataused ? parseInt(t.dataused) / parseInt(t.datalimit) : 0.5;
+  const dS = du < 0.3 ? 35 : du < 0.6 ? 15 : 0;
+  const adds = (t.addons || '').split(',').map(a => a.trim()).filter(Boolean);
+  const used = (t.addonsused || '').split(',').map(a => a.trim()).filter(Boolean);
+  const unCt = adds.filter(a => a && !used.some(u => u && u.toLowerCase() === a.toLowerCase())).length;
+  const rawScore = Math.min(100, Math.round(
+    (cS * 0.18) + (uS * 0.15) + (seS * 0.12) + (fS * 0.10) +
+    (oS * 0.25) + (crS * 0.08) + (pS * 0.07) + (dS * 0.03) + (Math.min(25, unCt * 10) * 0.02)
+  ));
+  // Overlap floor: more tools = higher minimum score
+  if (autoOverlap === 3) return Math.max(rawScore, 65); // 3+ tools same cat = Consolidate
+  if (autoOverlap === 2) return Math.max(rawScore, 45); // 2 tools same cat = Review
+  return rawScore;
+}
 function sc(s){return s>=61?'#dc2626':s>=31?'#d97706':'#0f7a4a'}
 function sb(s){return s>=61?'bg-red':s>=31?'bg-amber':'bg-green'}
 function sl(s){return s>=81?'High waste':s>=61?'Consolidate':s>=31?'Review':'Retain'}
 function pl(p){return{free:'Free',starter:'Starter',pro:'Pro',enterprise:'Enterprise'}[p]||p}
 function covers(r){return ORDER[currentPlan]>=ORDER[r]}
 
-function getRec(t){const s=score(t),se=parseInt(t.seats)||1,us=parseInt(t.users)||0;const sU=us/se;const adds=(t.addons||'').split(',').map(a=>a.trim()).filter(Boolean);const used=(t.addonsused||'').split(',').map(a=>a.trim()).filter(Boolean);const unused=adds.filter(a=>a&&!used.some(u=>u&&u.toLowerCase()===a.toLowerCase()));let actions=[],savings=0,priority=s>=61?'high':s>=31?'medium':'low';if(s<31)return{actions:['Retain — justified spend. No action needed.'],savings:0,priority:'low',score:s};if(t.plantier==='enterprise'&&parseInt(t.planjust)>=3){actions.push('Downgrade plan tier — Enterprise features underused.');savings+=Math.round(t.cost*.3);}else if(t.plantier==='pro'&&parseInt(t.planjust)>=3){actions.push('Downgrade plan — Pro features barely used.');savings+=Math.round(t.cost*.2);}if(sU<.65&&se>1){const sv=Math.ceil(us*1.2),ss=Math.round((se-sv)*(t.cost/se));actions.push(`Reduce to ${sv} seats at renewal — saves ~$${ss}/mo.`);savings+=ss;}if(t.billing==='monthly'&&t.cost>=40){const sv=Math.round(t.cost*.2);actions.push(`Switch to annual billing — saves ~$${sv}/mo.`);savings+=sv;}if(unused.length>0)actions.push(`Remove unused add-ons: ${unused.join(', ')}.`);if(parseInt(t.overlap)===3)actions.push(`Heavy overlap — evaluate consolidating ${t.cat} tools.`);if(!actions.length)actions.push('Monitor usage over 90 days before making changes.');return{actions,savings:Math.min(savings,t.cost),priority,score:s};}
+function getRec(t) {
+  const s = score(t);
+  const se = parseInt(t.seats) || 1, us = parseInt(t.users) || 0;
+  const sU = us / se;
+  const adds = (t.addons || '').split(',').map(a => a.trim()).filter(Boolean);
+  const used = (t.addonsused || '').split(',').map(a => a.trim()).filter(Boolean);
+  const unused = adds.filter(a => a && !used.some(u => u && u.toLowerCase() === a.toLowerCase()));
+  const autoOverlap = getAutoOverlap(t);
+  const siblings = tools.filter(x => x.id !== t.id && x.cat === t.cat);
+  
+  let actions = [], savings = 0;
+  const priority = s >= 61 ? 'high' : s >= 31 ? 'medium' : 'low';
+
+  // Overlap detection — highest priority action
+  if (autoOverlap >= 2 && siblings.length > 0) {
+    const sibNames = siblings.map(s => s.name).join(' + ');
+    const overlapPct = autoOverlap === 3 ? 70 : 50;
+    const cheapest = siblings.sort((a, b) => a.cost - b.cost)[0];
+    const wasteSaving = Math.round(t.cost * (overlapPct / 100));
+    actions.push(`${overlapPct}% feature overlap with ${sibNames} — both are ${t.cat} tools. Consider consolidating to ${cheapest.name} and removing the higher-cost duplicate.`);
+    savings += wasteSaving;
+  }
+
+  // Plan tier waste
+  if (t.plantier === 'enterprise' && parseInt(t.planjust) >= 3) {
+    actions.push('Downgrade plan tier — Enterprise features underused.');
+    savings += Math.round(t.cost * 0.30);
+  } else if (t.plantier === 'pro' && parseInt(t.planjust) >= 3) {
+    actions.push('Downgrade to Starter plan — Pro features barely used.');
+    savings += Math.round(t.cost * 0.20);
+  }
+
+  // Seat waste
+  if (sU < 0.65 && se > 1) {
+    const sv = Math.ceil(us * 1.2);
+    const ss = Math.round((se - sv) * (t.cost / se));
+    if (ss > 0) { actions.push(`Reduce to ${sv} seats at renewal — saves ~$${ss}/mo.`); savings += ss; }
+  }
+
+  // Billing cycle
+  if (t.billing === 'monthly' && t.cost >= 40) {
+    const sv = Math.round(t.cost * 0.2);
+    actions.push(`Switch to annual billing — saves ~$${sv}/mo.`);
+    savings += sv;
+  }
+
+  // Unused add-ons
+  if (unused.length > 0) actions.push(`Remove unused add-ons: ${unused.join(', ')}.`);
+
+  // Alt recommendation from TOOL_DB
+  const dbMatch = Object.values(TOOL_DB).find(d => d.name === t.name);
+  if (dbMatch && dbMatch.alt && savings === 0) {
+    actions.push(`Alternative: ${dbMatch.alt.name} — ${dbMatch.alt.reason} (save ${dbMatch.alt.save})`);
+  }
+
+  if (!actions.length) actions.push('Retain — justified spend. No action needed at this time.');
+  
+  return { actions, savings: Math.min(savings, t.cost * 2), priority, score: s };
+}
 
 const pageInfo={plans:{t:'Plans & billing',d:'Choose the right plan for your team'},dashboard:{t:'Dashboard',d:'Your marketing stack at a glance'},tools:{t:'My tools',d:'Manage and filter all tracked tools'},add:{t:'Add a tool',d:'Smart renewal date inference'},recs:{t:'Recommendations',d:'Specific optimization actions per tool'},renewals:{t:'Renewal alerts',d:'Inferred renewal tracking'},addons:{t:'Add-on audit',d:'Plan tier, feature & data usage analysis'},ai:{t:'AI insights',d:'Claude-powered stack analysis'},workspaces:{t:'Workspaces',d:'Multi-client stack management'},plans:{t:'Plans & billing',d:'Choose the right plan'}};
 
@@ -474,7 +566,7 @@ function nav(page,el){document.querySelectorAll('.nav-item').forEach(e=>e.classL
 
 function updateUI(){
   const saveBtn = document.getElementById('save-btn');
-  if(saveBtn) saveBtn.style.display = tools.length > 0 ? 'inline-flex' : 'none';const lim=LIMITS[currentPlan];const pct=lim===Infinity?Math.min(100,Math.round((tools.length/20)*100)):Math.min(100,Math.round((tools.length/lim)*100));const fill=document.getElementById('limit-fill');fill.style.width=pct+'%';fill.style.background=pct>=100?'#dc2626':pct>=70?'#d97706':currentPlan==='scale'?'#6B46C1':'#0A66C2';const chip=document.getElementById('plan-chip');chip.className='sb-plan plan-'+currentPlan;document.getElementById('plan-chip-text').textContent=(currentPlan==='basic'?'Free':currentPlan==='growth'?'Full Report':'Strategy')+(lim===Infinity?` · ${tools.length} tools`:` · ${tools.length}/${lim} tools`);const ub=document.getElementById('upgrade-box');if(currentPlan==='scale'){ub.style.display='none';return;}ub.style.display='block';document.getElementById('upgrade-sub').textContent=currentPlan==='basic'?'Get the Full Report — $10/mo/month for unlimited tools, overlap map & PDF export.':'Get the Full Report — $10/mo/month for unlimited tools, overlap map & PDF export.';['recs','renewals','addons'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('growth')?'none':'inline-flex';});['ai','ws'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('scale')?'none':'inline-flex';});const alerts=tools.filter(t=>{const r=inferRenewal(t);return r&&daysUntil(r)<=30&&!snoozed[t.id];}).length;const alertEl=document.getElementById('nb-alert');if(alertEl)alertEl.style.display=alerts>0&&covers('growth')?'flex':'none';['basic','growth','scale'].forEach(p=>{const el=document.getElementById('cta-'+p);if(!el)return;el.textContent=p===currentPlan?'Current plan':p==='basic'?'Current plan (Free)':p==='growth'?'Get Full Report — $10/mo':'Talk to Sonder Digital';el.className='plan-cta '+(p===currentPlan?'pcta-current':p==='scale'?'':'pcta-blue');if(p==='scale'&&p!==currentPlan){el.style.background='var(--purple)';el.style.color='#fff';}else if(p!==currentPlan&&p!=='scale'){el.className='plan-cta pcta-blue';}});}
+  if(saveBtn) saveBtn.style.display = tools.length > 0 ? 'inline-flex' : 'none';const lim=LIMITS[currentPlan];const pct=lim===Infinity?Math.min(100,Math.round((tools.length/20)*100)):Math.min(100,Math.round((tools.length/lim)*100));const fill=document.getElementById('limit-fill');fill.style.width=pct+'%';fill.style.background=pct>=100?'#dc2626':pct>=70?'#d97706':currentPlan==='scale'?'#6B46C1':'#0A66C2';const chip=document.getElementById('plan-chip');chip.className='sb-plan plan-'+currentPlan;document.getElementById('plan-chip-text').textContent=(currentPlan==='basic'?'Free':currentPlan==='growth'?'Full Report':'Strategy')+(lim===Infinity?` · ${tools.length} tools`:` · ${tools.length}/${lim} tools`);const ub=document.getElementById('upgrade-box');if(currentPlan==='scale'){ub.style.display='none';return;}ub.style.display='block';document.getElementById('upgrade-sub').textContent=currentPlan==='basic'?'Get the Full Report — $10/mo for unlimited tools, overlap map & PDF export.':'Get the Full Report — $10/mo for unlimited tools, overlap map & PDF export.';['recs','renewals','addons'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('growth')?'none':'inline-flex';});['ai','ws'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('scale')?'none':'inline-flex';});const alerts=tools.filter(t=>{const r=inferRenewal(t);return r&&daysUntil(r)<=30&&!snoozed[t.id];}).length;const alertEl=document.getElementById('nb-alert');if(alertEl)alertEl.style.display=alerts>0&&covers('growth')?'flex':'none';['basic','growth','scale'].forEach(p=>{const el=document.getElementById('cta-'+p);if(!el)return;el.textContent=p===currentPlan?'Current plan':p==='basic'?'Current plan (Free)':p==='growth'?'Get Full Report — $10/mo':'Talk to Sonder Digital';el.className='plan-cta '+(p===currentPlan?'pcta-current':p==='scale'?'':'pcta-blue');if(p==='scale'&&p!==currentPlan){el.style.background='var(--purple)';el.style.color='#fff';}else if(p!==currentPlan&&p!=='scale'){el.className='plan-cta pcta-blue';}});}
 
 
 
@@ -724,7 +816,7 @@ renderDash();updateUI();
       </select>
       <select id="m3-spend" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;background:#fff;cursor:pointer" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
         <option value="">Monthly stack spend *</option>
-        <option>Under ₹50,000</option><option>₹50k–₹1L</option><option>₹1L–₹3L</option><option>₹3L–₹10L</option><option>₹10L+</option>
+        <option>Under $500/mo</option><option>$500–$2,000/mo</option><option>$2,000–$5,000/mo</option><option>$5,000–$15,000/mo</option><option>$15,000+/mo</option>
       </select>
     </div>
     <textarea id="m3-message" placeholder="Tell us about your biggest pain point with your current marketing stack (optional)" rows="3" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;resize:vertical;margin-bottom:10px" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'"></textarea>
