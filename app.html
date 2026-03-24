@@ -161,13 +161,13 @@ select.fi{cursor:pointer}
   </div>
   <div class="sb-group" style="margin-top:4px">
     <div class="sb-group-label">Account</div>
-    <div class="nav-item" onclick="nav('plans',document.querySelector('[onclick*=plans]'))"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>Plans &amp; billing</div>
+    <div class="nav-item" onclick="openModal('payment')"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01z"/></svg>Plans &amp; billing</div>
   </div>
   <div class="sb-footer">
     <div id="upgrade-box" class="upgrade-box">
       <div class="upgrade-title">Unlock full audit</div>
       <div class="upgrade-sub" id="upgrade-sub">Upgrade to Growth for recommendations, renewal alerts &amp; unlimited tools.</div>
-      <button class="upgrade-btn" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">See plans →</button>
+      <button class="upgrade-btn" onclick="openModal('payment')">See plans →</button>
     </div>
   </div>
 </div>
@@ -266,7 +266,7 @@ select.fi{cursor:pointer}
 
     <!-- RECOMMENDATIONS -->
     <div class="page" id="page-recs">
-      <div id="recs-locked" class="locked" style="display:none"><div class="locked-title">Recommendations — Growth &amp; Scale</div><div class="locked-sub">Upgrade to unlock specific action plans with exact savings calculations.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="recs-locked" class="locked" style="display:none"><div class="locked-title">Recommendations — Growth &amp; Scale</div><div class="locked-sub">Upgrade to unlock specific action plans with exact savings calculations.</div><button class="btn btn-primary" onclick="openModal('payment')">Upgrade to Growth — $19/mo</button></div>
       <div id="recs-content">
         <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
           <div class="mc"><div class="mc-label">Monthly savings</div><div class="mc-value green" id="r-monthly">$0</div></div>
@@ -279,7 +279,7 @@ select.fi{cursor:pointer}
 
     <!-- RENEWALS -->
     <div class="page" id="page-renewals">
-      <div id="renewals-locked" class="locked" style="display:none"><div class="locked-title">Renewal alerts — Growth &amp; Scale</div><div class="locked-sub">Smart renewal tracking with 25–60 day advance alerts.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="renewals-locked" class="locked" style="display:none"><div class="locked-title">Renewal alerts — Growth &amp; Scale</div><div class="locked-sub">Smart renewal tracking with 25–60 day advance alerts.</div><button class="btn btn-primary" onclick="openModal('payment')">Upgrade to Growth — $19/mo</button></div>
       <div id="renewals-content">
         <div class="metrics" style="grid-template-columns:repeat(4,1fr)">
           <div class="mc"><div class="mc-label">Urgent (≤14d)</div><div class="mc-value red" id="rn-urgent">0</div></div>
@@ -295,7 +295,7 @@ select.fi{cursor:pointer}
 
     <!-- ADD-ON AUDIT -->
     <div class="page" id="page-addons">
-      <div id="addons-locked" class="locked" style="display:none"><div class="locked-title">Add-on audit — Growth &amp; Scale</div><div class="locked-sub">Flags unused add-ons and overbuilt plans with specific downgrade recommendations.</div><button class="btn btn-primary" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Growth — $19/mo</button></div>
+      <div id="addons-locked" class="locked" style="display:none"><div class="locked-title">Add-on audit — Growth &amp; Scale</div><div class="locked-sub">Flags unused add-ons and overbuilt plans with specific downgrade recommendations.</div><button class="btn btn-primary" onclick="openModal('payment')">Upgrade to Growth — $19/mo</button></div>
       <div id="addons-content">
         <div class="metrics" style="grid-template-columns:repeat(3,1fr)">
           <div class="mc"><div class="mc-label">Total add-ons</div><div class="mc-value blue" id="ao-total">0</div></div>
@@ -308,7 +308,7 @@ select.fi{cursor:pointer}
 
     <!-- AI INSIGHTS -->
     <div class="page" id="page-ai">
-      <div id="ai-locked" class="locked" style="display:none"><div class="locked-title">AI insights — Scale only</div><div class="locked-sub">Claude-powered stack analysis with cross-tool patterns and consolidation scenarios.</div><button class="btn btn-purple" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Scale — $49/mo</button></div>
+      <div id="ai-locked" class="locked" style="display:none"><div class="locked-title">AI insights — Scale only</div><div class="locked-sub">Claude-powered stack analysis with cross-tool patterns and consolidation scenarios.</div><button class="btn btn-purple" onclick="openModal('payment')">Upgrade to Scale — $49/mo</button></div>
       <div id="ai-content">
         <div style="display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#f0ebff;border-radius:12px;margin-bottom:1rem;border:1px solid rgba(107,70,193,.2)">
           <div><div style="font-family:'Poppins',sans-serif;font-size:13px;font-weight:700;color:var(--purple)">AI stack analysis</div><div style="font-size:12px;color:#5a38a8;margin-top:2px;font-family:'Inter',sans-serif">Claude-powered · refreshes when tools change</div></div>
@@ -321,7 +321,7 @@ select.fi{cursor:pointer}
 
     <!-- WORKSPACES -->
     <div class="page" id="page-workspaces">
-      <div id="workspaces-locked" class="locked" style="display:none"><div class="locked-title">Workspaces — Scale only</div><div class="locked-sub">Manage multiple clients from one account with white-label PDF reports.</div><button class="btn btn-purple" onclick="nav('plans',document.querySelector('[onclick*=plans]'))">Upgrade to Scale — $49/mo</button></div>
+      <div id="workspaces-locked" class="locked" style="display:none"><div class="locked-title">Workspaces — Scale only</div><div class="locked-sub">Manage multiple clients from one account with white-label PDF reports.</div><button class="btn btn-purple" onclick="openModal('payment')">Upgrade to Scale — $49/mo</button></div>
       <div id="workspaces-content">
         <div class="metrics" style="grid-template-columns:repeat(3,1fr)"><div class="mc"><div class="mc-label">Workspaces</div><div class="mc-value blue">3</div></div><div class="mc"><div class="mc-label">Total spend</div><div class="mc-value" style="color:var(--navy)">$4,820</div><div class="mc-sub">across all clients</div></div><div class="mc"><div class="mc-label">Savings identified</div><div class="mc-value green">$1,140</div></div></div>
         <div class="sh"><div class="st">Client workspaces</div><button class="btn btn-ghost btn-sm">+ New workspace</button></div>
@@ -333,9 +333,9 @@ select.fi{cursor:pointer}
     <div class="page" id="page-plans">
       <div class="billing-tog" id="btog"><div class="tab active" onclick="billingTab('monthly',this)">Monthly</div><div class="tab" onclick="billingTab('annual',this)">Annual <span style="color:#0f7a4a;font-size:11px">save 20%</span></div></div>
       <div class="plan-cards">
-        <div class="plan-card"><div class="plan-name">Basic</div><div class="plan-price">$0</div><div class="plan-period">Free forever</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Up to 3 tools</div><div class="plan-feature"><span class="chk">✓</span>9-dimension scoring</div><div class="plan-feature"><span class="chk">✓</span>Spend breakdown</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Recommendations</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Renewal alerts</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights</div><button class="plan-cta pcta-current" id="cta-basic" onclick="setPlan('basic')">Current plan</button></div>
-        <div class="plan-card featured"><div class="plan-popular"><span class="pop-pill">Most popular</span></div><div class="plan-name">Growth</div><div class="plan-price" id="pp-growth">$19</div><div class="plan-period" id="pd-growth">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Unlimited tools</div><div class="plan-feature"><span class="chk">✓</span>Recommendations engine</div><div class="plan-feature"><span class="chk">✓</span>Smart renewal alerts</div><div class="plan-feature"><span class="chk">✓</span>Add-on &amp; feature audit</div><div class="plan-feature"><span class="chk">✓</span>PDF export reports</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights (Claude)</div><button class="plan-cta pcta-blue" id="cta-growth" onclick="setPlan('growth')">Upgrade to Growth</button></div>
-        <div class="plan-card"><div class="plan-name" style="color:var(--purple)">Scale</div><div class="plan-price" id="pp-scale">$49</div><div class="plan-period" id="pd-scale">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Everything in Growth</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>AI insights — Claude</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Multi-workspace</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>White-label PDF reports</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Team seats (up to 5)</div><button class="plan-cta" style="background:var(--purple);color:#fff" id="cta-scale" onclick="setPlan('scale')">Upgrade to Scale</button></div>
+        <div class="plan-card"><div class="plan-name">Basic</div><div class="plan-price">$0</div><div class="plan-period">Free forever</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Up to 3 tools</div><div class="plan-feature"><span class="chk">✓</span>9-dimension scoring</div><div class="plan-feature"><span class="chk">✓</span>Spend breakdown</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Recommendations</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Renewal alerts</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights</div><button class="plan-cta pcta-current" id="cta-basic" onclick="showModal('t1')">Save my results free</button></div>
+        <div class="plan-card featured"><div class="plan-popular"><span class="pop-pill">Most popular</span></div><div class="plan-name">Growth</div><div class="plan-price" id="pp-growth">$19</div><div class="plan-period" id="pd-growth">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Unlimited tools</div><div class="plan-feature"><span class="chk">✓</span>Recommendations engine</div><div class="plan-feature"><span class="chk">✓</span>Smart renewal alerts</div><div class="plan-feature"><span class="chk">✓</span>Add-on &amp; feature audit</div><div class="plan-feature"><span class="chk">✓</span>PDF export reports</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights (Claude)</div><button class="plan-cta pcta-blue" id="cta-growth" onclick="showModal('t2')">Get full report — $10</button></div>
+        <div class="plan-card"><div class="plan-name" style="color:var(--purple)">Scale</div><div class="plan-price" id="pp-scale">$49</div><div class="plan-period" id="pd-scale">per month</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Everything in Growth</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>AI insights — Claude</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Multi-workspace</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>White-label PDF reports</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Team seats (up to 5)</div><button class="plan-cta" style="background:var(--purple);color:#fff" id="cta-scale" onclick="showModal('t3')">Talk to Sonder Digital</button></div>
       </div>
     </div>
 
@@ -401,5 +401,463 @@ function billingTab(c,el){billingCycle=c;document.querySelectorAll('#btog .tab')
 
 renderDash();updateUI();
 </script>
+
+<!-- ══════════════════════════════════════════
+     LEAD CAPTURE MODALS + SYSTEM
+══════════════════════════════════════════ -->
+<style>
+.modal-overlay{display:none;position:fixed;inset:0;background:rgba(0,25,53,.55);z-index:999;align-items:center;justify-content:center;padding:20px}
+.modal-box{background:#fff;border-radius:16px;padding:32px;width:100%;max-width:480px;position:relative;border:1px solid #dde3ec}
+.modal-close{position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#626E7E;line-height:1}
+.modal-close:hover{color:#001935}
+.modal-badge{display:inline-block;padding:3px 12px;border-radius:20px;font-size:11px;font-weight:700;margin-bottom:12px}
+.mb-free{background:#E7F3FF;color:#0854a8}
+.mb-pay{background:#e6f4ed;color:#0f7a4a}
+.mb-strat{background:#f0ebff;color:#5a38a8}
+.modal-title{font-family:"Poppins",sans-serif;font-size:20px;font-weight:700;color:#001935;margin-bottom:6px;line-height:1.2}
+.modal-sub{font-size:13px;color:#626E7E;line-height:1.55;margin-bottom:20px}
+.modal-field{display:flex;flex-direction:column;gap:5px;margin-bottom:12px}
+.modal-label{font-size:12px;font-weight:600;color:#001935}
+.modal-input{padding:9px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:14px;font-family:"Inter",sans-serif;color:#1a2332;transition:border-color .15s}
+.modal-input:focus{outline:none;border-color:#0A66C2;box-shadow:0 0 0 3px rgba(10,102,194,.08)}
+.modal-btn{width:100%;padding:13px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:"Inter",sans-serif;border:none;transition:all .2s;margin-top:6px}
+.mbtn-blue{background:#0A66C2;color:#fff}.mbtn-blue:hover{background:#0854a8}
+.mbtn-green{background:#0f7a4a;color:#fff}.mbtn-green:hover{background:#0a5c38}
+.mbtn-purple{background:#6B46C1;color:#fff}.mbtn-purple:hover{background:#5a38a8}
+.modal-err{font-size:12px;color:#b91c1c;margin-top:6px;display:none}
+.modal-success{display:none;text-align:center;padding:16px 0}
+.ms-icon{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:0 auto 12px;font-size:24px}
+.ms-title{font-family:"Poppins",sans-serif;font-size:17px;font-weight:700;color:#001935;margin-bottom:6px}
+.ms-sub{font-size:13px;color:#626E7E;line-height:1.55}
+.modal-stack-summary{background:#f8fafd;border:1px solid #dde3ec;border-radius:8px;padding:10px 14px;margin-bottom:16px;display:flex;gap:20px;font-size:12px}
+.mss-item{display:flex;flex-direction:column;gap:2px}
+.mss-val{font-family:"Poppins",sans-serif;font-size:16px;font-weight:700;color:#001935}
+.mss-label{font-size:11px;color:#626E7E}
+</style>
+
+<!-- Modal Overlay -->
+<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
+
+  <!-- TIER 1 — Free signup -->
+  <div class="modal-box" id="modal-t1" style="display:none">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal-badge mb-free">Free plan</div>
+    <div class="modal-title">Save your audit results</div>
+    <div class="modal-sub">Enter your details to save your Stack Efficiency Score and get a summary emailed to you — free, no commitment.</div>
+    <div class="modal-stack-summary" id="t1-summary"></div>
+    <div id="t1-form">
+      <div class="modal-field"><label class="modal-label">Name</label><input class="modal-input" id="t1-name" placeholder="Your name"></div>
+      <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t1-email" placeholder="you@company.com" type="email"></div>
+      <div class="modal-field"><label class="modal-label">Company</label><input class="modal-input" id="t1-company" placeholder="Company name"></div>
+      <div class="modal-err" id="t1-err"></div>
+      <button class="modal-btn mbtn-blue" id="t1-btn" onclick="submitT1()">Save my audit results</button>
+    </div>
+    <div class="modal-success" id="t1-success">
+      <div class="ms-icon" style="background:#E7F3FF">&#10003;</div>
+      <div class="ms-title">Results saved!</div>
+      <div class="ms-sub">Your Stack Efficiency Score and audit summary have been recorded. Upgrade to Full Report ($10) to get the complete breakdown.</div>
+    </div>
+  </div>
+
+  <!-- TIER 2 — Payment intent -->
+  <div class="modal-box" id="modal-t2" style="display:none">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal-badge mb-pay">Full report — $10</div>
+    <div class="modal-title">One step to unlock your full report</div>
+    <div class="modal-sub">Enter your email — you will receive your complete financial breakdown, overlap map, and PDF export immediately after payment.</div>
+    <div class="modal-stack-summary" id="t2-summary"></div>
+    <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t2-email" placeholder="you@company.com" type="email"></div>
+    <div class="modal-err" id="t2-err"></div>
+    <button class="modal-btn mbtn-green" onclick="goPayment()">Continue to payment — $10 &#8594;</button>
+    <div style="text-align:center;margin-top:10px;font-size:11px;color:#626E7E">One-time payment. Instant access. No subscription.</div>
+  </div>
+
+  <!-- TIER 3 — Strategy enquiry -->
+  <div class="modal-box" id="modal-t3" style="display:none">
+    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
+    <div class="modal-badge mb-strat">Strategy session</div>
+    <div class="modal-title">Let's rebuild your stack together</div>
+    <div class="modal-sub">Tell us about your team and what you're trying to solve. The Sonder Digital team will be in touch within 24 hours.</div>
+    <div class="modal-stack-summary" id="t3-summary"></div>
+    <div id="t3-form">
+      <div class="modal-field"><label class="modal-label">Name *</label><input class="modal-input" id="t3-name" placeholder="Your name"></div>
+      <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t3-email" placeholder="you@company.com" type="email"></div>
+      <div class="modal-field"><label class="modal-label">Company</label><input class="modal-input" id="t3-company" placeholder="Company name"></div>
+      <div class="modal-field"><label class="modal-label">What are you trying to solve? <span style="font-weight:400;color:#626E7E">(optional)</span></label><textarea class="modal-input" id="t3-msg" rows="3" placeholder="e.g. We have 14 tools and no idea what we actually need..." style="resize:vertical"></textarea></div>
+      <div class="modal-err" id="t3-err"></div>
+      <button class="modal-btn mbtn-purple" id="t3-btn" onclick="submitT3()">Send enquiry to Sonder Digital</button>
+    </div>
+    <div class="modal-success" id="t3-success">
+      <div class="ms-icon" style="background:#f0ebff">&#128640;</div>
+      <div class="ms-title">Enquiry sent!</div>
+      <div class="ms-sub">The Sonder Digital team will review your stack audit and be in touch within 24 hours to schedule your strategy session.</div>
+    </div>
+  </div>
+
+</div>
+
+<script>
+const APPS_SCRIPT_URL = ""; // paste your Google Apps Script Web App URL here
+const DODO_PAYMENT_LINK = ""; // paste your Dodo Payments product link here
+
+// ── CONFIG — replace both values after setup ──────────────────
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_WEB_APP_URL/exec";
+const DODO_PAYMENT_LINK = "https://checkout.dodopayments.com/buy/REPLACE_WITH_YOUR_PRODUCT_ID";
+// ─────────────────────────────────────────────────────────────
+
+function getStackSummaryHTML(modalId) {
+  const savings = document.getElementById("live-savings") ? document.getElementById("live-savings").textContent : "₹0";
+  const score = document.getElementById("score-display") ? document.getElementById("score-display").textContent : "—";
+  const count = typeof tools !== "undefined" ? tools.length : 0;
+  return `<div class="mss-item"><div class="mss-val">${count}</div><div class="mss-label">Tools audited</div></div>
+          <div class="mss-item"><div class="mss-val" style="color:#0f7a4a">${savings}</div><div class="mss-label">Waste identified</div></div>
+          <div class="mss-item"><div class="mss-val">${score}/100</div><div class="mss-label">Stack score</div></div>`;
+}
+
+function showModal(tier) {
+  const overlay = document.getElementById("modal-overlay");
+  overlay.style.display = "flex";
+  document.getElementById("modal-t1").style.display = "none";
+  document.getElementById("modal-t2").style.display = "none";
+  document.getElementById("modal-t3").style.display = "none";
+  document.getElementById("modal-" + tier).style.display = "block";
+  // Populate stack summary
+  const sum = document.getElementById(tier + "-summary");
+  if (sum) sum.innerHTML = getStackSummaryHTML(tier);
+  // Reset forms
+  if (tier === "t1") { document.getElementById("t1-form").style.display = "block"; document.getElementById("t1-success").style.display = "none"; document.getElementById("t1-btn").textContent = "Save my audit results"; document.getElementById("t1-err").style.display = "none"; }
+  if (tier === "t3") { document.getElementById("t3-form").style.display = "block"; document.getElementById("t3-success").style.display = "none"; document.getElementById("t3-btn").textContent = "Send enquiry to Sonder Digital"; document.getElementById("t3-err").style.display = "none"; }
+}
+
+function closeModal() {
+  document.getElementById("modal-overlay").style.display = "none";
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById("modal-overlay")) closeModal();
+}
+
+async function postToSheet(payload) {
+  if (APPS_SCRIPT_URL.includes("REPLACE_WITH")) {
+    console.log("Apps Script URL not configured yet. Data:", payload);
+    return true;
+  }
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: "POST",
+      mode: "no-cors",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload)
+    });
+    return true;
+  } catch (e) { console.log("Sheet error:", e); return false; }
+}
+
+function getPayload(tier, extra) {
+  return {
+    tier,
+    toolsCount: typeof tools !== "undefined" ? tools.length : 0,
+    savings: document.getElementById("live-savings") ? document.getElementById("live-savings").textContent : "₹0",
+    score: document.getElementById("score-display") ? document.getElementById("score-display").textContent : "—",
+    ...extra
+  };
+}
+
+async function submitT1() {
+  const name = document.getElementById("t1-name").value.trim();
+  const email = document.getElementById("t1-email").value.trim();
+  const company = document.getElementById("t1-company").value.trim();
+  const err = document.getElementById("t1-err");
+  if (!email) { err.textContent = "Work email is required."; err.style.display = "block"; return; }
+  const btn = document.getElementById("t1-btn");
+  btn.textContent = "Saving..."; btn.disabled = true;
+  await postToSheet(getPayload("tier1", { name, email, company }));
+  document.getElementById("t1-form").style.display = "none";
+  document.getElementById("t1-success").style.display = "block";
+}
+
+function goPayment() {
+  const email = document.getElementById("t2-email").value.trim();
+  const err = document.getElementById("t2-err");
+  if (!email) { err.textContent = "Please enter your email before proceeding."; err.style.display = "block"; return; }
+  // Log payment intent to sheet
+  postToSheet(getPayload("tier2", { email }));
+  // Redirect to payment
+  if (DODO_PAYMENT_LINK.includes("REPLACE_WITH")) {
+    alert("Payment link not configured yet. Add your Dodo Payments product URL to DODO_PAYMENT_LINK in app.html");
+    return;
+  }
+  window.open(DODO_PAYMENT_LINK + "?prefilled_email=" + encodeURIComponent(email), "_blank");
+  closeModal();
+}
+
+async function submitT3() {
+  const name = document.getElementById("t3-name").value.trim();
+  const email = document.getElementById("t3-email").value.trim();
+  const company = document.getElementById("t3-company").value.trim();
+  const msg = document.getElementById("t3-msg").value.trim();
+  const err = document.getElementById("t3-err");
+  if (!name) { err.textContent = "Name is required."; err.style.display = "block"; return; }
+  if (!email) { err.textContent = "Work email is required."; err.style.display = "block"; return; }
+  const btn = document.getElementById("t3-btn");
+  btn.textContent = "Sending..."; btn.disabled = true;
+  await postToSheet(getPayload("tier3", { name, email, company, message: msg }));
+  document.getElementById("t3-form").style.display = "none";
+  document.getElementById("t3-success").style.display = "block";
+}
+
+// Keyboard close
+document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
+
+// ══════════════════════════════════════════
+// LEAD CAPTURE MODAL FUNCTIONS
+// ══════════════════════════════════════════
+
+function openModal(type) {
+  const overlay = document.getElementById('modal-overlay');
+  overlay.style.display = 'flex';
+  ['modal-free','modal-payment','modal-strategy','modal-success'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+
+  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : null;
+  const totalSavings = tools.reduce((s,t) => {
+    const sc2 = score(t);
+    return s + (sc2 >= 61 ? Math.round(toINR(t.cost,t.currency)*0.6) : sc2 >= 31 ? Math.round(toINR(t.cost,t.currency)*0.25) : 0);
+  }, 0);
+
+  if (type === 'free') {
+    document.getElementById('modal-free').style.display = 'block';
+    if (avgScore !== null) {
+      document.getElementById('m1-score-display').style.display = 'block';
+      document.getElementById('m1-score-val').textContent = avgScore;
+      const lbl = document.getElementById('m1-score-label');
+      lbl.textContent = avgScore >= 61 ? 'High waste' : avgScore >= 31 ? 'Review' : 'Retain';
+      lbl.style.color = avgScore >= 61 ? '#b91c1c' : avgScore >= 31 ? '#854F0B' : '#0f7a4a';
+      document.getElementById('m1-savings-val').textContent = '₹' + Math.round(totalSavings).toLocaleString();
+    }
+  } else if (type === 'payment') {
+    document.getElementById('modal-payment').style.display = 'block';
+  } else if (type === 'strategy') {
+    document.getElementById('modal-strategy').style.display = 'block';
+    if (avgScore !== null) {
+      document.getElementById('m3-audit-summary').style.display = 'block';
+      document.getElementById('m3-score').textContent = avgScore + '/100';
+      document.getElementById('m3-tools').textContent = tools.length;
+      document.getElementById('m3-savings').textContent = '₹' + Math.round(totalSavings).toLocaleString();
+    }
+  }
+}
+
+function closeModal() {
+  document.getElementById('modal-overlay').style.display = 'none';
+}
+
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) closeModal();
+});
+
+function showSuccess(title, sub) {
+  ['modal-free','modal-payment','modal-strategy'].forEach(id => {
+    document.getElementById(id).style.display = 'none';
+  });
+  document.getElementById('modal-success').style.display = 'block';
+  document.getElementById('success-title').textContent = title;
+  document.getElementById('success-sub').textContent = sub;
+}
+
+function getAuditData() {
+  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : 0;
+  const totalSavings = tools.reduce((s,t) => {
+    const sc2 = score(t);
+    return s + (sc2 >= 61 ? Math.round(toINR(t.cost,t.currency)*0.6) : sc2 >= 31 ? Math.round(toINR(t.cost,t.currency)*0.25) : 0);
+  }, 0);
+  return { toolsCount: tools.length, score: avgScore, savings: Math.round(totalSavings) };
+}
+
+async function postToSheets(payload) {
+  if (!APPS_SCRIPT_URL) return;
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.log('Sheets log failed:', e); }
+}
+
+async function submitFree() {
+  const name = document.getElementById('m1-name').value.trim();
+  const email = document.getElementById('m1-email').value.trim();
+  const company = document.getElementById('m1-company').value.trim();
+  const err = document.getElementById('m1-err');
+  if (!name || !email || !company) { err.textContent = 'Please fill in all fields'; err.style.display='block'; return; }
+  if (!email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('m1-btn');
+  btn.textContent = 'Saving...'; btn.disabled = true;
+  const audit = getAuditData();
+  await postToSheets({ tier:'free', name, email, company, ...audit });
+  btn.textContent = 'Unlock benchmark report — free'; btn.disabled = false;
+  showSuccess('Report unlocked!', 'Your benchmark comparison and detailed recommendations are now visible below. Check your email for a copy.');
+}
+
+async function submitPayment() {
+  const email = document.getElementById('m2-email').value.trim();
+  const err = document.getElementById('m2-err');
+  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('m2-btn');
+  btn.textContent = 'Redirecting...'; btn.disabled = true;
+  const audit = getAuditData();
+  await postToSheets({ tier:'payment', email, status:'intent', ...audit });
+  setTimeout(() => {
+    if (DODO_PAYMENT_LINK) {
+      window.location.href = DODO_PAYMENT_LINK + '?email=' + encodeURIComponent(email);
+    } else {
+      btn.textContent = 'Continue to payment — $10 →'; btn.disabled = false;
+      err.textContent = 'Payment link not configured yet. Please contact us at sonderdigital.com'; err.style.display='block';
+    }
+  }, 800);
+}
+
+async function submitStrategy() {
+  const name = document.getElementById('m3-name').value.trim();
+  const email = document.getElementById('m3-email').value.trim();
+  const phone = document.getElementById('m3-phone').value.trim();
+  const company = document.getElementById('m3-company').value.trim();
+  const teamSize = document.getElementById('m3-teamsize').value;
+  const monthlySpend = document.getElementById('m3-spend').value;
+  const message = document.getElementById('m3-message').value.trim();
+  const err = document.getElementById('m3-err');
+  if (!name || !email || !phone || !company || !teamSize || !monthlySpend) {
+    err.textContent = 'Please fill in all required fields including phone number'; err.style.display='block'; return;
+  }
+  if (!email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
+  if (phone.length < 8) { err.textContent = 'Please enter a valid phone number'; err.style.display='block'; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('m3-btn');
+  btn.textContent = 'Sending...'; btn.disabled = true;
+  const audit = getAuditData();
+  await postToSheets({ tier:'strategy', name, email, phone, company, teamSize, monthlySpend, message, ...audit });
+  btn.textContent = 'Request strategy session →'; btn.disabled = false;
+  showSuccess('Request received!', 'The Sonder Digital team will review your audit and reach out within 1 business day to schedule your strategy session.');
+}
+
+</script>
+
+
+<!-- ══════════════════════════════════════
+     LEAD CAPTURE MODALS
+═══════════════════════════════════════ -->
+<div id="modal-overlay" style="display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,20,40,.7);z-index:9999;align-items:center;justify-content:center;padding:20px">
+
+  <!-- TIER 1 FREE MODAL -->
+  <div id="modal-free" style="display:none;background:#fff;border-radius:16px;padding:28px;max-width:440px;width:100%;position:relative">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#626E7E;line-height:1">×</button>
+    <div style="width:44px;height:44px;border-radius:10px;background:#e6f4ed;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0f7a4a" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"/></svg>
+    </div>
+    <div id="m1-score-display" style="margin-bottom:14px;padding:10px 14px;background:#f8fafd;border-radius:10px;border:1px solid #dde3ec;display:none">
+      <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">Your Stack Efficiency Score</div>
+      <div style="display:flex;align-items:center;gap:10px">
+        <div id="m1-score-val" style="font-family:'Poppins',sans-serif;font-size:32px;font-weight:800;color:#001935">—</div>
+        <div><div style="font-size:12px;color:#626E7E">/100</div><div id="m1-score-label" style="font-size:11px;font-weight:700"></div></div>
+        <div style="margin-left:auto;text-align:right"><div id="m1-savings-val" style="font-family:'Poppins',sans-serif;font-size:16px;font-weight:800;color:#0f7a4a"></div><div style="font-size:11px;color:#626E7E">savings identified</div></div>
+      </div>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;color:#001935;margin-bottom:6px">See your full benchmark report</div>
+    <p style="font-size:13px;color:#626E7E;margin-bottom:18px;line-height:1.6">Enter your details to unlock your industry benchmark comparison and detailed recommendations.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+      <input id="m1-name" placeholder="Your name *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#0A66C2'" onblur="this.style.borderColor='#dde3ec'">
+      <input id="m1-email" type="email" placeholder="Work email *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#0A66C2'" onblur="this.style.borderColor='#dde3ec'">
+      <input id="m1-company" placeholder="Company name *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#0A66C2'" onblur="this.style.borderColor='#dde3ec'">
+    </div>
+    <div id="m1-err" style="color:#b91c1c;font-size:12px;margin-bottom:8px;display:none"></div>
+    <button onclick="submitFree()" id="m1-btn" style="width:100%;padding:12px;background:#0A66C2;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s">Unlock benchmark report — free</button>
+    <p style="font-size:11px;color:#626E7E;text-align:center;margin-top:10px">No spam. Unsubscribe anytime.</p>
+  </div>
+
+  <!-- TIER 2 PAYMENT MODAL -->
+  <div id="modal-payment" style="display:none;background:#fff;border-radius:16px;padding:28px;max-width:440px;width:100%;position:relative">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#626E7E;line-height:1">×</button>
+    <div style="width:44px;height:44px;border-radius:10px;background:#E7F3FF;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#0A66C2" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+    </div>
+    <div id="m2-score-display" style="margin-bottom:14px;padding:10px 14px;background:#f8fafd;border-radius:10px;border:1px solid #dde3ec">
+      <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:4px">What you will unlock</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> Full financial breakdown</div>
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> Tool overlap map</div>
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> Alternative recommendations</div>
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> PDF export</div>
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> Renewal alerts</div>
+        <div style="font-size:12px;color:#0854a8;display:flex;align-items:center;gap:4px"><span style="color:#0f7a4a;font-weight:700">✓</span> Unlimited tools</div>
+      </div>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;color:#001935;margin-bottom:6px">Get your full report — $10</div>
+    <p style="font-size:13px;color:#626E7E;margin-bottom:18px;line-height:1.6">One-time payment. Enter your email to proceed to checkout — your audit data is saved.</p>
+    <div style="display:flex;flex-direction:column;gap:10px;margin-bottom:16px">
+      <input id="m2-email" type="email" placeholder="Work email *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#0A66C2'" onblur="this.style.borderColor='#dde3ec'">
+    </div>
+    <div id="m2-err" style="color:#b91c1c;font-size:12px;margin-bottom:8px;display:none"></div>
+    <button onclick="submitPayment()" id="m2-btn" style="width:100%;padding:12px;background:#0A66C2;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s">Continue to payment — $10 →</button>
+    <div style="display:flex;align-items:center;gap:6px;justify-content:center;margin-top:10px">
+      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="#626E7E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/></svg>
+      <p style="font-size:11px;color:#626E7E">Secure payment via Dodo Payments</p>
+    </div>
+  </div>
+
+  <!-- TIER 3 STRATEGY MODAL -->
+  <div id="modal-strategy" style="display:none;background:#fff;border-radius:16px;padding:28px;max-width:480px;width:100%;position:relative;max-height:90vh;overflow-y:auto">
+    <button onclick="closeModal()" style="position:absolute;top:14px;right:16px;background:none;border:none;font-size:20px;cursor:pointer;color:#626E7E;line-height:1">×</button>
+    <div style="width:44px;height:44px;border-radius:10px;background:#f0ebff;display:flex;align-items:center;justify-content:center;margin-bottom:12px">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#6B46C1" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>
+    </div>
+    <div style="font-family:'Poppins',sans-serif;font-size:17px;font-weight:700;color:#001935;margin-bottom:4px">Book a strategy session</div>
+    <p style="font-size:13px;color:#626E7E;margin-bottom:18px;line-height:1.6">Work directly with Sonder Digital to rebuild your stack, negotiate contracts, and implement changes. We will review your audit data before the call.</p>
+    <div id="m3-audit-summary" style="margin-bottom:16px;padding:10px 14px;background:#f8fafd;border-radius:10px;border:1px solid #dde3ec;display:none">
+      <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.06em;margin-bottom:6px">Your audit summary — pre-filled</div>
+      <div style="display:flex;gap:16px;flex-wrap:wrap">
+        <div><div style="font-size:10px;color:#626E7E">Stack score</div><div id="m3-score" style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#001935">—</div></div>
+        <div><div style="font-size:10px;color:#626E7E">Tools tracked</div><div id="m3-tools" style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#001935">0</div></div>
+        <div><div style="font-size:10px;color:#626E7E">Savings identified</div><div id="m3-savings" style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:800;color:#0f7a4a">₹0</div></div>
+      </div>
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <input id="m3-name" placeholder="Your name *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
+      <input id="m3-email" type="email" placeholder="Work email *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
+      <input id="m3-phone" type="tel" placeholder="Phone number *" style="padding:10px 12px;border:1.5px solid #fcd34d;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;background:#fffdf0" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#fcd34d'">
+      <input id="m3-company" placeholder="Company name *" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
+    </div>
+    <div style="display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-bottom:10px">
+      <select id="m3-teamsize" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;background:#fff;cursor:pointer" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
+        <option value="">Team size *</option>
+        <option>1-5</option><option>6-15</option><option>16-50</option><option>51-200</option><option>200+</option>
+      </select>
+      <select id="m3-spend" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;background:#fff;cursor:pointer" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'">
+        <option value="">Monthly stack spend *</option>
+        <option>Under ₹50,000</option><option>₹50k–₹1L</option><option>₹1L–₹3L</option><option>₹3L–₹10L</option><option>₹10L+</option>
+      </select>
+    </div>
+    <textarea id="m3-message" placeholder="Tell us about your biggest pain point with your current marketing stack (optional)" rows="3" style="padding:10px 12px;border:1.5px solid #dde3ec;border-radius:8px;font-size:13px;font-family:'Inter',sans-serif;width:100%;outline:none;resize:vertical;margin-bottom:10px" onfocus="this.style.borderColor='#6B46C1'" onblur="this.style.borderColor='#dde3ec'"></textarea>
+    <div id="m3-err" style="color:#b91c1c;font-size:12px;margin-bottom:8px;display:none"></div>
+    <button onclick="submitStrategy()" id="m3-btn" style="width:100%;padding:12px;background:#6B46C1;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Inter',sans-serif;transition:background .15s">Request strategy session →</button>
+    <p style="font-size:11px;color:#626E7E;text-align:center;margin-top:10px">We will respond within 1 business day.</p>
+  </div>
+
+  <!-- SUCCESS STATE -->
+  <div id="modal-success" style="display:none;background:#fff;border-radius:16px;padding:36px 28px;max-width:400px;width:100%;text-align:center">
+    <div style="width:56px;height:56px;border-radius:50%;background:#e6f4ed;display:flex;align-items:center;justify-content:center;margin:0 auto 16px">
+      <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="#0f7a4a" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg>
+    </div>
+    <div id="success-title" style="font-family:'Poppins',sans-serif;font-size:18px;font-weight:700;color:#001935;margin-bottom:8px">You are all set!</div>
+    <div id="success-sub" style="font-size:14px;color:#626E7E;line-height:1.6;margin-bottom:20px"></div>
+    <button onclick="closeModal()" style="padding:10px 28px;background:#0A66C2;color:#fff;border:none;border-radius:8px;font-size:14px;font-weight:600;cursor:pointer;font-family:'Inter',sans-serif">Close</button>
+  </div>
+
+</div>
+
 </body>
 </html>
