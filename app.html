@@ -225,39 +225,56 @@ select.fi{cursor:pointer}
     <!-- ADD TOOL -->
     <div class="page" id="page-add">
       <div id="add-limit-warn" style="display:none;padding:10px 14px;background:var(--warn-bg);border-radius:8px;margin-bottom:1rem;font-size:13px;color:var(--warn);font-family:'Inter',sans-serif;border:1px solid #fcd34d"></div>
-      <div class="fsec"><div class="fsec-title">Tool basics</div>
-        <div style="margin-bottom:14px">
-          <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Quick add — click to auto-fill</div>
-          <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:10px">
-            <button onclick="quickFill('hubspot')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF7A59';this.style.color='#FF7A59'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF7A59;flex-shrink:0;display:inline-block"></span>HubSpot</button>
-            <button onclick="quickFill('salesforce')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#00A1E0';this.style.color='#00A1E0'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#00A1E0;flex-shrink:0;display:inline-block"></span>Salesforce</button>
-            <button onclick="quickFill('mailchimp')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FFE01B';this.style.color='#856A00'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FFE01B;flex-shrink:0;display:inline-block"></span>Mailchimp</button>
-            <button onclick="quickFill('zoominfo')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF6B35';this.style.color='#FF6B35'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF6B35;flex-shrink:0;display:inline-block"></span>ZoomInfo</button>
-            <button onclick="quickFill('apollo')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#7C3AED';this.style.color='#7C3AED'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#7C3AED;flex-shrink:0;display:inline-block"></span>Apollo.io</button>
-            <button onclick="quickFill('semrush')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF642B';this.style.color='#FF642B'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF642B;flex-shrink:0;display:inline-block"></span>Semrush</button>
-            <button onclick="quickFill('canva')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#00C4CC';this.style.color='#00C4CC'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#00C4CC;flex-shrink:0;display:inline-block"></span>Canva</button>
-            <button onclick="quickFill('slack')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#4A154B';this.style.color='#4A154B'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#4A154B;flex-shrink:0;display:inline-block"></span>Slack</button>
-            <button onclick="quickFill('chatgpt')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#10A37F';this.style.color='#10A37F'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#10A37F;flex-shrink:0;display:inline-block"></span>ChatGPT</button>
-            <button onclick="quickFill('claude')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#CC785C';this.style.color='#CC785C'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#CC785C;flex-shrink:0;display:inline-block"></span>Claude</button>
-            <button onclick="quickFill('gemini')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#4285F4';this.style.color='#4285F4'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#4285F4;flex-shrink:0;display:inline-block"></span>Gemini</button>
-            <button onclick="quickFill('midjourney')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#434EE0';this.style.color='#434EE0'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#434EE0;flex-shrink:0;display:inline-block"></span>Midjourney</button>
-            <button onclick="quickFill('perplexity')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#20808D';this.style.color='#20808D'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#20808D;flex-shrink:0;display:inline-block"></span>Perplexity</button>
+      <div class="fsec">
+        <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.07em;margin-bottom:8px">Quick add — click to auto-fill</div>
+        <div style="display:flex;gap:7px;flex-wrap:wrap;margin-bottom:12px">
+          <button onclick="quickFill('hubspot')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF7A59';this.style.color='#FF7A59'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF7A59;flex-shrink:0;display:inline-block"></span>HubSpot</button>
+          <button onclick="quickFill('salesforce')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#00A1E0';this.style.color='#00A1E0'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#00A1E0;flex-shrink:0;display:inline-block"></span>Salesforce</button>
+          <button onclick="quickFill('mailchimp')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FFE01B';this.style.color='#856A00'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FFE01B;flex-shrink:0;display:inline-block"></span>Mailchimp</button>
+          <button onclick="quickFill('zoominfo')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF6B35';this.style.color='#FF6B35'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF6B35;flex-shrink:0;display:inline-block"></span>ZoomInfo</button>
+          <button onclick="quickFill('apollo')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#7C3AED';this.style.color='#7C3AED'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#7C3AED;flex-shrink:0;display:inline-block"></span>Apollo.io</button>
+          <button onclick="quickFill('semrush')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#FF642B';this.style.color='#FF642B'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#FF642B;flex-shrink:0;display:inline-block"></span>Semrush</button>
+          <button onclick="quickFill('canva')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#00C4CC';this.style.color='#00C4CC'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#00C4CC;flex-shrink:0;display:inline-block"></span>Canva</button>
+          <button onclick="quickFill('slack')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#4A154B';this.style.color='#4A154B'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#4A154B;flex-shrink:0;display:inline-block"></span>Slack</button>
+          <button onclick="quickFill('chatgpt')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#10A37F';this.style.color='#10A37F'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#10A37F;flex-shrink:0;display:inline-block"></span>ChatGPT</button>
+          <button onclick="quickFill('claude')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#CC785C';this.style.color='#CC785C'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#CC785C;flex-shrink:0;display:inline-block"></span>Claude</button>
+          <button onclick="quickFill('gemini')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#4285F4';this.style.color='#4285F4'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#4285F4;flex-shrink:0;display:inline-block"></span>Gemini</button>
+          <button onclick="quickFill('midjourney')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#434EE0';this.style.color='#434EE0'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#434EE0;flex-shrink:0;display:inline-block"></span>Midjourney</button>
+          <button onclick="quickFill('perplexity')" style="padding:5px 11px;border:1.5px solid #dde3ec;border-radius:8px;font-size:12px;font-weight:600;cursor:pointer;background:#fff;color:#626E7E;font-family:Inter,sans-serif;display:flex;align-items:center;gap:5px;transition:all .12s" onmouseover="this.style.borderColor='#20808D';this.style.color='#20808D'" onmouseout="this.style.borderColor='#dde3ec';this.style.color='#626E7E'"><span style="width:8px;height:8px;border-radius:50%;background:#20808D;flex-shrink:0;display:inline-block"></span>Perplexity</button>
+        </div>
+        <div id="autofill-banner" style="display:none;padding:8px 12px;background:#e6f4ed;border-radius:8px;border:1px solid rgba(15,122,74,.2);margin-bottom:12px;font-size:12px;color:#0f7a4a;align-items:center;gap:8px"><span id="autofill-msg"></span><button onclick="document.getElementById('autofill-banner').style.display='none'" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#0f7a4a;font-size:16px;padding:0 4px">x</button></div>
+
+        <!-- STEP 1: Tool + Plan tier side by side — plan drives price -->
+        <div style="background:#f8fafd;border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1px solid #dde3ec">
+          <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Step 1 — Tool &amp; plan</div>
+          <div class="form-grid">
+            <div class="fg"><div class="fl">Tool name</div><input class="fi" id="f-name" placeholder="e.g. HubSpot, Salesforce, Semrush..." onblur="autoFillFromName()"></div>
+            <div class="fg"><div class="fl">Category</div><select class="fi" id="f-cat"><option>CRM</option><option>Email marketing</option><option>Marketing automation</option><option>Lead enrichment / prospecting</option><option>Sales engagement</option><option>Social media management</option><option>SEO</option><option>Paid ads management</option><option>Analytics / BI</option><option>Design / creative</option><option>Video / webinar</option><option>Landing page / forms</option><option>Customer support / helpdesk</option><option>Project management</option><option>Communication / chat</option><option>AI writing / research</option><option>Call tracking / dialler</option><option>Data / CDP</option><option>Finance / billing</option><option>Other</option></select></div>
+            <div class="fg">
+              <div class="fl">Plan tier <span style="font-size:10px;color:#0A66C2;font-weight:600;margin-left:4px">— sets price automatically</span></div>
+              <select class="fi" id="f-plantier" onchange="lookupPrice()">
+                <option value="free">Free</option>
+                <option value="starter">Starter</option>
+                <option value="pro" selected>Pro / Growth</option>
+                <option value="enterprise">Enterprise</option>
+              </select>
+            </div>
+            <div class="fg">
+              <div class="fl">Monthly cost (₹) <span id="price-hint" style="font-size:10px;color:#0f7a4a;font-weight:600;margin-left:4px"></span></div>
+              <input class="fi" id="f-cost" type="number" placeholder="0" min="0">
+            </div>
           </div>
-          <div id="autofill-banner" style="display:none;padding:8px 12px;background:#e6f4ed;border-radius:8px;border:1px solid rgba(15,122,74,.2);margin-bottom:10px;font-size:12px;color:#0f7a4a;align-items:center;gap:8px"><span id="autofill-msg"></span><button onclick="document.getElementById('autofill-banner').style.display='none'" style="margin-left:auto;background:none;border:none;cursor:pointer;color:#0f7a4a;font-size:16px;padding:0 4px">x</button></div>
         </div>
-        <div class="form-grid">
-          <div class="fg"><div class="fl">Tool name</div><input class="fi" id="f-name" placeholder="e.g. HubSpot, Salesforce, Semrush..." onblur="autoFillFromName()"></div>
-          <div class="fg"><div class="fl">Category</div><select class="fi" id="f-cat"><option>CRM</option><option>Email marketing</option><option>Marketing automation</option><option>Lead enrichment / prospecting</option><option>Sales engagement</option><option>Social media management</option><option>SEO</option><option>Paid ads management</option><option>Analytics / BI</option><option>Design / creative</option><option>Video / webinar</option><option>Landing page / forms</option><option>Customer support / helpdesk</option><option>Project management</option><option>Communication / chat</option><option>AI writing / research</option><option>Call tracking / dialler</option><option>Data / CDP</option><option>Finance / billing</option><option>Other</option></select></div>
-          <div class="fg"><div class="fl">Monthly cost ($)</div><input class="fi" id="f-cost" type="number" placeholder="0" min="0"></div>
-          <div class="fg"><div class="fl">Billing cycle</div><select class="fi" id="f-billing"><option value="monthly">Monthly</option><option value="annual">Annual</option></select></div>
-        </div>
-      </div>
-      <div class="fsec"><div class="fsec-title">Plan &amp; seats</div>
-        <div class="form-grid">
-          <div class="fg"><div class="fl">Plan tier</div><select class="fi" id="f-plantier"><option value="free">Free</option><option value="starter">Starter</option><option value="pro">Pro / Growth</option><option value="enterprise">Enterprise</option></select></div>
-          <div class="fg"><div class="fl">Feature usage</div><select class="fi" id="f-planjust"><option value="1">All features used</option><option value="2">Most used</option><option value="3">Some used</option><option value="4">Few / barely used</option></select></div>
-          <div class="fg"><div class="fl">Seats purchased</div><input class="fi" id="f-seats" type="number" placeholder="1" min="1"></div>
-          <div class="fg"><div class="fl">Active users</div><input class="fi" id="f-users" type="number" placeholder="1" min="0"></div>
+
+        <!-- STEP 2: Seats -->
+        <div style="background:#f8fafd;border-radius:10px;padding:14px 16px;margin-bottom:12px;border:1px solid #dde3ec">
+          <div style="font-size:11px;font-weight:700;color:#626E7E;text-transform:uppercase;letter-spacing:.07em;margin-bottom:10px">Step 2 — Seats &amp; usage</div>
+          <div class="form-grid">
+            <div class="fg"><div class="fl">Seats purchased</div><input class="fi" id="f-seats" type="number" placeholder="1" min="1" value="1" onchange="lookupPrice()"></div>
+            <div class="fg"><div class="fl">Active users</div><input class="fi" id="f-users" type="number" placeholder="1" min="0" value="1"></div>
+            <div class="fg"><div class="fl">Feature usage</div><select class="fi" id="f-planjust"><option value="1">All features used</option><option value="2">Most used</option><option value="3">Some used</option><option value="4">Few / barely used</option></select></div>
+            <div class="fg"><div class="fl">Billing cycle</div><select class="fi" id="f-billing"><option value="monthly">Monthly</option><option value="annual">Annual (save ~20%)</option></select></div>
+          </div>
         </div>
       </div>
       <div class="fsec"><div class="fsec-title">Renewal — when did you subscribe?</div>
@@ -487,6 +504,50 @@ function showAddWarn(){const lim=LIMITS[currentPlan],w=document.getElementById('
 
 
 
+
+function lookupPrice() {
+  const name = document.getElementById('f-name').value.trim();
+  const tier = document.getElementById('f-plantier').value;
+  const seats = parseInt(document.getElementById('f-seats').value) || 1;
+  const billing = document.getElementById('f-billing') ? document.getElementById('f-billing').value : 'monthly';
+  
+  const tierMap = {free:'free', starter:'starter', pro:'pro', enterprise:'enterprise'};
+  const tierKey = tierMap[tier] || 'pro';
+  
+  // Find in pricing DB
+  const pricingKey = Object.keys(PRICING_DB).find(k => 
+    k.toLowerCase().includes(name.toLowerCase()) || 
+    name.toLowerCase().includes(k.toLowerCase().split(' ')[0])
+  );
+  
+  if (pricingKey && PRICING_DB[pricingKey][tierKey] !== undefined) {
+    const basePrice = PRICING_DB[pricingKey][tierKey];
+    const unit = PRICING_DB[pricingKey].unit || 'per month';
+    let total = basePrice;
+    
+    // If per seat pricing, multiply by seats
+    if (unit.includes('seat') || unit.includes('user')) {
+      total = basePrice * seats;
+    }
+    
+    // Annual discount
+    if (billing === 'annual') total = Math.round(total * 0.8);
+    
+    const costField = document.getElementById('f-cost');
+    if (costField && basePrice > 0) {
+      costField.value = total;
+      const hint = document.getElementById('price-hint');
+      if (hint) {
+        hint.textContent = '₹' + basePrice.toLocaleString() + ' ' + unit + (billing === 'annual' ? ' · 20% annual discount applied' : '');
+      }
+    } else if (basePrice === 0) {
+      document.getElementById('f-cost').value = 0;
+      const hint = document.getElementById('price-hint');
+      if (hint) hint.textContent = 'Free plan — no cost';
+    }
+  }
+}
+
 function quickFill(key) {
   const d = TOOL_DB[key];
   if (!d) return;
@@ -500,9 +561,11 @@ function quickFill(key) {
   if(document.getElementById('f-crit')) document.getElementById('f-crit').value = d.crit;
   const banner = document.getElementById('autofill-banner');
   if(banner){
-    document.getElementById('autofill-msg').textContent = 'Auto-filled: ' + d.name + ' — adjust cost if your plan differs.';
+    document.getElementById('autofill-msg').textContent = 'Auto-filled: ' + d.name + ' — adjust cost and seats if your plan differs.';
     banner.style.display = 'flex';
   }
+  // Auto-populate price based on plan tier
+  setTimeout(lookupPrice, 50);
 }
 
 function autoFillFromName() {
