@@ -158,14 +158,14 @@ select.fi{cursor:pointer}
   </div>
   <div class="sb-group">
     <div class="sb-group-label">Optimization</div>
-    <div class="nav-item" onclick="nav('recs',this)"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>Recommendations<span id="nb-recs" class="nav-badge nb-growth" style="display:none">Growth</span></div>
-    <div class="nav-item" onclick="nav('renewals',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Renewal alerts<span id="nb-alert" class="nav-badge nb-alert" style="display:none">!</span><span id="nb-renewals" class="nav-badge nb-growth" style="display:none">Growth</span></div>
-    <div class="nav-item" onclick="nav('addons',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Add-on audit<span id="nb-addons" class="nav-badge nb-growth" style="display:none">Growth</span></div>
+    <div class="nav-item" onclick="nav('recs',this)"><svg class="nav-icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 8v4l3 3"/></svg>Recommendations</div>
+    <div class="nav-item" onclick="nav('renewals',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="18" rx="2"/><path d="M3 10h18M8 2v4M16 2v4"/></svg>Renewal alerts<span id="nb-alert" class="nav-badge nb-alert" style="display:none">!</span></div>
+    <div class="nav-item" onclick="nav('addons',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>Add-on audit</div>
   </div>
   <div class="sb-group">
     <div class="sb-group-label">Advanced</div>
-    <div class="nav-item" onclick="nav('ai',this)"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>AI insights<span id="nb-ai" class="nav-badge nb-scale" style="display:none">Scale</span></div>
-    <div class="nav-item" onclick="nav('workspaces',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>Workspaces<span id="nb-ws" class="nav-badge nb-scale" style="display:none">Scale</span></div>
+    <div class="nav-item" onclick="nav('ai',this)"><svg class="nav-icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z"/></svg>AI insights<span style="font-size:9px;background:#f0ebff;color:#5a38a8;padding:1px 6px;border-radius:10px;font-weight:700">Pro</span></div>
+    <div class="nav-item" onclick="nav('workspaces',this)"><svg class="nav-icon" viewBox="0 0 24 24"><rect x="2" y="3" width="9" height="9" rx="1"/><rect x="13" y="3" width="9" height="9" rx="1"/><rect x="2" y="14" width="9" height="9" rx="1"/><rect x="13" y="14" width="9" height="9" rx="1"/></svg>Workspaces<span style="font-size:9px;background:#f0ebff;color:#5a38a8;padding:1px 6px;border-radius:10px;font-weight:700">Pro</span></div>
   </div>
   <div class="sb-group" style="margin-top:4px">
     <div class="sb-group-label">Account</div>
@@ -260,7 +260,7 @@ select.fi{cursor:pointer}
               </select>
             </div>
             <div class="fg">
-              <div class="fl">Monthly cost (₹) <span id="price-hint" style="font-size:10px;color:#0f7a4a;font-weight:600;margin-left:4px"></span></div>
+              <div class="fl">Monthly cost ($) <span id="price-hint" style="font-size:10px;color:#0f7a4a;font-weight:600;margin-left:4px"></span></div>
               <input class="fi" id="f-cost" type="number" placeholder="0" min="0">
             </div>
           </div>
@@ -273,7 +273,7 @@ select.fi{cursor:pointer}
             <div class="fg"><div class="fl">Seats purchased</div><input class="fi" id="f-seats" type="number" placeholder="1" min="1" value="1" onchange="lookupPrice()"></div>
             <div class="fg"><div class="fl">Active users</div><input class="fi" id="f-users" type="number" placeholder="1" min="0" value="1"></div>
             <div class="fg"><div class="fl">Feature usage</div><select class="fi" id="f-planjust"><option value="1">All features used</option><option value="2">Most used</option><option value="3">Some used</option><option value="4">Few / barely used</option></select></div>
-            <div class="fg"><div class="fl">Billing cycle</div><select class="fi" id="f-billing"><option value="monthly">Monthly</option><option value="annual">Annual (save ~20%)</option></select></div>
+            <div class="fg"><div class="fl">Billing cycle</div><select class="fi" id="f-billing" onchange="lookupPrice()"><option value="monthly">Monthly</option><option value="annual">Annual (save ~20%)</option></select></div>
           </div>
         </div>
       </div>
@@ -379,7 +379,7 @@ select.fi{cursor:pointer}
     <div class="page" id="page-plans">
       <div class="billing-tog" id="btog"><div class="tab active" onclick="billingTab('monthly',this)">Monthly</div><div class="tab" onclick="billingTab('annual',this)">Annual <span style="color:#0f7a4a;font-size:11px">save 20%</span></div></div>
       <div class="plan-cards">
-        <div class="plan-card"><div class="plan-name">Basic</div><div class="plan-price">$0</div><div class="plan-period">Free forever</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Up to 3 tools</div><div class="plan-feature"><span class="chk">✓</span>9-dimension scoring</div><div class="plan-feature"><span class="chk">✓</span>Spend breakdown</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Recommendations</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Renewal alerts</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights</div><button class="plan-cta pcta-current" id="cta-basic" onclick="showModal('t1')">Save my results free</button></div>
+        <div class="plan-card"><div class="plan-name">Basic</div><div class="plan-price">$0</div><div class="plan-period">Free forever</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Up to 3 tools</div><div class="plan-feature"><span class="chk">✓</span>9-dimension scoring</div><div class="plan-feature"><span class="chk">✓</span>Spend breakdown</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Recommendations</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>Renewal alerts</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights</div><button class="plan-cta pcta-current" id="cta-basic" onclick="openModal('free')">Save my results free</button></div>
         <div class="plan-card featured"><div class="plan-popular"><span class="pop-pill">Most popular</span></div><div class="plan-name">Full Report</div><div class="plan-price" id="pp-growth">$10</div><div class="plan-period" id="pd-growth">$10/month · cancel anytime</div><hr class="plan-divider"><div class="plan-feature"><span class="chk">✓</span>Unlimited tools</div><div class="plan-feature"><span class="chk">✓</span>Recommendations engine</div><div class="plan-feature"><span class="chk">✓</span>Smart renewal alerts</div><div class="plan-feature"><span class="chk">✓</span>Add-on &amp; feature audit</div><div class="plan-feature"><span class="chk">✓</span>PDF export reports</div><div class="plan-feature" style="color:#9ca3af"><span class="xmark">–</span>AI insights (Claude)</div><button class="plan-cta pcta-blue" id="cta-growth" onclick="openModal('payment')">Get Full Report — $10/mo</button></div>
         <div class="plan-card"><div class="plan-name" style="color:var(--purple)">Strategy</div><div class="plan-price" style="font-size:24px;margin-top:6px">Custom</div><div class="plan-period">With Sonder Digital</div><hr class="plan-divider"><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Everything in Full report</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>1:1 strategy session (60 min)</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Custom stack rebuild plan</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Vendor negotiation playbook</div><div class="plan-feature"><span class="chk" style="color:var(--purple)">✓</span>Sonder Digital benchmarks</div><button class="plan-cta" style="background:var(--purple);color:#fff" id="cta-scale" onclick="openModal('strategy')">Talk to Sonder Digital</button></div>
       </div>
@@ -391,69 +391,69 @@ select.fi{cursor:pointer}
 <script>
 
 const TOOL_DB = {
-  hubspot:{name:'HubSpot CRM',cat:'CRM',cost:60000,currency:'INR',seats:10,users:8,usage:4,crit:1,color:'#FF7A59',overlap_cats:['CRM','Email marketing','Marketing automation'],alt:{name:'Zoho CRM',save:'₹35,000/mo',reason:'80% feature parity at 40% of the cost for teams under 20'}},
-  salesforce:{name:'Salesforce',cat:'CRM',cost:120000,currency:'INR',seats:15,users:10,usage:4,crit:1,color:'#00A1E0',overlap_cats:['CRM'],alt:{name:'HubSpot CRM',save:'₹60,000/mo',reason:'HubSpot covers 70% of Salesforce for SMB at a fraction of the cost'}},
-  zohocrm:{name:'Zoho CRM',cat:'CRM',cost:18000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#E42527',overlap_cats:['CRM'],alt:null},
-  freshsales:{name:'Freshsales',cat:'CRM',cost:22000,currency:'INR',seats:5,users:4,usage:3,crit:2,color:'#25C16F',overlap_cats:['CRM'],alt:{name:'Zoho CRM',save:'₹4,000/mo',reason:'Similar feature set at lower price point'}},
-  pipedrive:{name:'Pipedrive',cat:'CRM',cost:15000,currency:'INR',seats:5,users:4,usage:4,crit:2,color:'#1A5276',overlap_cats:['CRM'],alt:null},
-  leadsquared:{name:'LeadSquared',cat:'CRM',cost:25000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#E87722',overlap_cats:['CRM','Marketing automation'],alt:null},
-  mailchimp:{name:'Mailchimp',cat:'Email marketing',cost:8000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#FFE01B',overlap_cats:['Email marketing','Marketing automation'],alt:{name:'Brevo',save:'₹5,000/mo',reason:'Same deliverability, lower cost at same send volume'}},
-  brevo:{name:'Brevo',cat:'Email marketing',cost:3000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#0B996E',overlap_cats:['Email marketing','Marketing automation'],alt:null},
-  klaviyo:{name:'Klaviyo',cat:'Email marketing',cost:12000,currency:'INR',seats:3,users:2,usage:4,crit:1,color:'#1A1A1A',overlap_cats:['Email marketing','Marketing automation'],alt:{name:'Brevo',save:'₹9,000/mo',reason:'Brevo offers comparable automation at significantly lower price'}},
-  mailerlite:{name:'MailerLite',cat:'Email marketing',cost:2000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#09C269',overlap_cats:['Email marketing'],alt:null},
-  activecampaign:{name:'ActiveCampaign',cat:'Marketing automation',cost:14000,currency:'INR',seats:3,users:2,usage:4,crit:1,color:'#356AE6',overlap_cats:['Marketing automation','Email marketing','CRM'],alt:null},
-  marketo:{name:'Marketo',cat:'Marketing automation',cost:180000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#5C4EE5',overlap_cats:['Marketing automation','Email marketing'],alt:{name:'HubSpot Marketing',save:'₹100,000/mo',reason:'HubSpot covers 80% of Marketo use cases at much lower cost'}},
-  zoominfo:{name:'ZoomInfo',cat:'Lead enrichment / prospecting',cost:28000,currency:'INR',seats:5,users:2,usage:2,crit:3,color:'#FF6B35',overlap_cats:['Lead enrichment / prospecting'],alt:{name:'Apollo.io',save:'₹28,000/mo',reason:"Apollo's free plan covers 250 exports/month — enough for most SMB prospecting"}},
-  apollo:{name:'Apollo.io',cat:'Lead enrichment / prospecting',cost:6500,currency:'INR',seats:3,users:3,usage:4,crit:2,color:'#7C3AED',overlap_cats:['Lead enrichment / prospecting'],alt:null},
-  lusha:{name:'Lusha',cat:'Lead enrichment / prospecting',cost:8000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#FF4B1F',overlap_cats:['Lead enrichment / prospecting'],alt:{name:'Apollo.io',save:'₹1,500/mo',reason:'Apollo has more data coverage at lower price'}},
-  hunter:{name:'Hunter.io',cat:'Lead enrichment / prospecting',cost:4000,currency:'INR',seats:2,users:2,usage:3,crit:3,color:'#F76B39',overlap_cats:['Lead enrichment / prospecting'],alt:null},
-  semrush:{name:'Semrush',cat:'SEO',cost:12000,currency:'INR',seats:2,users:1,usage:2,crit:2,color:'#FF642B',overlap_cats:['SEO'],alt:{name:'Ahrefs',save:'₹0',reason:'Comparable — switch based on which data suits your workflow better'}},
-  ahrefs:{name:'Ahrefs',cat:'SEO',cost:14000,currency:'INR',seats:2,users:1,usage:3,crit:2,color:'#FF7143',overlap_cats:['SEO'],alt:null},
-  moz:{name:'Moz Pro',cat:'SEO',cost:10000,currency:'INR',seats:2,users:1,usage:2,crit:3,color:'#0F6FDE',overlap_cats:['SEO'],alt:{name:'Ahrefs Lite',save:'₹4,000/mo',reason:'Ahrefs provides deeper data at comparable price'}},
-  buffer:{name:'Buffer',cat:'Social media management',cost:4000,currency:'INR',seats:3,users:2,usage:4,crit:2,color:'#2C4BFF',overlap_cats:['Social media management'],alt:null},
-  hootsuite:{name:'Hootsuite',cat:'Social media management',cost:8000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#1DB954',overlap_cats:['Social media management'],alt:{name:'Buffer',save:'₹4,000/mo',reason:'Buffer covers core scheduling at half the price'}},
-  sproutsocial:{name:'Sprout Social',cat:'Social media management',cost:22000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#59CB59',overlap_cats:['Social media management'],alt:{name:'Buffer',save:'₹18,000/mo',reason:'Buffer handles most scheduling needs at a fraction of the cost'}},
-  canva:{name:'Canva Pro',cat:'Design / creative',cost:4000,currency:'INR',seats:5,users:5,usage:4,crit:2,color:'#00C4CC',overlap_cats:['Design / creative'],alt:null},
-  figma:{name:'Figma',cat:'Design / creative',cost:9000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#F24E1E',overlap_cats:['Design / creative'],alt:null},
-  adobe:{name:'Adobe Creative Cloud',cat:'Design / creative',cost:18000,currency:'INR',seats:3,users:2,usage:3,crit:2,color:'#FF0000',overlap_cats:['Design / creative'],alt:{name:'Canva Pro',save:'₹14,000/mo',reason:'Canva Pro covers most marketing design needs at a fraction of the cost'}},
-  mixpanel:{name:'Mixpanel',cat:'Analytics / BI',cost:12000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#7856FF',overlap_cats:['Analytics / BI'],alt:null},
-  hotjar:{name:'Hotjar',cat:'Analytics / BI',cost:5000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#FF3C00',overlap_cats:['Analytics / BI'],alt:{name:'Microsoft Clarity (free)',save:'₹5,000/mo',reason:'Microsoft Clarity is free and covers heatmaps and session recordings'}},
-  tableau:{name:'Tableau',cat:'Analytics / BI',cost:45000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#E97627',overlap_cats:['Analytics / BI'],alt:{name:'Looker Studio (free)',save:'₹45,000/mo',reason:'Google Looker Studio is free and handles most BI reporting needs'}},
-  slack:{name:'Slack',cat:'Communication / chat',cost:8500,currency:'INR',seats:20,users:18,usage:4,crit:1,color:'#4A154B',overlap_cats:['Communication / chat'],alt:{name:'Google Chat',save:'₹8,500/mo',reason:'Google Chat is included in Google Workspace at no extra cost'}},
-  zoom:{name:'Zoom',cat:'Video / webinar',cost:12000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#2D8CFF',overlap_cats:['Video / webinar'],alt:null},
-  teams:{name:'Microsoft Teams',cat:'Communication / chat',cost:8000,currency:'INR',seats:20,users:15,usage:4,crit:1,color:'#6264A7',overlap_cats:['Communication / chat'],alt:null},
-  asana:{name:'Asana',cat:'Project management',cost:9000,currency:'INR',seats:10,users:8,usage:4,crit:2,color:'#FC636B',overlap_cats:['Project management'],alt:{name:'Notion',save:'₹4,000/mo',reason:'Notion combines docs and project tracking at lower cost'}},
-  notion:{name:'Notion',cat:'Project management',cost:5000,currency:'INR',seats:10,users:8,usage:4,crit:2,color:'#000000',overlap_cats:['Project management'],alt:null},
-  monday:{name:'Monday.com',cat:'Project management',cost:12000,currency:'INR',seats:10,users:7,usage:3,crit:2,color:'#FF3D57',overlap_cats:['Project management'],alt:{name:'Notion',save:'₹7,000/mo',reason:'Notion handles project management and documentation in one tool'}},
-  jira:{name:'Jira',cat:'Project management',cost:7000,currency:'INR',seats:10,users:8,usage:4,crit:1,color:'#0052CC',overlap_cats:['Project management'],alt:null},
-  clickup:{name:'ClickUp',cat:'Project management',cost:5000,currency:'INR',seats:10,users:7,usage:4,crit:2,color:'#7B68EE',overlap_cats:['Project management'],alt:null},
-  chatgpt:{name:'ChatGPT Plus',cat:'AI writing / research',cost:1700,currency:'INR',seats:1,users:1,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:null},
-  jasper:{name:'Jasper AI',cat:'AI writing / research',cost:8000,currency:'INR',seats:3,users:2,usage:3,crit:3,color:'#FF6B35',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹6,300/mo',reason:'ChatGPT Plus covers most AI writing needs at ₹1,700/mo'}},
-  zendesk:{name:'Zendesk',cat:'Customer support / helpdesk',cost:22000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#03363D',overlap_cats:['Customer support / helpdesk'],alt:{name:'Freshdesk',save:'₹12,000/mo',reason:'Freshdesk covers core support features at significantly lower cost'}},
-  freshdesk:{name:'Freshdesk',cat:'Customer support / helpdesk',cost:10000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#25C16F',overlap_cats:['Customer support / helpdesk'],alt:null},
-  intercom:{name:'Intercom',cat:'Customer support / helpdesk',cost:35000,currency:'INR',seats:5,users:4,usage:4,crit:1,color:'#1F8DED',overlap_cats:['Customer support / helpdesk'],alt:{name:'Freshdesk',save:'₹25,000/mo',reason:'Freshdesk covers core support at a fraction of the cost'}},
-  outreach:{name:'Outreach.io',cat:'Sales engagement',cost:35000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#5B5FC7',overlap_cats:['Sales engagement'],alt:{name:'Apollo.io',save:'₹28,500/mo',reason:'Apollo includes sales engagement + enrichment in one tool'}},
-  salesloft:{name:'Salesloft',cat:'Sales engagement',cost:32000,currency:'INR',seats:5,users:3,usage:3,crit:2,color:'#00B388',overlap_cats:['Sales engagement'],alt:{name:'Apollo.io',save:'₹25,500/mo',reason:'Apollo covers sequences + enrichment at much lower cost'}},
-  grammarly:{name:'Grammarly Business',cat:'AI writing / research',cost:6000,currency:'INR',seats:5,users:3,usage:3,crit:3,color:'#15C39A',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹4,300/mo',reason:'ChatGPT covers grammar checking plus much more at lower cost'}},
-  claude:{name:'Claude Pro',cat:'AI writing / research',cost:1700,currency:'INR',seats:1,users:1,usage:4,crit:2,color:'#CC785C',overlap_cats:['AI writing / research'],alt:null},
-  claudeteam:{name:'Claude Team',cat:'AI writing / research',cost:18000,currency:'INR',seats:5,users:4,usage:4,crit:2,color:'#CC785C',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Team',save:'₹3,000/mo',reason:'Comparable capability — evaluate based on your team workflow'}},
-  chatgptteam:{name:'ChatGPT Team',cat:'AI writing / research',cost:21000,currency:'INR',seats:5,users:4,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:{name:'Claude Team',save:'₹3,000/mo',reason:'Claude Team offers comparable capability at lower price per seat'}},
-  chatgptenterprise:{name:'ChatGPT Enterprise',cat:'AI writing / research',cost:85000,currency:'INR',seats:10,users:7,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:{name:'Claude Team',save:'₹67,000/mo',reason:'Claude Team covers most Enterprise use cases at significantly lower cost'}},
-  gemini:{name:'Google Gemini Advanced',cat:'AI writing / research',cost:1700,currency:'INR',seats:1,users:1,usage:3,crit:3,color:'#4285F4',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹0',reason:'Evaluate based on use case — Gemini is better for Google Workspace integration'}},
-  geminibusiness:{name:'Gemini for Workspace',cat:'AI writing / research',cost:2500,currency:'INR',seats:1,users:1,usage:3,crit:2,color:'#4285F4',overlap_cats:['AI writing / research'],alt:null},
-  copilot:{name:'Microsoft Copilot 365',cat:'AI writing / research',cost:2500,currency:'INR',seats:1,users:1,usage:3,crit:2,color:'#0078D4',overlap_cats:['AI writing / research'],alt:{name:'Claude Pro',save:'₹800/mo',reason:'Claude Pro offers stronger writing and research at lower cost'}},
-  perplexity:{name:'Perplexity Pro',cat:'AI writing / research',cost:1700,currency:'INR',seats:1,users:1,usage:3,crit:3,color:'#20808D',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹0',reason:'ChatGPT Plus covers most research use cases with broader capability'}},
-  midjourney:{name:'Midjourney',cat:'Design / creative',cost:3500,currency:'INR',seats:1,users:1,usage:3,crit:3,color:'#434EE0',overlap_cats:['Design / creative'],alt:{name:'Canva AI (included in Pro)',save:'₹3,500/mo',reason:'Canva Pro includes AI image generation — no separate tool needed'}},
-  runway:{name:'Runway ML',cat:'Design / creative',cost:8000,currency:'INR',seats:2,users:1,usage:2,crit:3,color:'#101010',overlap_cats:['Design / creative'],alt:null},
-  elevenlabs:{name:'ElevenLabs',cat:'AI writing / research',cost:5000,currency:'INR',seats:1,users:1,usage:2,crit:3,color:'#1A1A2E',overlap_cats:['AI writing / research'],alt:null},
-  writesonic:{name:'Writesonic',cat:'AI writing / research',cost:5000,currency:'INR',seats:2,users:1,usage:3,crit:3,color:'#8B5CF6',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹3,300/mo',reason:'ChatGPT Plus covers content generation at lower cost with more flexibility'}},
-  copyai:{name:'Copy.ai',cat:'AI writing / research',cost:4500,currency:'INR',seats:2,users:1,usage:3,crit:3,color:'#6C4BF6',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹2,800/mo',reason:'ChatGPT Plus covers copywriting use cases at lower cost'}},
+  hubspot:{name:'HubSpot CRM',cat:'CRM',cost:90,currency:'USD',seats:10,users:8,usage:4,crit:1,color:'#FF7A59',overlap_cats:['CRM','Email marketing','Marketing automation'],alt:{name:'Zoho CRM',save:'$35/seat/mo',reason:'80% feature parity at 40% of the cost for teams under 20'}},
+  salesforce:{name:'Salesforce',cat:'CRM',cost:75,currency:'USD',seats:15,users:10,usage:4,crit:1,color:'#00A1E0',overlap_cats:['CRM'],alt:{name:'HubSpot CRM',save:'$50/seat/mo',reason:'HubSpot covers 70% of Salesforce for SMB at a fraction of the cost'}},
+  zohocrm:{name:'Zoho CRM',cat:'CRM',cost:23,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#E42527',overlap_cats:['CRM'],alt:null},
+  freshsales:{name:'Freshsales',cat:'CRM',cost:39,currency:'USD',seats:5,users:4,usage:3,crit:2,color:'#25C16F',overlap_cats:['CRM'],alt:{name:'Zoho CRM',save:'$40/mo',reason:'Similar feature set at lower price point'}},
+  pipedrive:{name:'Pipedrive',cat:'CRM',cost:34,currency:'USD',seats:5,users:4,usage:4,crit:2,color:'#1A5276',overlap_cats:['CRM'],alt:null},
+  leadsquared:{name:'LeadSquared',cat:'CRM',cost:75,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#E87722',overlap_cats:['CRM','Marketing automation'],alt:null},
+  mailchimp:{name:'Mailchimp',cat:'Email marketing',cost:20,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#FFE01B',overlap_cats:['Email marketing','Marketing automation'],alt:{name:'Brevo',save:'$40/mo',reason:'Same deliverability, lower cost at same send volume'}},
+  brevo:{name:'Brevo',cat:'Email marketing',cost:25,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#0B996E',overlap_cats:['Email marketing','Marketing automation'],alt:null},
+  klaviyo:{name:'Klaviyo',cat:'Email marketing',cost:60,currency:'USD',seats:3,users:2,usage:4,crit:1,color:'#1A1A1A',overlap_cats:['Email marketing','Marketing automation'],alt:{name:'Brevo',save:'$40/mo',reason:'Brevo offers comparable automation at significantly lower price'}},
+  mailerlite:{name:'MailerLite',cat:'Email marketing',cost:21,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#09C269',overlap_cats:['Email marketing'],alt:null},
+  activecampaign:{name:'ActiveCampaign',cat:'Marketing automation',cost:49,currency:'USD',seats:3,users:2,usage:4,crit:1,color:'#356AE6',overlap_cats:['Marketing automation','Email marketing','CRM'],alt:null},
+  marketo:{name:'Marketo',cat:'Marketing automation',cost:1795,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#5C4EE5',overlap_cats:['Marketing automation','Email marketing'],alt:{name:'HubSpot Marketing',save:'$900/mo',reason:'HubSpot covers 80% of Marketo use cases at much lower cost'}},
+  zoominfo:{name:'ZoomInfo',cat:'Lead enrichment / prospecting',cost:499,currency:'USD',seats:5,users:2,usage:2,crit:3,color:'#FF6B35',overlap_cats:['Lead enrichment / prospecting'],alt:{name:'Apollo.io',save:'$420/mo',reason:"Apollo's free plan covers 250 exports/month — enough for most SMB prospecting"}},
+  apollo:{name:'Apollo.io',cat:'Lead enrichment / prospecting',cost:79,currency:'USD',seats:3,users:3,usage:4,crit:2,color:'#7C3AED',overlap_cats:['Lead enrichment / prospecting'],alt:null},
+  lusha:{name:'Lusha',cat:'Lead enrichment / prospecting',cost:51,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#FF4B1F',overlap_cats:['Lead enrichment / prospecting'],alt:{name:'Apollo.io',save:'₹1,500/mo',reason:'Apollo has more data coverage at lower price'}},
+  hunter:{name:'Hunter.io',cat:'Lead enrichment / prospecting',cost:104,currency:'USD',seats:2,users:2,usage:3,crit:3,color:'#F76B39',overlap_cats:['Lead enrichment / prospecting'],alt:null},
+  semrush:{name:'Semrush',cat:'SEO',cost:230,currency:'USD',seats:2,users:1,usage:2,crit:2,color:'#FF642B',overlap_cats:['SEO'],alt:{name:'Ahrefs',save:'₹0',reason:'Comparable — switch based on which data suits your workflow better'}},
+  ahrefs:{name:'Ahrefs',cat:'SEO',cost:199,currency:'USD',seats:2,users:1,usage:3,crit:2,color:'#FF7143',overlap_cats:['SEO'],alt:null},
+  moz:{name:'Moz Pro',cat:'SEO',cost:179,currency:'USD',seats:2,users:1,usage:2,crit:3,color:'#0F6FDE',overlap_cats:['SEO'],alt:{name:'Ahrefs Lite',save:'$40/mo',reason:'Ahrefs provides deeper data at comparable price'}},
+  buffer:{name:'Buffer',cat:'Social media management',cost:12,currency:'USD',seats:3,users:2,usage:4,crit:2,color:'#2C4BFF',overlap_cats:['Social media management'],alt:null},
+  hootsuite:{name:'Hootsuite',cat:'Social media management',cost:249,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#1DB954',overlap_cats:['Social media management'],alt:{name:'Buffer',save:'$40/mo',reason:'Buffer covers core scheduling at half the price'}},
+  sproutsocial:{name:'Sprout Social',cat:'Social media management',cost:299,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#59CB59',overlap_cats:['Social media management'],alt:{name:'Buffer',save:'$250/mo',reason:'Buffer handles most scheduling needs at a fraction of the cost'}},
+  canva:{name:'Canva Pro',cat:'Design / creative',cost:15,currency:'USD',seats:5,users:5,usage:4,crit:2,color:'#00C4CC',overlap_cats:['Design / creative'],alt:null},
+  figma:{name:'Figma',cat:'Design / creative',cost:45,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#F24E1E',overlap_cats:['Design / creative'],alt:null},
+  adobe:{name:'Adobe Creative Cloud',cat:'Design / creative',cost:85,currency:'USD',seats:3,users:2,usage:3,crit:2,color:'#FF0000',overlap_cats:['Design / creative'],alt:{name:'Canva Pro',save:'₹14,000/mo',reason:'Canva Pro covers most marketing design needs at a fraction of the cost'}},
+  mixpanel:{name:'Mixpanel',cat:'Analytics / BI',cost:28,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#7856FF',overlap_cats:['Analytics / BI'],alt:null},
+  hotjar:{name:'Hotjar',cat:'Analytics / BI',cost:80,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#FF3C00',overlap_cats:['Analytics / BI'],alt:{name:'Microsoft Clarity (free)',save:'$40/mo',reason:'Microsoft Clarity is free and covers heatmaps and session recordings'}},
+  tableau:{name:'Tableau',cat:'Analytics / BI',cost:70,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#E97627',overlap_cats:['Analytics / BI'],alt:{name:'Looker Studio (free)',save:'₹45,000/mo',reason:'Google Looker Studio is free and handles most BI reporting needs'}},
+  slack:{name:'Slack',cat:'Communication / chat',cost:15,currency:'USD',seats:20,users:18,usage:4,crit:1,color:'#4A154B',overlap_cats:['Communication / chat'],alt:{name:'Google Chat',save:'₹8,500/mo',reason:'Google Chat is included in Google Workspace at no extra cost'}},
+  zoom:{name:'Zoom',cat:'Video / webinar',cost:20,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#2D8CFF',overlap_cats:['Video / webinar'],alt:null},
+  teams:{name:'Microsoft Teams',cat:'Communication / chat',cost:12,currency:'USD',seats:20,users:15,usage:4,crit:1,color:'#6264A7',overlap_cats:['Communication / chat'],alt:null},
+  asana:{name:'Asana',cat:'Project management',cost:25,currency:'USD',seats:10,users:8,usage:4,crit:2,color:'#FC636B',overlap_cats:['Project management'],alt:{name:'Notion',save:'$40/mo',reason:'Notion combines docs and project tracking at lower cost'}},
+  notion:{name:'Notion',cat:'Project management',cost:18,currency:'USD',seats:10,users:8,usage:4,crit:2,color:'#000000',overlap_cats:['Project management'],alt:null},
+  monday:{name:'Monday.com',cat:'Project management',cost:19,currency:'USD',seats:10,users:7,usage:3,crit:2,color:'#FF3D57',overlap_cats:['Project management'],alt:{name:'Notion',save:'₹7,000/mo',reason:'Notion handles project management and documentation in one tool'}},
+  jira:{name:'Jira',cat:'Project management',cost:15,currency:'USD',seats:10,users:8,usage:4,crit:1,color:'#0052CC',overlap_cats:['Project management'],alt:null},
+  clickup:{name:'ClickUp',cat:'Project management',cost:12,currency:'USD',seats:10,users:7,usage:4,crit:2,color:'#7B68EE',overlap_cats:['Project management'],alt:null},
+  chatgpt:{name:'ChatGPT Plus',cat:'AI writing / research',cost:20,currency:'USD',seats:1,users:1,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:null},
+  jasper:{name:'Jasper AI',cat:'AI writing / research',cost:69,currency:'USD',seats:3,users:2,usage:3,crit:3,color:'#FF6B35',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹6,300/mo',reason:'ChatGPT Plus covers most AI writing needs at ₹1,700/mo'}},
+  zendesk:{name:'Zendesk',cat:'Customer support / helpdesk',cost:55,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#03363D',overlap_cats:['Customer support / helpdesk'],alt:{name:'Freshdesk',save:'₹12,000/mo',reason:'Freshdesk covers core support features at significantly lower cost'}},
+  freshdesk:{name:'Freshdesk',cat:'Customer support / helpdesk',cost:49,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#25C16F',overlap_cats:['Customer support / helpdesk'],alt:null},
+  intercom:{name:'Intercom',cat:'Customer support / helpdesk',cost:99,currency:'USD',seats:5,users:4,usage:4,crit:1,color:'#1F8DED',overlap_cats:['Customer support / helpdesk'],alt:{name:'Freshdesk',save:'₹25,000/mo',reason:'Freshdesk covers core support at a fraction of the cost'}},
+  outreach:{name:'Outreach.io',cat:'Sales engagement',cost:150,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#5B5FC7',overlap_cats:['Sales engagement'],alt:{name:'Apollo.io',save:'₹28,500/mo',reason:'Apollo includes sales engagement + enrichment in one tool'}},
+  salesloft:{name:'Salesloft',cat:'Sales engagement',cost:125,currency:'USD',seats:5,users:3,usage:3,crit:2,color:'#00B388',overlap_cats:['Sales engagement'],alt:{name:'Apollo.io',save:'₹25,500/mo',reason:'Apollo covers sequences + enrichment at much lower cost'}},
+  grammarly:{name:'Grammarly Business',cat:'AI writing / research',cost:25,currency:'USD',seats:5,users:3,usage:3,crit:3,color:'#15C39A',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹4,300/mo',reason:'ChatGPT covers grammar checking plus much more at lower cost'}},
+  claude:{name:'Claude Pro',cat:'AI writing / research',cost:20,currency:'USD',seats:1,users:1,usage:4,crit:2,color:'#CC785C',overlap_cats:['AI writing / research'],alt:null},
+  claudeteam:{name:'Claude Team',cat:'AI writing / research',cost:30,currency:'USD',seats:5,users:4,usage:4,crit:2,color:'#CC785C',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Team',save:'₹3,000/mo',reason:'Comparable capability — evaluate based on your team workflow'}},
+  chatgptteam:{name:'ChatGPT Team',cat:'AI writing / research',cost:30,currency:'USD',seats:5,users:4,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:{name:'Claude Team',save:'₹3,000/mo',reason:'Claude Team offers comparable capability at lower price per seat'}},
+  chatgptenterprise:{name:'ChatGPT Enterprise',cat:'AI writing / research',cost:60,currency:'USD',seats:10,users:7,usage:4,crit:2,color:'#10A37F',overlap_cats:['AI writing / research'],alt:{name:'Claude Team',save:'₹67,000/mo',reason:'Claude Team covers most Enterprise use cases at significantly lower cost'}},
+  gemini:{name:'Google Gemini Advanced',cat:'AI writing / research',cost:20,currency:'USD',seats:1,users:1,usage:3,crit:3,color:'#4285F4',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹0',reason:'Evaluate based on use case — Gemini is better for Google Workspace integration'}},
+  geminibusiness:{name:'Gemini for Workspace',cat:'AI writing / research',cost:18,currency:'USD',seats:1,users:1,usage:3,crit:2,color:'#4285F4',overlap_cats:['AI writing / research'],alt:null},
+  copilot:{name:'Microsoft Copilot 365',cat:'AI writing / research',cost:30,currency:'USD',seats:1,users:1,usage:3,crit:2,color:'#0078D4',overlap_cats:['AI writing / research'],alt:{name:'Claude Pro',save:'₹800/mo',reason:'Claude Pro offers stronger writing and research at lower cost'}},
+  perplexity:{name:'Perplexity Pro',cat:'AI writing / research',cost:20,currency:'USD',seats:1,users:1,usage:3,crit:3,color:'#20808D',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹0',reason:'ChatGPT Plus covers most research use cases with broader capability'}},
+  midjourney:{name:'Midjourney',cat:'Design / creative',cost:30,currency:'USD',seats:1,users:1,usage:3,crit:3,color:'#434EE0',overlap_cats:['Design / creative'],alt:{name:'Canva AI (included in Pro)',save:'₹3,500/mo',reason:'Canva Pro includes AI image generation — no separate tool needed'}},
+  runway:{name:'Runway ML',cat:'Design / creative',cost:35,currency:'USD',seats:2,users:1,usage:2,crit:3,color:'#101010',overlap_cats:['Design / creative'],alt:null},
+  elevenlabs:{name:'ElevenLabs',cat:'AI writing / research',cost:22,currency:'USD',seats:1,users:1,usage:2,crit:3,color:'#1A1A2E',overlap_cats:['AI writing / research'],alt:null},
+  writesonic:{name:'Writesonic',cat:'AI writing / research',cost:99,currency:'USD',seats:2,users:1,usage:3,crit:3,color:'#8B5CF6',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹3,300/mo',reason:'ChatGPT Plus covers content generation at lower cost with more flexibility'}},
+  copyai:{name:'Copy.ai',cat:'AI writing / research',cost:49,currency:'USD',seats:2,users:1,usage:3,crit:3,color:'#6C4BF6',overlap_cats:['AI writing / research'],alt:{name:'ChatGPT Plus',save:'₹2,800/mo',reason:'ChatGPT Plus covers copywriting use cases at lower cost'}},
 };
 // ── END TOOL_DB ──
 
 const LIMITS={basic:3,growth:Infinity,scale:Infinity};
-const GATES={recs:'growth',renewals:'growth',addons:'growth',ai:'scale',workspaces:'scale'};
-const ORDER={basic:0,growth:1,scale:2};
+const GATES={recs:'growth',renewals:'growth',addons:'growth',ai:'growth',workspaces:'growth'};
+const ORDER={basic:0,growth:1,scale:1};
 let currentPlan='basic',billingCycle='monthly',snoozed={},toolFilter='all';
 let tools=[];let nid=1;
 
@@ -475,6 +475,16 @@ function nav(page,el){document.querySelectorAll('.nav-item').forEach(e=>e.classL
 function updateUI(){
   const saveBtn = document.getElementById('save-btn');
   if(saveBtn) saveBtn.style.display = tools.length > 0 ? 'inline-flex' : 'none';const lim=LIMITS[currentPlan];const pct=lim===Infinity?Math.min(100,Math.round((tools.length/20)*100)):Math.min(100,Math.round((tools.length/lim)*100));const fill=document.getElementById('limit-fill');fill.style.width=pct+'%';fill.style.background=pct>=100?'#dc2626':pct>=70?'#d97706':currentPlan==='scale'?'#6B46C1':'#0A66C2';const chip=document.getElementById('plan-chip');chip.className='sb-plan plan-'+currentPlan;document.getElementById('plan-chip-text').textContent=(currentPlan==='basic'?'Free':currentPlan==='growth'?'Full Report':'Strategy')+(lim===Infinity?` · ${tools.length} tools`:` · ${tools.length}/${lim} tools`);const ub=document.getElementById('upgrade-box');if(currentPlan==='scale'){ub.style.display='none';return;}ub.style.display='block';document.getElementById('upgrade-sub').textContent=currentPlan==='basic'?'Get the Full Report — $10/mo/month for unlimited tools, overlap map & PDF export.':'Get the Full Report — $10/mo/month for unlimited tools, overlap map & PDF export.';['recs','renewals','addons'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('growth')?'none':'inline-flex';});['ai','ws'].forEach(p=>{const el=document.getElementById('nb-'+p);if(el)el.style.display=covers('scale')?'none':'inline-flex';});const alerts=tools.filter(t=>{const r=inferRenewal(t);return r&&daysUntil(r)<=30&&!snoozed[t.id];}).length;const alertEl=document.getElementById('nb-alert');if(alertEl)alertEl.style.display=alerts>0&&covers('growth')?'flex':'none';['basic','growth','scale'].forEach(p=>{const el=document.getElementById('cta-'+p);if(!el)return;el.textContent=p===currentPlan?'Current plan':p==='basic'?'Current plan (Free)':p==='growth'?'Get Full Report — $10/mo':'Talk to Sonder Digital';el.className='plan-cta '+(p===currentPlan?'pcta-current':p==='scale'?'':'pcta-blue');if(p==='scale'&&p!==currentPlan){el.style.background='var(--purple)';el.style.color='#fff';}else if(p!==currentPlan&&p!=='scale'){el.className='plan-cta pcta-blue';}});}
+
+
+function navToPlans() {
+  document.querySelectorAll('.nav-item').forEach(e=>e.classList.remove('active'));
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  document.getElementById('page-plans').classList.add('active');
+  document.getElementById('pg-title').textContent='Plans & billing';
+  document.getElementById('pg-desc').textContent='Choose the right plan for your team';
+  updateUI();
+}
 
 function renderDash(){const total=tools.reduce((s,t)=>s+t.cost,0);const savings=tools.reduce((s,t)=>s+getRec(t).savings,0);const avgS=tools.length?Math.round(tools.reduce((s,t)=>s+score(t),0)/tools.length):null;document.getElementById('m-spend').textContent='$'+total.toLocaleString();document.getElementById('m-annual').textContent='$'+(total*12).toLocaleString()+'/yr';document.getElementById('m-save').textContent='$'+savings.toLocaleString();document.getElementById('m-count').textContent=tools.length;const lim=LIMITS[currentPlan];document.getElementById('m-limit-sub').textContent=lim===Infinity?'unlimited':tools.length+'/'+lim+' on '+currentPlan.charAt(0).toUpperCase()+currentPlan.slice(1);const sc2=document.getElementById('m-score');sc2.textContent=avgS!==null?avgS:'—';sc2.className='mc-value '+(avgS>=61?'red':avgS>=31?'':'green');const cats={};tools.forEach(t=>{cats[t.cat]=(cats[t.cat]||0)+t.cost;});const sorted=Object.entries(cats).sort((a,b)=>b[1]-a[1]);const maxV=sorted[0]?.[1]||1;const clrs=['#0A66C2','#0f7a4a','#d97706','#dc2626','#6B46C1','#0854a8'];document.getElementById('d-cats').innerHTML=sorted.length?sorted.map(([c,v],i)=>`<div class="prog-row"><div class="prog-label">${c}</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(v/maxV*100)}%;background:${clrs[i%clrs.length]}"></div></div><div style="font-size:12px;font-weight:600;color:var(--navy);min-width:36px;text-align:right;font-family:'Inter',sans-serif">$${v}</div></div>`).join(''):'<div style="color:var(--slate);font-size:13px">Add tools to see breakdown</div>';const dist={r:0,rev:0,con:0,w:0};tools.forEach(t=>{const s=score(t);if(s<31)dist.r++;else if(s<61)dist.rev++;else if(s<81)dist.con++;else dist.w++;});document.getElementById('d-dist').innerHTML=tools.length?`<div class="prog-row"><div class="prog-label" style="color:#0f7a4a">Retain</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.r/tools.length*100)}%;background:#0f7a4a"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.r}</div></div><div class="prog-row"><div class="prog-label" style="color:#d97706">Review</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.rev/tools.length*100)}%;background:#d97706"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.rev}</div></div><div class="prog-row"><div class="prog-label" style="color:#f59e0b">Consolidate</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.con/tools.length*100)}%;background:#f59e0b"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.con}</div></div><div class="prog-row"><div class="prog-label" style="color:#dc2626">High waste</div><div class="prog-bg"><div class="prog-fill" style="width:${Math.round(dist.w/tools.length*100)}%;background:#dc2626"></div></div><div style="font-size:12px;font-weight:600;min-width:16px;text-align:right">${dist.w}</div></div>`:'<div style="color:var(--slate);font-size:13px">Add tools to see breakdown</div>';document.getElementById('d-rows').innerHTML=tools.map(t=>{const s=score(t),ren=inferRenewal(t),days=ren?daysUntil(ren):null;const daysText=days===null?'—':days<=0?`<span style="color:#dc2626">Overdue</span>`:days<=14?`<span style="color:#dc2626">${days}d</span>`:days<=30?`<span style="color:#d97706">${days}d</span>`:`${days}d`;return`<tr><td>${t.name}</td><td><span class="badge bg-blue">${t.cat}</span></td><td>$${t.cost}</td><td><span class="badge bg-gray">${pl(t.plantier)}</span></td><td><span class="badge ${t.billing==='monthly'?'bg-amber':'bg-green'}">${t.billing}</span></td><td style="font-size:12px">${daysText}</td><td><div class="score-wrap"><div class="score-bg"><div class="score-fill" style="width:${s}%;background:${sc(s)}"></div></div><div class="score-num" style="color:${sc(s)}">${s}</div></div></td></tr>`;}).join('')||'<tr><td colspan="7" style="padding:2rem;text-align:center;color:var(--slate)">No tools added yet</td></tr>';}
 
@@ -507,44 +517,40 @@ function showAddWarn(){const lim=LIMITS[currentPlan],w=document.getElementById('
 
 function lookupPrice() {
   const name = document.getElementById('f-name').value.trim();
-  const tier = document.getElementById('f-plantier').value;
-  const seats = parseInt(document.getElementById('f-seats').value) || 1;
+  const tier = document.getElementById('f-plantier') ? document.getElementById('f-plantier').value : 'pro';
+  const seats = parseInt(document.getElementById('f-seats') ? document.getElementById('f-seats').value : 1) || 1;
   const billing = document.getElementById('f-billing') ? document.getElementById('f-billing').value : 'monthly';
-  
-  const tierMap = {free:'free', starter:'starter', pro:'pro', enterprise:'enterprise'};
-  const tierKey = tierMap[tier] || 'pro';
-  
-  // Find in pricing DB
-  const pricingKey = Object.keys(PRICING_DB).find(k => 
-    k.toLowerCase().includes(name.toLowerCase()) || 
+  const tierKey = {free:'free', starter:'starter', pro:'pro', enterprise:'enterprise'}[tier] || 'pro';
+
+  // Find matching tool in pricing DB
+  const matchKey = Object.keys(PRICING_DB).find(k =>
+    name.toLowerCase() === k.toLowerCase() ||
+    k.toLowerCase().includes(name.toLowerCase().split(' ')[0]) ||
     name.toLowerCase().includes(k.toLowerCase().split(' ')[0])
   );
+
+  const hint = document.getElementById('price-hint');
+  const costField = document.getElementById('f-cost');
+  if (!matchKey || !costField) return;
+
+  const pricing = PRICING_DB[matchKey];
+  // Find best available tier
+  const tierFallback = [tierKey, 'pro', 'starter', 'enterprise', 'free'].find(t => pricing[t] !== undefined && pricing[t] > 0);
   
-  if (pricingKey && PRICING_DB[pricingKey][tierKey] !== undefined) {
-    const basePrice = PRICING_DB[pricingKey][tierKey];
-    const unit = PRICING_DB[pricingKey].unit || 'per month';
-    let total = basePrice;
-    
-    // If per seat pricing, multiply by seats
-    if (unit.includes('seat') || unit.includes('user')) {
-      total = basePrice * seats;
-    }
-    
-    // Annual discount
-    if (billing === 'annual') total = Math.round(total * 0.8);
-    
-    const costField = document.getElementById('f-cost');
-    if (costField && basePrice > 0) {
-      costField.value = total;
-      const hint = document.getElementById('price-hint');
-      if (hint) {
-        hint.textContent = '₹' + basePrice.toLocaleString() + ' ' + unit + (billing === 'annual' ? ' · 20% annual discount applied' : '');
-      }
-    } else if (basePrice === 0) {
-      document.getElementById('f-cost').value = 0;
-      const hint = document.getElementById('price-hint');
-      if (hint) hint.textContent = 'Free plan — no cost';
-    }
+  if (tierFallback === undefined) return;
+  const basePrice = pricing[tierFallback] || 0;
+  const unit = pricing.unit || 'per month';
+
+  let total = basePrice;
+  if (unit.includes('seat') || unit.includes('user')) {
+    total = basePrice * seats;
+  }
+  if (billing === 'annual') total = Math.round(total * 0.8);
+
+  costField.value = total;
+  if (hint) {
+    const tierLabel = {free:'Free',starter:'Starter',pro:'Pro',enterprise:'Enterprise'}[tierFallback] || tier;
+    hint.textContent = '($' + basePrice + ' ' + unit + ' · ' + tierLabel + (billing === 'annual' ? ' · 20% annual off' : '') + ')';
   }
 }
 
@@ -636,318 +642,6 @@ renderDash();updateUI();
 </style>
 
 <!-- Modal Overlay -->
-<div class="modal-overlay" id="modal-overlay" onclick="handleOverlayClick(event)">
-
-  <!-- TIER 1 — Free signup -->
-  <div class="modal-box" id="modal-t1" style="display:none">
-    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-    <div class="modal-badge mb-free">Free plan</div>
-    <div class="modal-title">Save your audit results</div>
-    <div class="modal-sub">Enter your details to save your Stack Efficiency Score and get a summary emailed to you — free, no commitment.</div>
-    <div class="modal-stack-summary" id="t1-summary"></div>
-    <div id="t1-form">
-      <div class="modal-field"><label class="modal-label">Name</label><input class="modal-input" id="t1-name" placeholder="Your name"></div>
-      <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t1-email" placeholder="you@company.com" type="email"></div>
-      <div class="modal-field"><label class="modal-label">Company</label><input class="modal-input" id="t1-company" placeholder="Company name"></div>
-      <div class="modal-err" id="t1-err"></div>
-      <button class="modal-btn mbtn-blue" id="t1-btn" onclick="submitT1()">Save my audit results</button>
-    </div>
-    <div class="modal-success" id="t1-success">
-      <div class="ms-icon" style="background:#E7F3FF">&#10003;</div>
-      <div class="ms-title">Results saved!</div>
-      <div class="ms-sub">Your Stack Efficiency Score and audit summary have been recorded. Upgrade to Full Report ($10) to get the complete breakdown.</div>
-    </div>
-  </div>
-
-  <!-- TIER 2 — Payment intent -->
-  <div class="modal-box" id="modal-t2" style="display:none">
-    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-    <div class="modal-badge mb-pay">Full report — $10</div>
-    <div class="modal-title">One step to unlock your full report</div>
-    <div class="modal-sub">Enter your email — you will receive your complete financial breakdown, overlap map, and PDF export immediately after payment.</div>
-    <div class="modal-stack-summary" id="t2-summary"></div>
-    <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t2-email" placeholder="you@company.com" type="email"></div>
-    <div class="modal-err" id="t2-err"></div>
-    <button class="modal-btn mbtn-green" onclick="goPayment()">Continue to payment — $10 &#8594;</button>
-    <div style="text-align:center;margin-top:10px;font-size:11px;color:#626E7E">$10/month · cancel anytime. Instant access. No subscription.</div>
-  </div>
-
-  <!-- TIER 3 — Strategy enquiry -->
-  <div class="modal-box" id="modal-t3" style="display:none">
-    <button class="modal-close" onclick="closeModal()">&#x2715;</button>
-    <div class="modal-badge mb-strat">Strategy session</div>
-    <div class="modal-title">Let's rebuild your stack together</div>
-    <div class="modal-sub">Tell us about your team and what you're trying to solve. The Sonder Digital team will be in touch within 24 hours.</div>
-    <div class="modal-stack-summary" id="t3-summary"></div>
-    <div id="t3-form">
-      <div class="modal-field"><label class="modal-label">Name *</label><input class="modal-input" id="t3-name" placeholder="Your name"></div>
-      <div class="modal-field"><label class="modal-label">Work email *</label><input class="modal-input" id="t3-email" placeholder="you@company.com" type="email"></div>
-      <div class="modal-field"><label class="modal-label">Company</label><input class="modal-input" id="t3-company" placeholder="Company name"></div>
-      <div class="modal-field"><label class="modal-label">What are you trying to solve? <span style="font-weight:400;color:#626E7E">(optional)</span></label><textarea class="modal-input" id="t3-msg" rows="3" placeholder="e.g. We have 14 tools and no idea what we actually need..." style="resize:vertical"></textarea></div>
-      <div class="modal-err" id="t3-err"></div>
-      <button class="modal-btn mbtn-purple" id="t3-btn" onclick="submitT3()">Send enquiry to Sonder Digital</button>
-    </div>
-    <div class="modal-success" id="t3-success">
-      <div class="ms-icon" style="background:#f0ebff">&#128640;</div>
-      <div class="ms-title">Enquiry sent!</div>
-      <div class="ms-sub">The Sonder Digital team will review your stack audit and be in touch within 24 hours to schedule your strategy session.</div>
-    </div>
-  </div>
-
-</div>
-
-<script>
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxisM4XbFMSCvteS9e416j-1UHzINKv0xJudHXrJiCGhr3oDOn7Buy5vGrRuyEHozegCg/exec"; // paste your Google Apps Script Web App URL here
-const DODO_PAYMENT_LINK = ""; // paste your Dodo Payments product link here
-
-// ── CONFIG — replace both values after setup ──────────────────
-const APPS_SCRIPT_URL = "https://script.google.com/macros/s/REPLACE_WITH_YOUR_WEB_APP_URL/exec";
-const DODO_PAYMENT_LINK = "https://checkout.dodopayments.com/buy/REPLACE_WITH_YOUR_PRODUCT_ID";
-// ─────────────────────────────────────────────────────────────
-
-function getStackSummaryHTML(modalId) {
-  const savings = document.getElementById("live-savings") ? document.getElementById("live-savings").textContent : "₹0";
-  const score = document.getElementById("score-display") ? document.getElementById("score-display").textContent : "—";
-  const count = typeof tools !== "undefined" ? tools.length : 0;
-  return `<div class="mss-item"><div class="mss-val">${count}</div><div class="mss-label">Tools audited</div></div>
-          <div class="mss-item"><div class="mss-val" style="color:#0f7a4a">${savings}</div><div class="mss-label">Waste identified</div></div>
-          <div class="mss-item"><div class="mss-val">${score}/100</div><div class="mss-label">Stack score</div></div>`;
-}
-
-function showModal(tier) {
-  const overlay = document.getElementById("modal-overlay");
-  overlay.style.display = "flex";
-  document.getElementById("modal-t1").style.display = "none";
-  document.getElementById("modal-t2").style.display = "none";
-  document.getElementById("modal-t3").style.display = "none";
-  document.getElementById("modal-" + tier).style.display = "block";
-  // Populate stack summary
-  const sum = document.getElementById(tier + "-summary");
-  if (sum) sum.innerHTML = getStackSummaryHTML(tier);
-  // Reset forms
-  if (tier === "t1") { document.getElementById("t1-form").style.display = "block"; document.getElementById("t1-success").style.display = "none"; document.getElementById("t1-btn").textContent = "Save my audit results"; document.getElementById("t1-err").style.display = "none"; }
-  if (tier === "t3") { document.getElementById("t3-form").style.display = "block"; document.getElementById("t3-success").style.display = "none"; document.getElementById("t3-btn").textContent = "Send enquiry to Sonder Digital"; document.getElementById("t3-err").style.display = "none"; }
-}
-
-function closeModal() {
-  document.getElementById("modal-overlay").style.display = "none";
-}
-
-function handleOverlayClick(e) {
-  if (e.target === document.getElementById("modal-overlay")) closeModal();
-}
-
-async function postToSheet(payload) {
-  if (APPS_SCRIPT_URL.includes("REPLACE_WITH")) {
-    console.log("Apps Script URL not configured yet. Data:", payload);
-    return true;
-  }
-  try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: "POST",
-      mode: "no-cors",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify(payload)
-    });
-    return true;
-  } catch (e) { console.log("Sheet error:", e); return false; }
-}
-
-function getPayload(tier, extra) {
-  return {
-    tier,
-    toolsCount: typeof tools !== "undefined" ? tools.length : 0,
-    savings: document.getElementById("live-savings") ? document.getElementById("live-savings").textContent : "₹0",
-    score: document.getElementById("score-display") ? document.getElementById("score-display").textContent : "—",
-    ...extra
-  };
-}
-
-async function submitT1() {
-  const name = document.getElementById("t1-name").value.trim();
-  const email = document.getElementById("t1-email").value.trim();
-  const company = document.getElementById("t1-company").value.trim();
-  const err = document.getElementById("t1-err");
-  if (!email) { err.textContent = "Work email is required."; err.style.display = "block"; return; }
-  const btn = document.getElementById("t1-btn");
-  btn.textContent = "Saving..."; btn.disabled = true;
-  await postToSheet(getPayload("tier1", { name, email, company }));
-  document.getElementById("t1-form").style.display = "none";
-  document.getElementById("t1-success").style.display = "block";
-}
-
-function goPayment() {
-  const email = document.getElementById("t2-email").value.trim();
-  const err = document.getElementById("t2-err");
-  if (!email) { err.textContent = "Please enter your email before proceeding."; err.style.display = "block"; return; }
-  // Log payment intent to sheet
-  postToSheet(getPayload("tier2", { email }));
-  // Redirect to payment
-  if (DODO_PAYMENT_LINK.includes("REPLACE_WITH")) {
-    alert("Payment link not configured yet. Add your Dodo Payments product URL to DODO_PAYMENT_LINK in app.html");
-    return;
-  }
-  window.open(DODO_PAYMENT_LINK + "?prefilled_email=" + encodeURIComponent(email), "_blank");
-  closeModal();
-}
-
-async function submitT3() {
-  const name = document.getElementById("t3-name").value.trim();
-  const email = document.getElementById("t3-email").value.trim();
-  const company = document.getElementById("t3-company").value.trim();
-  const msg = document.getElementById("t3-msg").value.trim();
-  const err = document.getElementById("t3-err");
-  if (!name) { err.textContent = "Name is required."; err.style.display = "block"; return; }
-  if (!email) { err.textContent = "Work email is required."; err.style.display = "block"; return; }
-  const btn = document.getElementById("t3-btn");
-  btn.textContent = "Sending..."; btn.disabled = true;
-  await postToSheet(getPayload("tier3", { name, email, company, message: msg }));
-  document.getElementById("t3-form").style.display = "none";
-  document.getElementById("t3-success").style.display = "block";
-}
-
-// Keyboard close
-document.addEventListener("keydown", e => { if (e.key === "Escape") closeModal(); });
-
-// ══════════════════════════════════════════
-// LEAD CAPTURE MODAL FUNCTIONS
-// ══════════════════════════════════════════
-
-function openModal(type) {
-  const overlay = document.getElementById('modal-overlay');
-  overlay.style.display = 'flex';
-  ['modal-free','modal-payment','modal-strategy','modal-success'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-
-  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : null;
-  const totalSavings = tools.reduce((s,t) => {
-    const sc2 = score(t);
-    return s + (sc2 >= 61 ? Math.round(toINR(t.cost,t.currency)*0.6) : sc2 >= 31 ? Math.round(toINR(t.cost,t.currency)*0.25) : 0);
-  }, 0);
-
-  if (type === 'free') {
-    document.getElementById('modal-free').style.display = 'block';
-    if (avgScore !== null) {
-      document.getElementById('m1-score-display').style.display = 'block';
-      document.getElementById('m1-score-val').textContent = avgScore;
-      const lbl = document.getElementById('m1-score-label');
-      lbl.textContent = avgScore >= 61 ? 'High waste' : avgScore >= 31 ? 'Review' : 'Retain';
-      lbl.style.color = avgScore >= 61 ? '#b91c1c' : avgScore >= 31 ? '#854F0B' : '#0f7a4a';
-      document.getElementById('m1-savings-val').textContent = '₹' + Math.round(totalSavings).toLocaleString();
-    }
-  } else if (type === 'payment') {
-    document.getElementById('modal-payment').style.display = 'block';
-  } else if (type === 'strategy') {
-    document.getElementById('modal-strategy').style.display = 'block';
-    if (avgScore !== null) {
-      document.getElementById('m3-audit-summary').style.display = 'block';
-      document.getElementById('m3-score').textContent = avgScore + '/100';
-      document.getElementById('m3-tools').textContent = tools.length;
-      document.getElementById('m3-savings').textContent = '₹' + Math.round(totalSavings).toLocaleString();
-    }
-  }
-}
-
-function closeModal() {
-  document.getElementById('modal-overlay').style.display = 'none';
-}
-
-document.getElementById('modal-overlay').addEventListener('click', function(e) {
-  if (e.target === this) closeModal();
-});
-
-function showSuccess(title, sub) {
-  ['modal-free','modal-payment','modal-strategy'].forEach(id => {
-    document.getElementById(id).style.display = 'none';
-  });
-  document.getElementById('modal-success').style.display = 'block';
-  document.getElementById('success-title').textContent = title;
-  document.getElementById('success-sub').textContent = sub;
-}
-
-function getAuditData() {
-  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : 0;
-  const totalSavings = tools.reduce((s,t) => {
-    const sc2 = score(t);
-    return s + (sc2 >= 61 ? Math.round(toINR(t.cost,t.currency)*0.6) : sc2 >= 31 ? Math.round(toINR(t.cost,t.currency)*0.25) : 0);
-  }, 0);
-  return { toolsCount: tools.length, score: avgScore, savings: Math.round(totalSavings) };
-}
-
-async function postToSheets(payload) {
-  if (!APPS_SCRIPT_URL) return;
-  try {
-    await fetch(APPS_SCRIPT_URL, {
-      method: 'POST',
-      mode: 'no-cors',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
-    });
-  } catch(e) { console.log('Sheets log failed:', e); }
-}
-
-async function submitFree() {
-  const name = document.getElementById('m1-name').value.trim();
-  const email = document.getElementById('m1-email').value.trim();
-  const company = document.getElementById('m1-company').value.trim();
-  const err = document.getElementById('m1-err');
-  if (!name || !email || !company) { err.textContent = 'Please fill in all fields'; err.style.display='block'; return; }
-  if (!email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
-  err.style.display = 'none';
-  const btn = document.getElementById('m1-btn');
-  btn.textContent = 'Saving...'; btn.disabled = true;
-  const audit = getAuditData();
-  await postToSheets({ tier:'free', name, email, company, ...audit });
-  btn.textContent = 'Unlock benchmark report — free'; btn.disabled = false;
-  showSuccess('Report unlocked!', 'Your benchmark comparison and detailed recommendations are now visible below. Check your email for a copy.');
-}
-
-async function submitPayment() {
-  const email = document.getElementById('m2-email').value.trim();
-  const err = document.getElementById('m2-err');
-  if (!email || !email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
-  err.style.display = 'none';
-  const btn = document.getElementById('m2-btn');
-  btn.textContent = 'Redirecting...'; btn.disabled = true;
-  const audit = getAuditData();
-  await postToSheets({ tier:'payment', email, status:'intent', ...audit });
-  setTimeout(() => {
-    if (DODO_PAYMENT_LINK) {
-      window.location.href = DODO_PAYMENT_LINK + '?email=' + encodeURIComponent(email);
-    } else {
-      btn.textContent = 'Continue to payment — $10 →'; btn.disabled = false;
-      err.textContent = 'Payment link not configured yet. Please contact us at sonderdigi.com'; err.style.display='block';
-    }
-  }, 800);
-}
-
-async function submitStrategy() {
-  const name = document.getElementById('m3-name').value.trim();
-  const email = document.getElementById('m3-email').value.trim();
-  const phone = document.getElementById('m3-phone').value.trim();
-  const company = document.getElementById('m3-company').value.trim();
-  const teamSize = document.getElementById('m3-teamsize').value;
-  const monthlySpend = document.getElementById('m3-spend').value;
-  const message = document.getElementById('m3-message').value.trim();
-  const err = document.getElementById('m3-err');
-  if (!name || !email || !phone || !company || !teamSize || !monthlySpend) {
-    err.textContent = 'Please fill in all required fields including phone number'; err.style.display='block'; return;
-  }
-  if (!email.includes('@')) { err.textContent = 'Please enter a valid email'; err.style.display='block'; return; }
-  if (phone.length < 8) { err.textContent = 'Please enter a valid phone number'; err.style.display='block'; return; }
-  err.style.display = 'none';
-  const btn = document.getElementById('m3-btn');
-  btn.textContent = 'Sending...'; btn.disabled = true;
-  const audit = getAuditData();
-  await postToSheets({ tier:'strategy', name, email, phone, company, teamSize, monthlySpend, message, ...audit });
-  btn.textContent = 'Request strategy session →'; btn.disabled = false;
-  showSuccess('Request received!', 'The Sonder Digital team will review your audit and reach out within 1 business day to schedule your strategy session.');
-}
-
-</script>
-
-
 <!-- ══════════════════════════════════════
      LEAD CAPTURE MODALS
 ═══════════════════════════════════════ -->
@@ -1059,5 +753,208 @@ async function submitStrategy() {
 
 </div>
 
+
+<script>
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxisM4XbFMSCvteS9e416j-1UHzINKv0xJudHXrJiCGhr3oDOn7Buy5vGrRuyEHozegCg/exec";
+const DODO_PAYMENT_LINK = "";
+
+function openModal(type) {
+  const overlay = document.getElementById('modal-overlay');
+  if(!overlay) return;
+  overlay.style.display = 'flex';
+  ['modal-free','modal-payment','modal-strategy','modal-success'].forEach(id => {
+    const el = document.getElementById(id);
+    if(el) el.style.display = 'none';
+  });
+
+  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : null;
+  const totalSavings = Math.round(tools.reduce((s,t) => {
+    const sc2 = score(t); 
+    return s + (sc2 >= 61 ? t.cost*0.6 : sc2 >= 31 ? t.cost*0.25 : 0);
+  }, 0));
+
+  if (type === 'free') {
+    const el = document.getElementById('modal-free');
+    if(el) el.style.display = 'block';
+    if (avgScore !== null) {
+      const sd = document.getElementById('m1-score-display');
+      if(sd) sd.style.display = 'block';
+      const sv = document.getElementById('m1-score-val');
+      if(sv) sv.textContent = avgScore;
+      const lbl = document.getElementById('m1-score-label');
+      if(lbl) { lbl.textContent = avgScore>=61?'High waste':avgScore>=31?'Review':'Retain'; lbl.style.color = avgScore>=61?'#b91c1c':avgScore>=31?'#854F0B':'#0f7a4a'; }
+      const sav = document.getElementById('m1-savings-val');
+      if(sav) sav.textContent = '$' + totalSavings.toLocaleString();
+    }
+  } else if (type === 'payment') {
+    const el = document.getElementById('modal-payment');
+    if(el) el.style.display = 'block';
+  } else if (type === 'strategy') {
+    const el = document.getElementById('modal-strategy');
+    if(el) el.style.display = 'block';
+    if (avgScore !== null) {
+      const sum = document.getElementById('m3-audit-summary');
+      if(sum) sum.style.display = 'block';
+      const s3 = document.getElementById('m3-score'); if(s3) s3.textContent = avgScore+'/100';
+      const t3 = document.getElementById('m3-tools'); if(t3) t3.textContent = tools.length;
+      const v3 = document.getElementById('m3-savings'); if(v3) v3.textContent = '$'+totalSavings.toLocaleString();
+    }
+  }
+}
+
+function closeModal() {
+  const overlay = document.getElementById('modal-overlay');
+  if(overlay) overlay.style.display = 'none';
+}
+
+function handleOverlayClick(e) {
+  if (e.target === document.getElementById('modal-overlay')) closeModal();
+}
+
+function showSuccess(title, sub) {
+  ['modal-free','modal-payment','modal-strategy'].forEach(id => {
+    const el = document.getElementById(id); if(el) el.style.display = 'none';
+  });
+  const ms = document.getElementById('modal-success');
+  if(ms) ms.style.display = 'block';
+  const st = document.getElementById('success-title'); if(st) st.textContent = title;
+  const ss = document.getElementById('success-sub'); if(ss) ss.textContent = sub;
+}
+
+function getAuditData() {
+  const avgScore = tools.length ? Math.round(tools.reduce((s,t) => s + score(t), 0) / tools.length) : 0;
+  const totalSavings = Math.round(tools.reduce((s,t) => {
+    const sc2 = score(t);
+    return s + (sc2 >= 61 ? t.cost*0.6 : sc2 >= 31 ? t.cost*0.25 : 0);
+  }, 0));
+  return { toolsCount: tools.length, score: avgScore, savings: totalSavings };
+}
+
+async function postToSheets(payload) {
+  if (!APPS_SCRIPT_URL) return;
+  try {
+    await fetch(APPS_SCRIPT_URL, {
+      method: 'POST', mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    });
+  } catch(e) { console.log('Sheets error:', e); }
+}
+
+async function submitFree() {
+  const name = document.getElementById('m1-name').value.trim();
+  const email = document.getElementById('m1-email').value.trim();
+  const company = document.getElementById('m1-company').value.trim();
+  const err = document.getElementById('m1-err');
+  if (!name || !email || !company) { err.textContent='Please fill in all fields'; err.style.display='block'; return; }
+  if (!email.includes('@')) { err.textContent='Please enter a valid email'; err.style.display='block'; return; }
+  err.style.display = 'none';
+  const btn = document.getElementById('m1-btn');
+  btn.textContent='Saving...'; btn.disabled=true;
+  await postToSheets({ tier:'free', name, email, company, ...getAuditData() });
+  btn.textContent='Unlock benchmark report — free'; btn.disabled=false;
+  showSuccess('You are all set!', 'Your results are saved. Check your email for a summary of your Stack Efficiency Score and recommendations.');
+}
+
+async function submitPayment() {
+  const email = document.getElementById('m2-email').value.trim();
+  const err = document.getElementById('m2-err');
+  if (!email || !email.includes('@')) { err.textContent='Please enter a valid email'; err.style.display='block'; return; }
+  err.style.display='none';
+  const btn = document.getElementById('m2-btn');
+  btn.textContent='Redirecting...'; btn.disabled=true;
+  await postToSheets({ tier:'payment', email, status:'intent', ...getAuditData() });
+  setTimeout(() => {
+    if (DODO_PAYMENT_LINK) {
+      window.location.href = DODO_PAYMENT_LINK + '?email=' + encodeURIComponent(email);
+    } else {
+      btn.textContent='Continue to payment — $10/mo →'; btn.disabled=false;
+      err.textContent='Payment link coming soon. Email us at hello@sonderdigi.com to upgrade.'; err.style.display='block';
+    }
+  }, 600);
+}
+
+async function submitStrategy() {
+  const name = document.getElementById('m3-name').value.trim();
+  const email = document.getElementById('m3-email').value.trim();
+  const phone = document.getElementById('m3-phone').value.trim();
+  const company = document.getElementById('m3-company').value.trim();
+  const teamSize = document.getElementById('m3-teamsize').value;
+  const monthlySpend = document.getElementById('m3-spend').value;
+  const message = document.getElementById('m3-message').value.trim();
+  const err = document.getElementById('m3-err');
+  if (!name||!email||!phone||!company||!teamSize||!monthlySpend) {
+    err.textContent='Please fill in all required fields including phone number'; err.style.display='block'; return;
+  }
+  if (!email.includes('@')) { err.textContent='Please enter a valid email'; err.style.display='block'; return; }
+  if (phone.length < 8) { err.textContent='Please enter a valid phone number'; err.style.display='block'; return; }
+  err.style.display='none';
+  const btn = document.getElementById('m3-btn');
+  btn.textContent='Sending...'; btn.disabled=true;
+  await postToSheets({ tier:'strategy', name, email, phone, company, teamSize, monthlySpend, message, ...getAuditData() });
+  btn.textContent='Request strategy session →'; btn.disabled=false;
+  showSuccess('Request received!', 'The Sonder Digital team will review your audit and reach out within 1 business day to schedule your strategy session.');
+}
+</script>
+
 </body>
-</html>
+</html>const PRICING_DB = {
+  'HubSpot CRM':        {free:0,    starter:20,   pro:90,    enterprise:150,  currency:'USD', unit:'per seat/mo'},
+  'Salesforce':         {starter:25, pro:75,       enterprise:150,            currency:'USD', unit:'per seat/mo'},
+  'Zoho CRM':           {free:0,    starter:14,   pro:23,    enterprise:40,   currency:'USD', unit:'per seat/mo'},
+  'Freshsales':         {free:0,    starter:15,   pro:39,    enterprise:69,   currency:'USD', unit:'per seat/mo'},
+  'Pipedrive':          {starter:14, pro:34,       enterprise:99,             currency:'USD', unit:'per seat/mo'},
+  'LeadSquared':        {starter:25, pro:75,       enterprise:150,            currency:'USD', unit:'per month'},
+  'Mailchimp':          {free:0,    starter:13,   pro:20,    enterprise:350,  currency:'USD', unit:'per month'},
+  'Brevo':              {free:0,    starter:25,   pro:65,    enterprise:0,    currency:'USD', unit:'per month'},
+  'Klaviyo':            {free:0,    starter:20,   pro:60,    enterprise:0,    currency:'USD', unit:'per month'},
+  'MailerLite':         {free:0,    starter:10,   pro:21,    enterprise:0,    currency:'USD', unit:'per month'},
+  'ActiveCampaign':     {starter:29, pro:49,       enterprise:149,            currency:'USD', unit:'per month'},
+  'Marketo':            {starter:895, pro:1795,    enterprise:3175,           currency:'USD', unit:'per month'},
+  'ZoomInfo':           {starter:250, pro:499,     enterprise:999,            currency:'USD', unit:'per month'},
+  'Apollo.io':          {free:0,    starter:49,   pro:79,    enterprise:119,  currency:'USD', unit:'per seat/mo'},
+  'Lusha':              {free:0,    starter:29,   pro:51,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Hunter.io':          {free:0,    starter:34,   pro:104,   enterprise:349,  currency:'USD', unit:'per month'},
+  'Semrush':            {starter:120, pro:230,     enterprise:450,            currency:'USD', unit:'per month'},
+  'Ahrefs':             {starter:99,  pro:199,     enterprise:399,            currency:'USD', unit:'per month'},
+  'Moz Pro':            {starter:99,  pro:179,     enterprise:299,            currency:'USD', unit:'per month'},
+  'Buffer':             {free:0,    starter:6,    pro:12,    enterprise:120,  currency:'USD', unit:'per channel/mo'},
+  'Hootsuite':          {starter:99, pro:249,      enterprise:0,              currency:'USD', unit:'per month'},
+  'Sprout Social':      {starter:199, pro:299,     enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Canva Pro':          {free:0,    pro:15,        enterprise:30,             currency:'USD', unit:'per seat/mo'},
+  'Figma':              {free:0,    starter:12,   pro:45,    enterprise:75,   currency:'USD', unit:'per seat/mo'},
+  'Adobe Creative Cloud':{starter:55, pro:85,     enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Mixpanel':           {free:0,    starter:20,   pro:833,   enterprise:0,    currency:'USD', unit:'per month'},
+  'Hotjar':             {free:0,    starter:32,   pro:80,    enterprise:0,    currency:'USD', unit:'per month'},
+  'Tableau':            {starter:15, pro:42,       enterprise:70,             currency:'USD', unit:'per seat/mo'},
+  'Slack':              {free:0,    starter:8,    pro:15,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Zoom':               {free:0,    starter:15,   pro:20,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Microsoft Teams':    {free:0,    starter:6,    pro:12,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Asana':              {free:0,    starter:11,   pro:25,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Notion':             {free:0,    starter:10,   pro:18,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Monday.com':         {free:0,    starter:9,    pro:19,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'Jira':               {free:0,    starter:8,    pro:15,    enterprise:0,    currency:'USD', unit:'per seat/mo'},
+  'ClickUp':            {free:0,    starter:7,    pro:12,    enterprise:19,   currency:'USD', unit:'per seat/mo'},
+  'ChatGPT Plus':       {pro:20,                                              currency:'USD', unit:'per user/mo'},
+  'ChatGPT Team':       {pro:30,    enterprise:60,                            currency:'USD', unit:'per seat/mo'},
+  'ChatGPT Enterprise': {enterprise:60,                                       currency:'USD', unit:'per seat/mo'},
+  'Claude Pro':         {pro:20,                                              currency:'USD', unit:'per user/mo'},
+  'Claude Team':        {pro:30,    enterprise:60,                            currency:'USD', unit:'per seat/mo'},
+  'Google Gemini Advanced':{pro:20,                                           currency:'USD', unit:'per user/mo'},
+  'Gemini for Workspace':{starter:6, pro:18,                                  currency:'USD', unit:'per seat/mo'},
+  'Microsoft Copilot 365':{pro:30,  enterprise:60,                            currency:'USD', unit:'per seat/mo'},
+  'Perplexity Pro':     {pro:20,                                              currency:'USD', unit:'per user/mo'},
+  'Midjourney':         {starter:10, pro:30,       enterprise:120,            currency:'USD', unit:'per month'},
+  'Runway ML':          {starter:15, pro:35,       enterprise:95,             currency:'USD', unit:'per month'},
+  'Jasper AI':          {starter:49, pro:69,       enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Grammarly Business': {pro:25,    enterprise:0,                             currency:'USD', unit:'per seat/mo'},
+  'Zendesk':            {starter:19, pro:55,       enterprise:115,            currency:'USD', unit:'per seat/mo'},
+  'Freshdesk':          {free:0,    starter:15,   pro:49,    enterprise:79,   currency:'USD', unit:'per seat/mo'},
+  'Intercom':           {starter:39, pro:99,       enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Outreach.io':        {starter:100, pro:150,     enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Salesloft':          {starter:75, pro:125,      enterprise:0,              currency:'USD', unit:'per seat/mo'},
+  'Writesonic':         {starter:20, pro:99,       enterprise:0,              currency:'USD', unit:'per month'},
+  'Copy.ai':            {free:0,    starter:49,   pro:249,   enterprise:0,    currency:'USD', unit:'per month'},
+  'ElevenLabs':         {free:0,    starter:5,    pro:22,    enterprise:99,   currency:'USD', unit:'per month'},
+};
+
