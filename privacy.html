@@ -119,6 +119,33 @@ h3.ct{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(
   </div>
 </nav>
 
+
+<script>
+document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.closest('.faq-item');const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');});});
+</script>
+<div class="prose-page">
+<h1>Privacy policy</h1>
+<p class="updated">Last updated: 1 January 2025 · Marketing Stack Audit is a product of Sonder Digital.</p>
+<p>This privacy policy describes how Marketing Stack Audit ("we", "us", "our") collects, uses, and protects your personal information when you use stackaudit.io and its related services.</p>
+<h2>1. Information we collect</h2>
+<p>We collect information you provide directly, including your email address when you create an account, tool data you enter into the platform (tool names, costs, seat counts, billing details), and payment information processed by our payment provider (Dodo Payments).</p>
+<p>We also collect usage data automatically including pages visited, features used, and session duration through analytics tools.</p>
+<h2>2. How we use your information</h2>
+<ul><li>To provide and maintain your Marketing Stack Audit account and saved tool data</li><li>To generate optimization scores and recommendations for your tools</li><li>To send renewal alert emails based on your tool subscription dates</li><li>To process payments and manage your subscription plan</li><li>To improve the product through anonymised, aggregated usage analytics</li><li>To respond to support enquiries</li></ul>
+<h2>3. Data storage and security</h2>
+<p>Your data is stored in Supabase (PostgreSQL database hosted on AWS). All data is encrypted at rest and in transit using TLS. We use Row Level Security so your data is only accessible to your account. We do not sell your data to any third party.</p>
+<h2>4. Payment data</h2>
+<p>Payment processing is handled entirely by Dodo Payments. We do not store card numbers or full payment details on our systems. We receive only a payment status confirmation and a customer identifier.</p>
+<h2>5. Cookies</h2>
+<p>We use essential cookies to maintain your login session. We do not use advertising or tracking cookies. You may disable cookies in your browser, though this may affect your ability to stay logged in.</p>
+<h2>6. Data retention</h2>
+<p>We retain your account and tool data for as long as your account is active. You may request deletion of your account and all associated data at any time by emailing <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e262b2222210e3d3a2f2d252f3b2a273a602721">[email&#160;protected]</a>. We will process deletion requests within 30 days.</p>
+<h2>7. Your rights</h2>
+<p>You have the right to access, correct, or delete your personal data at any time. You may also request a copy of your data in a portable format. Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8188888ba4979085878f8591808d90ca8d8b">[email&#160;protected]</a> to exercise any of these rights.</p>
+<h2>8. Third-party services</h2>
+<p>We use the following third-party services: Supabase (database and authentication), Dodo Payments (payment processing), Resend (transactional email), and Netlify (hosting and serverless functions). Each service has its own privacy policy.</p>
+<h2>9. Changes to this policy</h2>
+<p>We may update this policy from time to time. We will notify you of material changes by email or by displaying a notice in the app. Continued use of Marketing Stack Audit
 <!-- FOOTER -->
 <footer class="footer" role="contentinfo" style="margin-top:auto">
   <div class="container">
@@ -171,29 +198,5 @@ h3.ct{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(
     </div>
   </div>
 </footer>
-<script>
-document.querySelectorAll('.faq-q').forEach(q=>{q.addEventListener('click',()=>{const item=q.closest('.faq-item');const open=item.classList.contains('open');document.querySelectorAll('.faq-item.open').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');});});
-</script>
-<div class="prose-page">
-<h1>Privacy policy</h1>
-<p class="updated">Last updated: 1 January 2025 · Marketing Stack Audit is a product of Sonder Digital.</p>
-<p>This privacy policy describes how Marketing Stack Audit ("we", "us", "our") collects, uses, and protects your personal information when you use stackaudit.io and its related services.</p>
-<h2>1. Information we collect</h2>
-<p>We collect information you provide directly, including your email address when you create an account, tool data you enter into the platform (tool names, costs, seat counts, billing details), and payment information processed by our payment provider (Dodo Payments).</p>
-<p>We also collect usage data automatically including pages visited, features used, and session duration through analytics tools.</p>
-<h2>2. How we use your information</h2>
-<ul><li>To provide and maintain your Marketing Stack Audit account and saved tool data</li><li>To generate optimization scores and recommendations for your tools</li><li>To send renewal alert emails based on your tool subscription dates</li><li>To process payments and manage your subscription plan</li><li>To improve the product through anonymised, aggregated usage analytics</li><li>To respond to support enquiries</li></ul>
-<h2>3. Data storage and security</h2>
-<p>Your data is stored in Supabase (PostgreSQL database hosted on AWS). All data is encrypted at rest and in transit using TLS. We use Row Level Security so your data is only accessible to your account. We do not sell your data to any third party.</p>
-<h2>4. Payment data</h2>
-<p>Payment processing is handled entirely by Dodo Payments. We do not store card numbers or full payment details on our systems. We receive only a payment status confirmation and a customer identifier.</p>
-<h2>5. Cookies</h2>
-<p>We use essential cookies to maintain your login session. We do not use advertising or tracking cookies. You may disable cookies in your browser, though this may affect your ability to stay logged in.</p>
-<h2>6. Data retention</h2>
-<p>We retain your account and tool data for as long as your account is active. You may request deletion of your account and all associated data at any time by emailing <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="4e262b2222210e3d3a2f2d252f3b2a273a602721">[email&#160;protected]</a>. We will process deletion requests within 30 days.</p>
-<h2>7. Your rights</h2>
-<p>You have the right to access, correct, or delete your personal data at any time. You may also request a copy of your data in a portable format. Contact us at <a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="e48c8188888ba4979085878f8591808d90ca8d8b">[email&#160;protected]</a> to exercise any of these rights.</p>
-<h2>8. Third-party services</h2>
-<p>We use the following third-party services: Supabase (database and authentication), Dodo Payments (payment processing), Resend (transactional email), and Netlify (hosting and serverless functions). Each service has its own privacy policy.</p>
-<h2>9. Changes to this policy</h2>
-<p>We may update this policy from time to time. We will notify you of material changes by email or by displaying a notice in the app. Continued use of Marketing Stack Audit
+</body>
+</html>
