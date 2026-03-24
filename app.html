@@ -3,9 +3,10 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StackAudit — MarTech Spend Optimizer</title>
+<title>Marketing Stack Audit — MarTech Spend Optimizer</title>
 <meta name="description" content="Audit your marketing tool stack, score every tool across 9 dimensions, and find exactly where budget is being wasted.">
 <link rel="canonical" href="https://stackaudit.io/app">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34"><rect width="34" height="34" rx="7" fill="%23001935"/><rect x="6" y="14" width="15" height="3" rx="1.5" fill="%230A66C2"/><rect x="6" y="8" width="15" height="3" rx="1.5" fill="%233B82F6"/><rect x="6" y="20" width="10" height="3" rx="1.5" fill="%2360A5FA"/><path d="M21 25l3.5-4.5 3.5 4.5" stroke="%236EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -17,7 +18,7 @@ a{color:var(--lb);text-decoration:none}
 .sb{background:var(--navy);display:flex;flex-direction:column;height:100vh;overflow-y:auto}
 .sb-brand{padding:1.125rem 1.25rem 1rem;border-bottom:1px solid rgba(255,255,255,.08)}
 .sb-logo-wrap{display:flex;align-items:center;gap:9px;text-decoration:none;margin-bottom:2px}
-.sb-logo-mark{width:30px;height:30px;border-radius:7px;background:var(--lb);display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.sb-logo-mark{width:30px;height:30px;border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .sb-logo-mark svg{width:15px;height:15px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .sb-name{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:#fff;letter-spacing:-.2px}
 .sb-plan{display:inline-flex;align-items:center;gap:5px;margin-top:8px;padding:3px 10px;border-radius:20px;font-size:11px;font-weight:600;border:1px solid}
@@ -135,9 +136,16 @@ select.fi{cursor:pointer}
 <div class="app">
 <div class="sb">
   <div class="sb-brand">
-    <a href="/" class="sb-logo-wrap" aria-label="StackAudit home">
-      <div class="sb-logo-mark"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <span class="sb-name">StackAudit</span>
+    <a href="/" class="sb-logo-wrap" aria-label="Marketing Stack Audit home">
+      <div class="sb-logo-mark" style="background:#001935;border:1.5px solid #0A66C2;display:flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:7px;flex-shrink:0">
+            <svg width="19" height="19" viewBox="0 0 34 34" fill="none">
+              <rect x="6" y="14" width="15" height="3" rx="1.5" fill="#0A66C2"/>
+              <rect x="6" y="8" width="15" height="3" rx="1.5" fill="#3B82F6"/>
+              <rect x="6" y="20" width="10" height="3" rx="1.5" fill="#60A5FA"/>
+              <path d="M21 25l3.5-4.5 3.5 4.5" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+            </svg>
+          </div>
+      <span class="sb-name">Marketing Stack Audit</span>
     </a>
     <div id="plan-chip" class="sb-plan plan-basic"><span id="plan-chip-text">Basic · 0/3 tools</span></div>
     <div class="sb-limit"><div id="limit-fill" class="sb-limit-fill" style="width:0%;background:#0A66C2"></div></div>
@@ -497,7 +505,7 @@ renderDash();updateUI();
 </div>
 
 <script>
-const APPS_SCRIPT_URL = ""; // paste your Google Apps Script Web App URL here
+const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxisM4XbFMSCvteS9e416j-1UHzINKv0xJudHXrJiCGhr3oDOn7Buy5vGrRuyEHozegCg/exec"; // paste your Google Apps Script Web App URL here
 const DODO_PAYMENT_LINK = ""; // paste your Dodo Payments product link here
 
 // ── CONFIG — replace both values after setup ──────────────────

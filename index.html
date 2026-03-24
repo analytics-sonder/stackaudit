@@ -3,14 +3,15 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>StackAudit — Stop Wasting 30-50% of Your Marketing Tool Budget</title>
+<title>Marketing Stack Audit — Stop Wasting 30-50% of Your Marketing Tool Budget</title>
 <meta name="description" content="Audit your MarTech stack in 2 minutes. Stack Efficiency Score with industry benchmarks, tool overlap detection, exact wasted spend in Rs/$, and alternative recommendations. Free to start.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://stackaudit.io/">
-<meta property="og:title" content="StackAudit - Marketing Stack Intelligence Platform">
+<meta property="og:title" content="Marketing Stack Audit - Marketing Stack Intelligence Platform">
 <meta property="og:description" content="Stop wasting 30-50% of your marketing tool budget. Get your Stack Efficiency Score with industry benchmarks, find overlaps, calculate exact savings.">
 <meta property="og:type" content="website">
-<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Stack Efficiency Score?","acceptedAnswer":{"@type":"Answer","text":"The Stack Efficiency Score (0-100) measures how optimally your marketing stack is configured. It evaluates cost vs category benchmarks, seat utilization, feature adoption, tool overlap, and billing efficiency. Top 10% of B2B teams score 85+. Industry average is 58/100."}},{"@type":"Question","name":"How does StackAudit differ from asking an AI chatbot?","acceptedAnswer":{"@type":"Answer","text":"AI chatbots give generic advice. StackAudit gives exact calculations — '3 unused seats on ZoomInfo = Rs14,000/month recoverable' or 'HubSpot + Mailchimp have 70% feature overlap.' The difference is structured financial clarity backed by real benchmark data."}},{"@type":"Question","name":"How much do B2B companies waste on marketing tools?","acceptedAnswer":{"@type":"Answer","text":"B2B marketing teams waste 30-50% of their MarTech budget on average. The most common causes are unused seat licenses, overlapping tools in the same category, overbuilt plan tiers, and auto-renewing contracts nobody reviews."}},{"@type":"Question","name":"Is StackAudit free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free plan supports up to 3 tools with Stack Efficiency Scoring and industry benchmark comparison. The Full Report is a one-time $10 payment unlocking unlimited tools, complete financial breakdown, overlap detection, alternatives, and PDF export."}}]}</script>
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"What is a Stack Efficiency Score?","acceptedAnswer":{"@type":"Answer","text":"The Stack Efficiency Score (0-100) measures how optimally your marketing stack is configured. It evaluates cost vs category benchmarks, seat utilization, feature adoption, tool overlap, and billing efficiency. Top 10% of B2B teams score 85+. Industry average is 58/100."}},{"@type":"Question","name":"How does Marketing Stack Audit differ from asking an AI chatbot?","acceptedAnswer":{"@type":"Answer","text":"AI chatbots give generic advice. Marketing Stack Audit gives exact calculations — '3 unused seats on ZoomInfo = Rs14,000/month recoverable' or 'HubSpot + Mailchimp have 70% feature overlap.' The difference is structured financial clarity backed by real benchmark data."}},{"@type":"Question","name":"How much do B2B companies waste on marketing tools?","acceptedAnswer":{"@type":"Answer","text":"B2B marketing teams waste 30-50% of their MarTech budget on average. The most common causes are unused seat licenses, overlapping tools in the same category, overbuilt plan tiers, and auto-renewing contracts nobody reviews."}},{"@type":"Question","name":"Is Marketing Stack Audit free?","acceptedAnswer":{"@type":"Answer","text":"Yes. Free plan supports up to 3 tools with Stack Efficiency Scoring and industry benchmark comparison. The Full Report is a one-time $10 payment unlocking unlimited tools, complete financial breakdown, overlap detection, alternatives, and PDF export."}}]}</script>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 34 34"><rect width="34" height="34" rx="7" fill="%23001935"/><rect x="6" y="14" width="15" height="3" rx="1.5" fill="%230A66C2"/><rect x="6" y="8" width="15" height="3" rx="1.5" fill="%233B82F6"/><rect x="6" y="20" width="10" height="3" rx="1.5" fill="%2360A5FA"/><path d="M21 25l3.5-4.5 3.5 4.5" stroke="%236EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/></svg>">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
@@ -23,8 +24,8 @@ a{color:var(--lb);text-decoration:none}
 .nav{position:fixed;top:0;left:0;right:0;z-index:100;background:rgba(0,25,53,.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,.08);height:64px;display:flex;align-items:center}
 .nav-inner{width:100%;max-width:1100px;margin:0 auto;padding:0 40px;display:flex;align-items:center;justify-content:space-between}
 .nav-brand{display:flex;align-items:center;gap:9px}
-.nav-logo{width:32px;height:32px;border-radius:7px;background:var(--lb);display:flex;align-items:center;justify-content:center}
-.nav-logo svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
+.nav-logo{width:32px;height:32px;border-radius:7px;display:flex;align-items:center;justify-content:center}
+.nav-logo svg{width:32px;height:32px;stroke:#fff;fill:none;stroke-width:2;stroke-linecap:round;stroke-linejoin:round}
 .nav-name{font-family:"Poppins",sans-serif;font-size:17px;font-weight:700;color:#fff;letter-spacing:-.2px}
 .nav-links{display:flex;align-items:center;gap:24px;list-style:none}
 .nav-links a{font-size:14px;font-weight:500;color:rgba(255,255,255,.7);transition:color .2s}
@@ -165,8 +166,15 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
 <nav class="nav" role="navigation" aria-label="Main navigation">
   <div class="nav-inner">
     <div class="nav-brand">
-      <div class="nav-logo"><svg viewBox="0 0 24 24"><path d="M3 9l9-7 9 7v11a2 2 0 01-2 2H5a2 2 0 01-2-2z"/><polyline points="9 22 9 12 15 12 15 22"/></svg></div>
-      <span class="nav-name">StackAudit</span>
+      <div style="display:flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:8px;background:#001935;border:1.5px solid #0A66C2;flex-shrink:0">
+          <svg width="22" height="22" viewBox="0 0 34 34" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="6" y="14" width="15" height="3" rx="1.5" fill="#0A66C2"/>
+            <rect x="6" y="8" width="15" height="3" rx="1.5" fill="#3B82F6"/>
+            <rect x="6" y="20" width="10" height="3" rx="1.5" fill="#60A5FA"/>
+            <path d="M21 25l3.5-4.5 3.5 4.5" stroke="#6EE7B7" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
+          </svg>
+        </div>
+        <span class="nav-name">Marketing Stack Audit</span>
     </div>
     <ul class="nav-links">
       <li><a href="#how-it-works">How it works</a></li>
@@ -216,13 +224,13 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
   <div class="container">
     <div class="eyebrow">What you get</div>
     <h2 class="sh">Not generic advice.<br>Exact financial clarity.</h2>
-    <p class="sub">Every output from StackAudit is a precise calculation. Here is what your audit produces.</p>
+    <p class="sub">Every output from Marketing Stack Audit is a precise calculation. Here is what your audit produces.</p>
     <div class="out-grid">
       <div class="out-card"><div class="oc-n">01</div><h3 class="oc-t">Stack Efficiency Score</h3><p class="oc-d">A deterministic 0-100 score measuring how optimally your stack is configured, compared against real benchmarks from 200+ B2B companies.</p><div class="oc-ex">"Your stack scores 54/100. Top 10% of teams in your category score 85+."</div></div>
       <div class="out-card p"><div class="oc-n p">02</div><h3 class="oc-t">Tool overlap detection</h3><p class="oc-d">Identifies tools in the same category you are paying for twice. Shows the exact percentage of feature overlap - not a vague warning.</p><div class="oc-ex">"HubSpot + Mailchimp: 70% feature overlap. You are paying for duplicate email automation."</div></div>
       <div class="out-card g"><div class="oc-n g">03</div><h3 class="oc-t">Exact wasted spend</h3><p class="oc-d">Calculates wasted spend in Rs/$ - seat waste, plan misfit, billing inefficiency. Each one is a calculation, not an estimate.</p><div class="oc-ex">"3 unused seats on ZoomInfo = Rs 14,000/month recoverable at next renewal."</div></div>
       <div class="out-card"><div class="oc-n">04</div><h3 class="oc-t">Category-wise breakdown</h3><p class="oc-d">Total spend and waste broken down by CRM, Email, SEO, Ads, Enrichment. Shows where budget is concentrated vs where it should be.</p><div class="oc-ex">"CRM: Rs 1.2L/mo . 60% of total spend . 40% above category benchmark."</div></div>
-      <div class="out-card p"><div class="oc-n p">05</div><h3 class="oc-t">Alternative recommendations</h3><p class="oc-d">For every overpriced or underused tool, StackAudit recommends a specific alternative with the reason and exact monthly saving.</p><div class="oc-ex">"Replace ZoomInfo with Apollo.io free tier: save Rs 28,000/month with equivalent reach."</div></div>
+      <div class="out-card p"><div class="oc-n p">05</div><h3 class="oc-t">Alternative recommendations</h3><p class="oc-d">For every overpriced or underused tool, Marketing Stack Audit recommends a specific alternative with the reason and exact monthly saving.</p><div class="oc-ex">"Replace ZoomInfo with Apollo.io free tier: save Rs 28,000/month with equivalent reach."</div></div>
       <div class="out-card g"><div class="oc-n g">06</div><h3 class="oc-t">Renewal alerts</h3><p class="oc-d">Alerts you 25-60 days before each auto-renewal so you can optimize seats and plan before you are locked in for another year.</p><div class="oc-ex">"Semrush renews in 18 days - 1 unused seat. Reduce before renewal: save Rs 6,000/month."</div></div>
     </div>
   </div>
@@ -288,7 +296,7 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
         <div class="vi"><span class="vx">x</span>"You could probably reduce seats"</div>
       </div>
       <div class="vs-col us">
-        <div class="vs-head u">StackAudit gives you</div>
+        <div class="vs-head u">Marketing Stack Audit gives you</div>
         <div class="vi"><span class="vc">v</span>"3 unused ZoomInfo seats = Rs 14,000/month recoverable"</div>
         <div class="vi"><span class="vc">v</span>"HubSpot + Mailchimp: 70% overlap - paying Rs 8,000/mo twice"</div>
         <div class="vi"><span class="vc">v</span>"Your CRM spend is 40% above category benchmark"</div>
@@ -366,10 +374,10 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
     <h2 class="sh" style="text-align:center;margin:0 auto 0">Common questions</h2>
     <div class="faq-wrap" style="text-align:left">
       <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">What is a Stack Efficiency Score?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">The Stack Efficiency Score (0-100) is a deterministic measure of how optimally your marketing stack is configured. It evaluates cost vs category benchmarks, seat utilization, feature adoption, tool overlap, and billing efficiency using fixed weights. The same inputs always produce the same score - no AI randomness. Top 10% of B2B teams score 85+. Industry average is 58/100.</div></div></article>
-      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">How does StackAudit differ from asking an AI chatbot?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">AI chatbots give generic advice: "You might have overlap." StackAudit gives exact calculations: "HubSpot + Mailchimp have 70% feature overlap - you are paying Rs 8,000/month for duplicate email automation." The difference is structured financial clarity backed by real benchmark data, not suggestions generated from training data.</div></div></article>
+      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">How does Marketing Stack Audit differ from asking an AI chatbot?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">AI chatbots give generic advice: "You might have overlap." Marketing Stack Audit gives exact calculations: "HubSpot + Mailchimp have 70% feature overlap - you are paying Rs 8,000/month for duplicate email automation." The difference is structured financial clarity backed by real benchmark data, not suggestions generated from training data.</div></div></article>
       <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">How much do B2B companies waste on marketing tools?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">Research consistently shows B2B marketing teams waste 30-50% of their MarTech budget. The most common causes are unused seat licenses (you bought 10, 6 people use it), overlapping tools in the same category, overbuilt plan tiers, monthly billing where annual would save 20%, and auto-renewing contracts nobody reviews before they fire.</div></div></article>
-      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">Is StackAudit free?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">Yes. The Free plan supports up to 3 tools with Stack Efficiency Scoring and industry benchmark comparison - no sign-up required. The Full Report is a one-time $10 payment that unlocks unlimited tools, complete financial breakdown in Rs/$, tool overlap map with percentages, alternative recommendations, renewal alerts, and PDF export to share with leadership.</div></div></article>
-      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">Does StackAudit need access to my tools or accounts?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">No. StackAudit is entirely manual-input based. You enter the details - tool name, cost, seats, usage - and the scoring engine does the rest. No integrations, no API keys, no read access to any of your tools. Most audits complete in under 10 minutes.</div></div></article>
+      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">Is Marketing Stack Audit free?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">Yes. The Free plan supports up to 3 tools with Stack Efficiency Scoring and industry benchmark comparison - no sign-up required. The Full Report is a one-time $10 payment that unlocks unlimited tools, complete financial breakdown in Rs/$, tool overlap map with percentages, alternative recommendations, renewal alerts, and PDF export to share with leadership.</div></div></article>
+      <article class="fi"><div class="fq" role="button" tabindex="0" aria-expanded="false"><span class="fq-t">Does Marketing Stack Audit need access to my tools or accounts?</span><div class="ft"><svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14"/></svg></div></div><div class="fa"><div class="fa-inner">No. Marketing Stack Audit is entirely manual-input based. You enter the details - tool name, cost, seats, usage - and the scoring engine does the rest. No integrations, no API keys, no read access to any of your tools. Most audits complete in under 10 minutes.</div></div></article>
     </div>
   </div>
 </section>
@@ -392,7 +400,7 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
   <div class="container">
     <div class="footer-top">
       <div>
-        <div class="fp-name">StackAudit</div>
+        <div class="fp-name">Marketing Stack Audit</div>
         <p class="fp-desc">Marketing Stack Intelligence Platform. Audit your MarTech spend, identify waste, and make decisions with financial clarity.</p>
         <a href="https://sonderdigi.com" class="fsc" target="_blank" rel="noopener">
           <div class="fsc-logo">SONDER DIGITAL</div>
@@ -430,7 +438,7 @@ h4.ol-t{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:3px}
       </nav>
     </div>
     <div class="fbot">
-      <p class="fcopy">2025 StackAudit. A product by <a href="https://sonderdigi.com" target="_blank" rel="noopener">Sonder Digital</a>.</p>
+      <p class="fcopy">2025 Marketing Stack Audit. A product by <a href="https://sonderdigi.com" target="_blank" rel="noopener">Sonder Digital</a>.</p>
       <nav class="flegal"><a href="/privacy.html">Privacy</a><a href="/terms.html">Terms</a><a href="/contact.html">Contact</a></nav>
     </div>
   </div>
@@ -475,7 +483,7 @@ document.querySelectorAll(".nav-links a").forEach(a=>{a.addEventListener("click"
 </div>
 
 <script>
-const LP_APPS_SCRIPT_URL = "";
+const LP_APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxisM4XbFMSCvteS9e416j-1UHzINKv0xJudHXrJiCGhr3oDOn7Buy5vGrRuyEHozegCg/exec";
 
 function openStrategyModal() {
   document.getElementById("lp-overlay").style.display = "flex";
