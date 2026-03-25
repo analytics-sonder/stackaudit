@@ -99,7 +99,27 @@ h3.ct{font-family:'Poppins',sans-serif;font-size:16px;font-weight:700;color:var(
 .footer-legal{display:flex;gap:20px}
 .footer-legal a{font-size:12px;color:rgba(255,255,255,.3);transition:color .2s}
 .footer-legal a:hover{color:rgba(255,255,255,.6)}
-@media(max-width:900px){.nav-links{display:none}.container{padding:0 20px}.cards3{grid-template-columns:1fr}.cards2{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:28px}.footer-bot{flex-direction:column;align-items:flex-start}}</style>
+@media(max-width:900px){.nav-links{display:none}.container{padding:0 20px}.cards3{grid-template-columns:1fr}.cards2{grid-template-columns:1fr}.footer-top{grid-template-columns:1fr 1fr;gap:28px}.footer-bot{flex-direction:column;align-items:flex-start}}
+@media(max-width:768px){
+  .nav-links{display:none}
+  .container{padding:0 16px}
+  .hero-h1,.hero-h2{font-size:clamp(26px,7vw,44px) !important}
+  .hero-sub{font-size:15px}
+  .btn-actions{flex-direction:column;gap:10px}
+  .btn-p,.btn-o{width:100%;justify-content:center}
+  .cards3{grid-template-columns:1fr !important}
+  .cards2{grid-template-columns:1fr !important}
+  .footer-top{grid-template-columns:1fr 1fr;gap:24px}
+  .footer-bot{flex-direction:column;align-items:flex-start;gap:10px}
+  .nav-cta{padding:8px 16px;font-size:13px}
+}
+@media(max-width:480px){
+  .container{padding:0 14px}
+  .footer-top{grid-template-columns:1fr}
+  .chips{flex-wrap:wrap}
+  .hero-eyebrow{font-size:10px}
+}
+</style>
 </head>
 <body>
 <!-- NAV -->

@@ -130,6 +130,242 @@ select.fi{cursor:pointer}
 .pcta-current{background:var(--light-blue);color:#0854a8;border:1.5px solid #b5d4f4}
 .ws-card{display:grid;grid-template-columns:1fr auto;align-items:center;gap:12px;padding:1rem 1.25rem;border:1px solid var(--border);border-radius:12px;margin-bottom:10px;background:var(--white)}
 .billing-tog{display:flex;gap:2px;padding:3px;background:#f1f4f8;border-radius:10px;width:fit-content;margin-bottom:1.5rem}
+
+/* ═══════════════════════════════════════
+   MOBILE RESPONSIVE — full rewrite
+   Breakpoints: 768px (tablet), 480px (phone)
+═══════════════════════════════════════ */
+
+@media (max-width: 768px) {
+
+  /* ── App shell: stack sidebar below content ── */
+  .app {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto 1fr;
+    height: 100vh;
+    overflow: hidden;
+  }
+
+  /* ── Sidebar: collapse to bottom nav bar ── */
+  .sb {
+    height: auto;
+    position: fixed;
+    bottom: 0; left: 0; right: 0;
+    z-index: 200;
+    flex-direction: row;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 0;
+    border-top: 1px solid rgba(255,255,255,.12);
+  }
+
+  .sb-brand { display: none; }
+  .sb-group-label { display: none; }
+  .sb-footer { display: none; }
+
+  .sb-group {
+    display: flex;
+    flex-direction: row;
+    padding: 0;
+    flex-shrink: 0;
+  }
+
+  .nav-item {
+    flex-direction: column;
+    gap: 3px;
+    padding: 8px 12px;
+    font-size: 9px;
+    border-radius: 0;
+    margin-bottom: 0;
+    min-width: 56px;
+    align-items: center;
+    justify-content: center;
+    white-space: nowrap;
+  }
+
+  .nav-item.active {
+    background: rgba(10,102,194,.3);
+  }
+
+  .nav-icon {
+    width: 18px;
+    height: 18px;
+  }
+
+  .nav-badge { display: none; }
+
+  /* ── Main content area ── */
+  .main {
+    height: calc(100vh - 58px);
+    overflow-y: auto;
+    overflow-x: hidden;
+    padding-bottom: 58px;
+  }
+
+  /* ── Topbar ── */
+  .topbar {
+    padding: .75rem 1rem;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .topbar-right {
+    width: 100%;
+    justify-content: flex-end;
+    gap: 6px;
+  }
+
+  .topbar-right .btn {
+    font-size: 12px;
+    padding: 6px 10px;
+  }
+
+  .pg-title { font-size: 16px; }
+  .pg-desc { display: none; }
+
+  /* ── Metrics cards: 2×2 grid ── */
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 1rem;
+  }
+
+  .mc { padding: .75rem; }
+  .mc-value { font-size: 20px; }
+
+  /* ── Content padding ── */
+  .content {
+    padding: 1rem;
+    overflow-y: auto;
+  }
+
+  /* ── Dashboard charts: stack vertically ── */
+  #page-dashboard > div[style*="grid-template-columns:1fr 1fr"] {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 1rem !important;
+  }
+
+  /* ── Tables: horizontal scroll ── */
+  .tt { font-size: 12px; }
+  .tt th, .tt td { padding: 6px 6px; }
+
+  /* Hide less important columns on mobile */
+  .tt th:nth-child(4), .tt td:nth-child(4),
+  .tt th:nth-child(5), .tt td:nth-child(5),
+  .tt th:nth-child(6), .tt td:nth-child(6) {
+    display: none;
+  }
+
+  /* ── Form grid: single column ── */
+  .form-grid {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  /* ── Quick add buttons: wrap ── */
+  .fsec > div > div[style*="flex-wrap:wrap"] {
+    gap: 5px;
+  }
+
+  /* ── Step boxes ── */
+  .fsec > div[style*="background:#f8fafd"] {
+    padding: 12px;
+  }
+
+  /* ── Plans grid: single column ── */
+  .plans-grid {
+    grid-template-columns: 1fr !important;
+  }
+
+  /* ── Modals: full width on mobile ── */
+  #modal-free, #modal-payment, #modal-strategy, #modal-success {
+    max-width: 100% !important;
+    border-radius: 16px 16px 0 0 !important;
+    position: fixed !important;
+    bottom: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    margin: 0 !important;
+    padding: 24px 20px !important;
+  }
+
+  #modal-overlay {
+    align-items: flex-end !important;
+    padding: 0 !important;
+  }
+
+  /* ── Strategy modal grid: single col ── */
+  #modal-strategy > div[style*="grid-template-columns:1fr 1fr"] {
+    grid-template-columns: 1fr !important;
+    gap: 8px !important;
+  }
+
+  /* ── Score ring section ── */
+  .score-ring-wrap {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Renewal cards ── */
+  .ren-card {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  /* ── Locked overlay ── */
+  .locked {
+    padding: 2rem 1rem;
+  }
+
+}
+
+@media (max-width: 480px) {
+
+  /* Even smaller phones */
+  .metrics {
+    grid-template-columns: 1fr 1fr;
+    gap: 6px;
+  }
+
+  .mc-value { font-size: 18px; }
+  .mc-label { font-size: 10px; }
+
+  .topbar {
+    padding: .6rem .75rem;
+  }
+
+  .nav-item {
+    padding: 6px 8px;
+    min-width: 48px;
+    font-size: 8px;
+  }
+
+  .fsec {
+    margin-bottom: 1rem;
+  }
+
+  /* Hide Workspaces and AI insights from mobile nav to save space */
+  .nav-item[onclick*="workspaces"],
+  .nav-item[onclick*="ai"] {
+    display: none;
+  }
+
+  /* Form section steps */
+  div[style*="Step 1"], div[style*="Step 2"] {
+    font-size: 10px;
+  }
+
+  .fi {
+    font-size: 14px; /* prevent iOS zoom on input focus */
+  }
+
+  select.fi {
+    font-size: 14px; /* prevent iOS zoom */
+  }
+
+}
 </style>
 </head>
 <body>
@@ -181,7 +417,10 @@ select.fi{cursor:pointer}
   </div>
 </div>
 <div class="main">
-  <div class="topbar">
+  <div class="topbar" id="topbar">
+      <button id="mob-menu-btn" onclick="toggleMobileMenu()" style="display:none;background:none;border:none;cursor:pointer;padding:4px;color:var(--navy)" aria-label="Menu">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+      </button>
     <div><div class="topbar-title" id="pg-title">Dashboard</div><div class="topbar-desc" id="pg-desc">Your marketing stack at a glance</div></div>
     <div class="topbar-right">
       <button class="btn btn-ghost btn-sm" onclick="nav('add',document.querySelector('[onclick*=add]'))">+ Add tool</button>
@@ -690,6 +929,7 @@ function setPlan(p){currentPlan=p;updateUI();}
 function billingTab(c,el){billingCycle=c;document.querySelectorAll('#btog .tab').forEach(t=>t.classList.remove('active'));el.classList.add('active');}
 
 renderDash();updateUI();
+initMobile();
 </script>
 
 <!-- ══════════════════════════════════════════
@@ -900,7 +1140,7 @@ const PRICING_DB = {
 };
 
 const APPS_SCRIPT_URL = "https://script.google.com/macros/s/AKfycbxisM4XbFMSCvteS9e416j-1UHzINKv0xJudHXrJiCGhr3oDOn7Buy5vGrRuyEHozegCg/exec";
-const DODO_PAYMENT_LINK = "";
+const DODO_PAYMENT_LINK = "https://checkout.dodopayments.com/buy/pdt_0NbEplMLBcckG48wprxLB?quantity=1";
 
 function openModal(type) {
   const overlay = document.getElementById('modal-overlay');
@@ -1013,7 +1253,7 @@ async function submitPayment() {
       window.location.href = DODO_PAYMENT_LINK + '?email=' + encodeURIComponent(email);
     } else {
       btn.textContent='Continue to payment — $10/mo →'; btn.disabled=false;
-      err.textContent='Payment link coming soon. Email us at hello@sonderdigi.com to upgrade.'; err.style.display='block';
+      err.textContent='Redirecting to checkout...'; err.style.display='none';
     }
   }, 600);
 }
@@ -1041,5 +1281,47 @@ async function submitStrategy() {
 }
 </script>
 
+<script>
+// ── Mobile responsive JS ──
+function initMobile() {
+  if (window.innerWidth <= 768) {
+    const menuBtn = document.getElementById('mob-menu-btn');
+    if (menuBtn) menuBtn.style.display = 'block';
+    // Shorten nav item labels for mobile
+    const labels = {
+      'Dashboard': 'Home', 'My tools': 'Tools', 'Add tool': 'Add',
+      'Recommendations': 'Recs', 'Renewal alerts': 'Renewals',
+      'Add-on audit': 'Add-ons', 'AI insights': 'AI',
+      'Plans & billing': 'Plans', 'Back to landing page': ''
+    };
+    document.querySelectorAll('.nav-item').forEach(el => {
+      const text = el.childNodes[el.childNodes.length - 1];
+      if (text && text.nodeType === 3) {
+        const trimmed = text.textContent.trim();
+        if (labels[trimmed] !== undefined) {
+          if (labels[trimmed] === '') {
+            el.style.display = 'none';
+          } else {
+            text.textContent = labels[trimmed];
+          }
+        }
+      }
+    });
+  }
+}
+
+window.addEventListener('resize', () => {
+  const menuBtn = document.getElementById('mob-menu-btn');
+  if (menuBtn) menuBtn.style.display = window.innerWidth <= 768 ? 'block' : 'none';
+});
+
+function toggleMobileMenu() {
+  // On mobile sidebar is fixed bottom bar - this could toggle a drawer
+  // For now just navigate to dashboard
+  nav('dashboard', document.querySelector('.nav-item'));
+}
+
+document.addEventListener('DOMContentLoaded', initMobile);
+</script>
 </body>
 </html>
